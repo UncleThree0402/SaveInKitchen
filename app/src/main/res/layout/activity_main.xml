@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
+
+        <RelativeLayout
+                android:id="@+id/title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true">
+
+            <TextView
+                    android:id="@+id/title_bar_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Home page"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/quicksand_bold"/>
+        </RelativeLayout>
+
+        <androidx.viewpager.widget.ViewPager
+                android:id="@+id/home_page_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_bar"
+                android:layout_marginBottom="55dp"/>
+
+
+        <LinearLayout
+                android:id="@+id/nav_bar"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@color/black"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
+
+

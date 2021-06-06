@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+            android:id="@+id/title_container"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Food Type"
+                android:fontFamily="@font/quicksand_bold"
+                android:textSize="18sp"
+                android:textColor="@color/black"/>
+
+    </RelativeLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/choose_food_type_auto_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/title_container"
+            android:hint="Name"
+            app:errorEnabled="true"
+            app:boxStrokeColor="@color/black"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:completionThreshold="1"
+                android:id="@+id/choose_food_type_auto_input"
+                android:fontFamily="@font/quicksand_medium"
+                />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/choose_food_add_new_type_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_below="@id/choose_food_type_auto_input_layout"
+            android:text="Add New Type"
+            android:fontFamily="@font/quicksand"
+            android:backgroundTint="@color/black"/>
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/choose_food_confirm_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_below="@id/choose_food_add_new_type_button"
+            android:text="Confirm"
+            android:fontFamily="@font/quicksand"
+            android:backgroundTint="@color/black"/>
+
+</RelativeLayout>
