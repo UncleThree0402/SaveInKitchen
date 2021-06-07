@@ -14,18 +14,30 @@ public class RecipeFood {
     @ColumnInfo(name = "food_type_id")
     private int food_type_id;
 
+    @ColumnInfo(name = "recipe_food_name")
+    private String name;
+
+    @ColumnInfo(name = "recipe_food_status")
+    private String status;
+
     @ColumnInfo(name = "recipe_food_quantity")
     private double quantity;
 
     @ColumnInfo(name = "recipe_food_unit")
     private String unit;
 
-    public RecipeFood(int recipe_food_id, int recipe_id, int food_type_id, double quantity, String unit) {
+    @ColumnInfo(name = "recipe_food_description")
+    private String description;
+
+    public RecipeFood(int recipe_food_id, int recipe_id, int food_type_id, String name, String status, double quantity, String unit, String description) {
         this.recipe_food_id = recipe_food_id;
         this.recipe_id = recipe_id;
         this.food_type_id = food_type_id;
+        this.name = name;
+        this.status = status;
         this.quantity = quantity;
         this.unit = unit;
+        this.description = description;
     }
 
     @Ignore
@@ -56,6 +68,22 @@ public class RecipeFood {
         this.food_type_id = food_type_id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public double getQuantity() {
         return quantity;
     }
@@ -70,5 +98,13 @@ public class RecipeFood {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

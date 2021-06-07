@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="400dp"
                 xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+            android:id="@+id/title_container"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Food Information"
+                android:fontFamily="@font/quicksand_bold"
+                android:textSize="18sp"
+                android:textColor="@color/black"/>
+    </RelativeLayout>
 
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_container">
 
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <RelativeLayout
-                    android:id="@+id/title_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp">
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="Food Information"
-                        android:fontFamily="@font/quicksand_bold"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"/>
-            </RelativeLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/add_stock_food_type_input_layout"
@@ -33,7 +35,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="32dp"
                     android:layout_marginTop="8dp"
-                    android:layout_below="@id/title_container"
                     android:hint="Food Name"
                     app:errorEnabled="true"
                     app:boxStrokeColor="@color/black"
@@ -45,7 +46,7 @@
                         android:id="@+id/add_stock_food_type_input"
                         android:fontFamily="@font/quicksand_medium"
                         android:inputType="text"
-                        />
+                />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,7 +68,7 @@
                         android:id="@+id/add_stock_food_status_input"
                         android:inputType="none"
                         android:fontFamily="@font/quicksand_medium"
-                        />
+                />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,7 +99,7 @@
                             android:inputType="numberDecimal"
                             android:id="@+id/add_stock_food_quantity_input"
                             android:fontFamily="@font/quicksand_medium"
-                            />
+                    />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,7 +120,7 @@
                             android:id="@+id/add_stock_food_unit_input"
                             android:fontFamily="@font/quicksand_medium"
                             android:inputType="text"
-                            />
+                    />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,7 +145,7 @@
                         android:inputType="numberDecimal"
                         android:id="@+id/add_stock_food_cost_input"
                         android:fontFamily="@font/quicksand_medium"
-                        />
+                />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,7 +157,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_below="@id/add_stock_food_cost_input_layout"
                     android:hint="Buy Date"
+                    app:helperText="*day/month/year"
                     app:errorEnabled="true"
+                    app:errorIconDrawable="@null"
                     app:endIconMode="custom"
                     app:endIconDrawable="@drawable/ic_baseline_calendar_today_24"
                     app:boxStrokeColor="@color/black"
@@ -165,10 +168,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none"
+                        android:inputType="date"
                         android:id="@+id/add_stock_food_buy_date_input"
                         android:fontFamily="@font/quicksand_medium"
-                        />
+                />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -180,6 +183,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_below="@id/add_stock_food_buy_date_input_layout"
                     android:hint="Expire Date"
+                    app:helperText="*day/month/year"
                     app:errorEnabled="true"
                     app:endIconMode="custom"
                     app:endIconDrawable="@drawable/ic_baseline_calendar_today_24"
@@ -189,10 +193,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none"
+                        android:inputType="date"
                         android:id="@+id/add_stock_food_expire_date_input"
                         android:fontFamily="@font/quicksand_medium"
-                        />
+                />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -201,7 +205,7 @@
                     android:id="@+id/add_stock_food_confirm_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginVertical="8dp"
                     android:layout_marginHorizontal="32dp"
                     android:layout_below="@id/add_stock_food_expire_date_input_layout"
                     android:text="Confirm"

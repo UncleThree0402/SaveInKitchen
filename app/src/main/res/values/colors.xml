@@ -10,4 +10,7 @@
 
     <color name="green">#008000</color>
     <color name="red">#FF0000</color>
+
+    <color name="orange">#FFA500</color>
+    <color name="deleteRed">#C70000</color>
 </resources>

@@ -7,18 +7,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.unclethree.saveinkitchen.R;
+import formatters.NumberFormatter;
 import models.BuyFood;
-import models.BuyListItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BuyListRecycleViewAdapter extends RecyclerView.Adapter<BuyListRecycleViewAdapter.ViewHolder>{
 
-    private List<BuyListItem> mBuyList = new ArrayList<>();
+    private List<BuyFood> mBuyFood = new ArrayList<>();
 
-    public BuyListRecycleViewAdapter(List<BuyListItem> mBuyList) {
-        this.mBuyList = mBuyList;
+    public BuyListRecycleViewAdapter(List<BuyFood> mBuyFood) {
+        this.mBuyFood = mBuyFood;
     }
 
     @NonNull
@@ -30,15 +30,15 @@ public class BuyListRecycleViewAdapter extends RecyclerView.Adapter<BuyListRecyc
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.mTypeNameTextView.setText(mBuyList.get(position).getFood_type());
-        holder.mStatusTextView.setText(mBuyList.get(position).getBuy_food_status());
-        String quantity = mBuyList.get(position).getBuy_food_quantity() + mBuyList.get(position).getBuy_food_unit();
+        holder.mTypeNameTextView.setText(mBuyFood.get(position).getName());
+        holder.mStatusTextView.setText(mBuyFood.get(position).getStatus());
+        String quantity = NumberFormatter.quantityFormatter(mBuyFood.get(position).getQuantity()) + " " + mBuyFood.get(position).getUnit();
         holder.mQuantityTextView.setText(quantity);
     }
 
     @Override
     public int getItemCount() {
-        return mBuyList.size();
+        return mBuyFood.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

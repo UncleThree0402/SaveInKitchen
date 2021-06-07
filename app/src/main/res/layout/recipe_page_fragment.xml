@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/recipe_page_rl">
+
+    <RelativeLayout
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true">
+
+        <TextView
+                android:id="@+id/title_bar_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Recipe Page"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:fontFamily="@font/quicksand_bold"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/title_bar">
+
+        <androidx.appcompat.widget.SearchView
+                android:id="@+id/recipe_search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="32dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/recipe_list_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_bar"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="8dp">
+
+        <RelativeLayout
+                android:id="@+id/recipe_list_title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recipe List"
+                    android:textSize="16sp"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/quicksand"
+                    android:textColor="#707070"
+                    android:layout_centerVertical="true"
+            />
+
+            <ImageView
+                    android:id="@+id/add_recipe_list_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_add_30_grey"
+                    android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recipe_list_recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/recipe_list_title_bar"
+                android:paddingHorizontal="32dp"
+                android:paddingVertical="8dp"
+                android:visibility="gone"/>
+
+        <TextView
+                android:id="@+id/recipe_list_recycle_view_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="32dp"
+                android:paddingVertical="8dp"
+                android:text="Empty List"
+                android:layout_below="@+id/recipe_list_title_bar"
+                android:gravity="center"
+                android:fontFamily="@font/quicksand"
+                android:textColor="@color/black"/>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

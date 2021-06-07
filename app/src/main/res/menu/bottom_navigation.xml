@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_home"
+          android:icon="@drawable/ic_noun_home_3962224"
+          android:title="Home"/>
+
+    <item android:id="@+id/nav_meal"
+          android:icon="@drawable/ic_noun_meal_1556112"
+          android:title="Meal"/>
+
+    <item android:id="@+id/nav_recipe"
+          android:icon="@drawable/ic_noun_recipe_2093478"
+          android:title="Recipe"/>
+
+    <item android:id="@+id/nav_food"
+          android:icon="@drawable/ic_noun_warehouse_1877737"
+          android:title="Food"/>
+
+    <item android:id="@+id/nav_history"
+          android:icon="@drawable/ic_noun_history_3323396"
+          android:title="History"/>
+
+</menu>

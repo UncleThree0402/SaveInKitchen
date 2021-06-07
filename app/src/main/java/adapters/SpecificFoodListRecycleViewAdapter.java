@@ -8,12 +8,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.unclethree.saveinkitchen.R;
+import formatters.NumberFormatter;
 import models.Food;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecificFoodListRecycleViewAdapter extends RecyclerView.Adapter<SpecificFoodListRecycleViewAdapter.ViewHolder>{
+public class SpecificFoodListRecycleViewAdapter extends RecyclerView.Adapter<SpecificFoodListRecycleViewAdapter.ViewHolder> {
 
     private List<Food> mFood = new ArrayList<>();
 
@@ -32,7 +33,7 @@ public class SpecificFoodListRecycleViewAdapter extends RecyclerView.Adapter<Spe
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.mNameTextView.setText(mFood.get(position).getName());
         holder.mStatusTextView.setText(mFood.get(position).getStatus());
-        String quantity = mFood.get(position).getQuantity() + mFood.get(position).getUnit();
+        String quantity = NumberFormatter.quantityFormatter(mFood.get(position).getQuantity()) + " " + mFood.get(position).getUnit();
         holder.mQuantityTextView.setText(quantity);
     }
 
@@ -41,7 +42,7 @@ public class SpecificFoodListRecycleViewAdapter extends RecyclerView.Adapter<Spe
         return mFood.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView mNameTextView;
         private TextView mStatusTextView;

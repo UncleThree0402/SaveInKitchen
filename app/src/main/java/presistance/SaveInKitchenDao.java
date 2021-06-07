@@ -33,16 +33,20 @@ public interface SaveInKitchenDao {
     @Query("SELECT * FROM buy_list")
     LiveData<List<BuyFood>> getBuyFood();
 
-    @Query("SELECT food_type.food_type, buy_list.buy_food_status ,buy_list.buy_food_quantity, buy_list.buy_food_unit FROM buy_list " +
-            "INNER JOIN food_type " +
-            "ON food_type.food_type_id = buy_list.food_type_id")
-    LiveData<List<BuyListItem>> getBuyFoodList();
+    @Query("SELECT * FROM buy_list WHERE buy_list_id = :buy_list_id")
+    LiveData<BuyFood> getSpecificBuyFood(int buy_list_id);
 
     @Query("SELECT * FROM food")
     LiveData<List<Food>> getFood();
 
     @Query("SELECT * FROM food WHERE food_type_id = :food_type_id")
     LiveData<List<Food>> getSpecificFoodList(int food_type_id);
+
+    @Query("SELECT COUNT(*) FROM food WHERE food_type_id = :food_type_id")
+    LiveData<Integer> getFoodTypeCount(int food_type_id);
+
+    @Query("SELECT * FROM food WHERE food_name LIKE :name ")
+    LiveData<List<Food>> getSearchFood(String name);
 
     @Query("SELECT * FROM food_type")
     LiveData<List<FoodType>> getFoodType();
@@ -59,6 +63,9 @@ public interface SaveInKitchenDao {
     @Query("SELECT * FROM recipe")
     LiveData<List<Recipe>> getRecipe();
 
+    @Query("SELECT * FROM recipe WHERE recipe_name LIKE :name ")
+    LiveData<List<Recipe>> getSearchRecipe(String name);
+
     @Query("SELECT * FROM recipe_food")
     LiveData<List<RecipeFood>> getRecipeFood();
 
@@ -70,6 +77,12 @@ public interface SaveInKitchenDao {
 
     @Query("SELECT SUM(buy_history_cost) FROM buy_history WHERE buy_history_buy_date >= :date")
     LiveData<Double> getBuyHistory30DaysCost(long date);
+
+    @Query("SELECT * FROM buy_history WHERE buy_history_buy_date >= :dateIn ")
+    LiveData<List<BuyHistory>> getBuyHistory30Days(long dateIn);
+
+    @Query("SELECT * FROM buy_history WHERE buy_history_name LIKE :name ")
+    LiveData<List<BuyHistory>> getSearchBuyHistory(String name);
 
     @Update
     int updateBuyFood(BuyFood... buyFoods);

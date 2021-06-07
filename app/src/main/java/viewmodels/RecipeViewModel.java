@@ -36,4 +36,8 @@ public class RecipeViewModel extends AndroidViewModel {
     public LiveData<List<Recipe>> getRecipe(){
         return mRecipe;
     }
+
+    public LiveData<List<Recipe>> getSearchRecipe(String name){
+        return mSaveInKitchenRepository.getSearchRecipe("%" + name + "%");
+    }
 }

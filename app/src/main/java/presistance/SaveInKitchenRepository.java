@@ -67,36 +67,48 @@ public class SaveInKitchenRepository {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getBuyFood();
     }
 
-    public LiveData<List<BuyListItem>> getBuyFoodList(){
-        return mSaveInKitchenDatabase.getSaveForFoodDao().getBuyFoodList();
+    public LiveData<BuyFood> getSpecificBuyFood(int id) {
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificBuyFood(id);
     }
 
     public LiveData<List<Food>> getFood() {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getFood();
     }
 
-    public LiveData<List<Food>> getSpecificFoodList(int id){
+    public LiveData<List<Food>> getSpecificFoodList(int id) {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificFoodList(id);
+    }
+
+    public LiveData<List<Food>> getSearchFood(String name) {
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSearchFood(name);
+    }
+
+    public LiveData<Integer> getFoodTypeCount(int id) {
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getFoodTypeCount(id);
     }
 
     public LiveData<List<FoodType>> getFoodType() {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getFoodType();
     }
 
-    public LiveData<List<String>> getFoodTypeName(){
+    public LiveData<List<String>> getFoodTypeName() {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getFoodTypeName();
     }
 
-    public LiveData<List<String>> getSpecificFoodTypeName(String name){
+    public LiveData<List<String>> getSpecificFoodTypeName(String name) {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificFoodTypeName(name);
     }
 
-    public LiveData<FoodType> getSpecificFoodType(String name){
+    public LiveData<FoodType> getSpecificFoodType(String name) {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificFoodType(name);
     }
 
     public LiveData<List<Recipe>> getRecipe() {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getRecipe();
+    }
+
+    public LiveData<List<Recipe>> getSearchRecipe(String name) {
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSearchRecipe(name);
     }
 
     public LiveData<List<RecipeFood>> getRecipeFood() {
@@ -111,8 +123,16 @@ public class SaveInKitchenRepository {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getBuyHistory();
     }
 
-    public LiveData<Double> getBuyHistory30DaysCost(long date){
+    public LiveData<Double> getBuyHistory30DaysCost(long date) {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getBuyHistory30DaysCost(date);
+    }
+
+    public LiveData<List<BuyHistory>> getBuyHistory30Days(long dateIn) {
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getBuyHistory30Days(dateIn);
+    }
+
+    public LiveData<List<BuyHistory>> getSearchBuyHistory(String name) {
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSearchBuyHistory(name);
     }
 
     public void updateBuyFood(BuyFood buyFood) {

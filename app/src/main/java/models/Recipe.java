@@ -12,11 +12,27 @@ public class Recipe {
     private int recipe_id;
 
     @ColumnInfo(name = "recipe_name")
-    private String recipe_name;
+    private String name;
 
-    public Recipe(int recipe_id, String recipe_name) {
+    @ColumnInfo(name = "recipe_note")
+    private String note;
+
+    @ColumnInfo(name = "recipe_methods")
+    private String methods;
+
+    @ColumnInfo(name = "recipe_servings")
+    private int servings;
+
+    @ColumnInfo(name = "recipe_cost")
+    private double cost;
+
+    public Recipe(int recipe_id, String name, String note, String methods, int servings, double cost) {
         this.recipe_id = recipe_id;
-        this.recipe_name = recipe_name;
+        this.name = name;
+        this.note = note;
+        this.methods = methods;
+        this.servings = servings;
+        this.cost = cost;
     }
 
     @Ignore
@@ -31,11 +47,43 @@ public class Recipe {
         this.recipe_id = recipe_id;
     }
 
-    public String getRecipe_name() {
-        return recipe_name;
+    public String getName() {
+        return name;
     }
 
-    public void setRecipe_name(String recipe_name) {
-        this.recipe_name = recipe_name;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getMethods() {
+        return methods;
+    }
+
+    public void setMethods(String methods) {
+        this.methods = methods;
+    }
+
+    public int getServings() {
+        return servings;
+    }
+
+    public void setServings(int servings) {
+        this.servings = servings;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
     }
 }

@@ -41,4 +41,12 @@ public class BuyHistoryViewModel extends AndroidViewModel {
     public LiveData<Double> getBuyHistory30DaysCost(long date){
         return mSaveInKitchenRepository.getBuyHistory30DaysCost(date);
     }
+
+    public  LiveData<List<BuyHistory>> getBuyHistory30Days(long dateIn){
+        return mSaveInKitchenRepository.getBuyHistory30Days(dateIn);
+    }
+
+    public  LiveData<List<BuyHistory>> getSearchBuyHistory(String name){
+        return mSaveInKitchenRepository.getSearchBuyHistory("%" + name + "%");
+    }
 }

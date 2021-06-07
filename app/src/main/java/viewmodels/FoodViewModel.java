@@ -42,4 +42,12 @@ public class FoodViewModel extends AndroidViewModel {
     public LiveData<List<Food>> getSpecificFoodList(int foodTypeId){
         return mSaveInKitchenRepository.getSpecificFoodList(foodTypeId);
     }
+
+    public LiveData<List<Food>> getSearchFood(String name){
+        return mSaveInKitchenRepository.getSearchFood("%" + name + "%");
+    }
+
+    public LiveData<Integer> getFoodTypeCount(int id){
+        return mSaveInKitchenRepository.getFoodTypeCount(id);
+    }
 }

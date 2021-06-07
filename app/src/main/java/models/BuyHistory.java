@@ -44,6 +44,17 @@ public class BuyHistory {
     }
 
     @Ignore
+    public BuyHistory(String name, String status, double quantity, String unit, double cost, long buyDate, long expireDate) {
+        this.name = name;
+        this.status = status;
+        this.quantity = quantity;
+        this.unit = unit;
+        this.cost = cost;
+        this.buyDate = buyDate;
+        this.expireDate = expireDate;
+    }
+
+    @Ignore
     public BuyHistory() {
     }
 

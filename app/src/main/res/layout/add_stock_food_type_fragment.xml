@@ -56,7 +56,7 @@
             android:id="@+id/choose_food_confirm_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="32dp"
             android:layout_below="@id/choose_food_add_new_type_button"
             android:text="Confirm"

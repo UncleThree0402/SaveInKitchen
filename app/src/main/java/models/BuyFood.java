@@ -11,21 +11,30 @@ public class BuyFood {
     @ColumnInfo(name = "food_type_id")
     private int food_type_id;
 
+    @ColumnInfo(name = "buy_food_name")
+    private String name;
+
     @ColumnInfo(name = "buy_food_status")
     private String status;
 
     @ColumnInfo(name = "buy_food_quantity")
-    private double quantity;
+    private Double quantity;
 
     @ColumnInfo(name = "buy_food_unit")
     private String unit;
 
-    public BuyFood(int buy_list_id, int food_type_id, String status, double quantity, String unit) {
+    public BuyFood(int buy_list_id, int food_type_id, String name, String status, double quantity, String unit) {
         this.buy_list_id = buy_list_id;
         this.food_type_id = food_type_id;
+        this.name = name;
         this.status = status;
         this.quantity = quantity;
         this.unit = unit;
+    }
+
+    @Ignore
+    public BuyFood(int buy_list_id) {
+        this.buy_list_id = buy_list_id;
     }
 
     @Ignore
@@ -46,6 +55,14 @@ public class BuyFood {
 
     public void setFood_type_id(int food_type_id) {
         this.food_type_id = food_type_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getStatus() {
