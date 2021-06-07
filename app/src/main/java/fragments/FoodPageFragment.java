@@ -42,7 +42,7 @@ public class FoodPageFragment extends Fragment {
 
     //Var
     private FoodListRecycleViewAdapter mFoodListRecycleViewAdapter;
-    private ArrayList<Food> mFood = new ArrayList<>();
+    private final ArrayList<Food> mFood = new ArrayList<>();
     private FoodViewModel mFoodViewModel;
 
     @Nullable
@@ -129,7 +129,7 @@ public class FoodPageFragment extends Fragment {
         mFoodRecyclerView.setAdapter(mFoodListRecycleViewAdapter);
     }
 
-    private ItemTouchHelper.SimpleCallback foodSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+    private final ItemTouchHelper.SimpleCallback foodSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;

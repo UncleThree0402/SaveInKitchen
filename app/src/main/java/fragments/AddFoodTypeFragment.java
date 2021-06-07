@@ -68,11 +68,7 @@ public class AddFoodTypeFragment extends Fragment implements View.OnClickListene
         mFoodTypeViewModel.getSpecificFoodTypeName(mNameInputLayout.getEditText().getText().toString()).observe(getViewLifecycleOwner(), new Observer<List<String>>() {
             @Override
             public void onChanged(List<String> strings) {
-                if (strings.size() > 0) {
-                    isNameExist = true;
-                } else {
-                    isNameExist = false;
-                }
+                isNameExist = strings.size() > 0;
                 validName();
             }
         });

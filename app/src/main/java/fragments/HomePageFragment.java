@@ -64,10 +64,10 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private FoodTypeViewModel mFoodTypeViewModel;
     private BuyListRecycleViewAdapter mBuyListRecycleViewAdapter;
     private StockListRecycleViewAdapter mStockListRecycleViewAdapter;
-    private ArrayList<BuyFood> mBuyFood = new ArrayList<>();
-    private ArrayList<FoodType> mFoodType = new ArrayList<>();
-    private ArrayList<BuyHistory> mBuyHistory = new ArrayList<>();
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM");
+    private final ArrayList<BuyFood> mBuyFood = new ArrayList<>();
+    private final ArrayList<FoodType> mFoodType = new ArrayList<>();
+    private final ArrayList<BuyHistory> mBuyHistory = new ArrayList<>();
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM");
 
     @Nullable
     @Override
@@ -161,7 +161,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         mStockListRecycleView.setAdapter(mStockListRecycleViewAdapter);
     }
 
-    private ItemTouchHelper.SimpleCallback buyListSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+    private final ItemTouchHelper.SimpleCallback buyListSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
@@ -199,7 +199,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
 
 
-    private ItemTouchHelper.SimpleCallback stockListSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+    private final ItemTouchHelper.SimpleCallback stockListSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;

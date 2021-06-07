@@ -42,8 +42,8 @@ public class RecipeListRecycleAdapter extends RecyclerView.Adapter<RecipeListRec
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView mRecipeName;
-        private TextView mRecipeCost;
+        private final TextView mRecipeName;
+        private final TextView mRecipeCost;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

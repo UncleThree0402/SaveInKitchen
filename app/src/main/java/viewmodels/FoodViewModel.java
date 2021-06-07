@@ -13,9 +13,9 @@ import java.util.List;
 
 public class FoodViewModel extends AndroidViewModel {
 
-    private SaveInKitchenRepository mSaveInKitchenRepository;
+    private final SaveInKitchenRepository mSaveInKitchenRepository;
 
-    private LiveData<List<Food>> mFood;
+    private final LiveData<List<Food>> mFood;
 
     public FoodViewModel(@NonNull Application application) {
         super(application);

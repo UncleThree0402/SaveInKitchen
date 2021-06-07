@@ -11,9 +11,9 @@ import java.util.List;
 
 public class RecipeViewModel extends AndroidViewModel {
 
-    private SaveInKitchenRepository mSaveInKitchenRepository;
+    private final SaveInKitchenRepository mSaveInKitchenRepository;
 
-    private LiveData<List<Recipe>> mRecipe;
+    private final LiveData<List<Recipe>> mRecipe;
 
     public RecipeViewModel(@NonNull Application application) {
         super(application);

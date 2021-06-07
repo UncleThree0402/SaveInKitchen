@@ -29,7 +29,7 @@ import java.util.List;
 
 public class SaveInKitchenRepository {
 
-    private SaveInKitchenDatabase mSaveInKitchenDatabase;
+    private final SaveInKitchenDatabase mSaveInKitchenDatabase;
 
     public SaveInKitchenRepository(Context context) {
         mSaveInKitchenDatabase = SaveInKitchenDatabase.getInstance(context);

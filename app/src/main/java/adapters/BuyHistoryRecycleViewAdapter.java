@@ -28,7 +28,7 @@ public class BuyHistoryRecycleViewAdapter extends RecyclerView.Adapter<BuyHistor
     private static final String TAG = "BuyHistoryRecycleViewAd";
 
     private List<BuyHistory> mBuyHistory = new ArrayList<>();
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 
     public BuyHistoryRecycleViewAdapter(List<BuyHistory> mBuyHistory) {
@@ -63,14 +63,14 @@ public class BuyHistoryRecycleViewAdapter extends RecyclerView.Adapter<BuyHistor
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private RelativeLayout mParentRelativeLayout;
-        private RelativeLayout mChildRelativeLayout;
-        private TextView mNameTextView;
-        private TextView mStatusTextView;
-        private TextView mBuyDateTextView;
-        private TextView mQuantityTextView;
-        private TextView mCostTextView;
-        private TextView mExpireDateTextView;
+        private final RelativeLayout mParentRelativeLayout;
+        private final RelativeLayout mChildRelativeLayout;
+        private final TextView mNameTextView;
+        private final TextView mStatusTextView;
+        private final TextView mBuyDateTextView;
+        private final TextView mQuantityTextView;
+        private final TextView mCostTextView;
+        private final TextView mExpireDateTextView;
 
         private boolean isOpen = false;
 

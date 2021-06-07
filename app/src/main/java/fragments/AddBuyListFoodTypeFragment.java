@@ -34,7 +34,7 @@ public class AddBuyListFoodTypeFragment extends Fragment implements View.OnClick
 
     //Var
     private FoodTypeViewModel mFoodTypeViewModel;
-    private ArrayList<String> mFoodTypeName = new ArrayList<>();
+    private final ArrayList<String> mFoodTypeName = new ArrayList<>();
     private boolean isNameExist;
     private FoodType mFoodType;
     private FragmentManager fragmentManager;

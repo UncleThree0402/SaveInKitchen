@@ -7,7 +7,7 @@ import presistance.SaveInKitchenDao;
 
 public class InsertRecipeFoodAsyncTask extends AsyncTask<RecipeFood,Void,Void> {
 
-    private SaveInKitchenDao mSaveInKitchenDao;
+    private final SaveInKitchenDao mSaveInKitchenDao;
 
     public InsertRecipeFoodAsyncTask(SaveInKitchenDao mSaveInKitchenDao) {
         this.mSaveInKitchenDao = mSaveInKitchenDao;

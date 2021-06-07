@@ -42,7 +42,7 @@ public class RecipePageFragment extends Fragment implements View.OnClickListener
     private ImageView mAddRecipeButton;
 
     //Var
-    private ArrayList<Recipe> mRecipe = new ArrayList<>();
+    private final ArrayList<Recipe> mRecipe = new ArrayList<>();
     private RecipeListRecycleAdapter mRecipeRecyclerAdapter;
     private RecipeViewModel mRecipeViewModel;
 
@@ -127,7 +127,7 @@ public class RecipePageFragment extends Fragment implements View.OnClickListener
         mRecipeRecyclerView.setAdapter(mRecipeRecyclerAdapter);
     }
 
-    private ItemTouchHelper.SimpleCallback recipeSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+    private final ItemTouchHelper.SimpleCallback recipeSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;

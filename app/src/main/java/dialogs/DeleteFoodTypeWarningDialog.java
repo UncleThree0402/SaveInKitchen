@@ -18,7 +18,7 @@ public class DeleteFoodTypeWarningDialog extends DialogFragment {
     //Var
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    private Bundle bundle;
+    private final Bundle bundle;
 
     public DeleteFoodTypeWarningDialog(Bundle bundle) {
         this.bundle = bundle;

@@ -43,9 +43,9 @@ public class BuyListRecycleViewAdapter extends RecyclerView.Adapter<BuyListRecyc
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView mTypeNameTextView;
-        private TextView mStatusTextView;
-        private TextView mQuantityTextView;
+        private final TextView mTypeNameTextView;
+        private final TextView mStatusTextView;
+        private final TextView mQuantityTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

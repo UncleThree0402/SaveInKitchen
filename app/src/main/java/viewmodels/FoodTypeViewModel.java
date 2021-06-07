@@ -12,10 +12,10 @@ import java.util.List;
 
 public class FoodTypeViewModel extends AndroidViewModel {
 
-    private SaveInKitchenRepository mSaveInKitchenRepository;
+    private final SaveInKitchenRepository mSaveInKitchenRepository;
 
-    private LiveData<List<FoodType>> mFoodType;
-    private LiveData<List<String>> mFoodTypeName;
+    private final LiveData<List<FoodType>> mFoodType;
+    private final LiveData<List<String>> mFoodTypeName;
 
     public FoodTypeViewModel(@NonNull Application application) {
         super(application);

@@ -6,7 +6,7 @@ import presistance.SaveInKitchenDao;
 
 public class UpdateBuyFoodAsyncTask extends AsyncTask<BuyFood,Void,Void> {
 
-    private SaveInKitchenDao mSaveInKitchenDao;
+    private final SaveInKitchenDao mSaveInKitchenDao;
 
     public UpdateBuyFoodAsyncTask(SaveInKitchenDao mSaveInKitchenDao) {
         this.mSaveInKitchenDao = mSaveInKitchenDao;

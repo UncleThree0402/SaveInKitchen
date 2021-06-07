@@ -12,9 +12,9 @@ import java.util.List;
 
 public class RecipeNoteViewModel extends AndroidViewModel {
 
-    private SaveInKitchenRepository mSaveInKitchenRepository;
+    private final SaveInKitchenRepository mSaveInKitchenRepository;
 
-    private LiveData<List<RecipeNote>> mRecipeNote;
+    private final LiveData<List<RecipeNote>> mRecipeNote;
 
     public RecipeNoteViewModel(@NonNull Application application) {
         super(application);

@@ -52,7 +52,7 @@ public class AddStockAddFoodFragment extends Fragment implements View.OnClickLis
     private FoodType mFoodType;
     private Food mFood;
     private final static String[] STATUS = new String[]{"Fresh", "Frozen", "Dry Goods", "Condiment"};
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private int datepickerId = 0;
     private FoodViewModel mFoodViewModel;
     private BuyHistoryViewModel mBuyHistoryViewModel;

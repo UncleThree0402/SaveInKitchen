@@ -6,7 +6,7 @@ import presistance.SaveInKitchenDao;
 
 public class InsertBuyHistoryAsyncTask extends AsyncTask<BuyHistory,Void,Void> {
 
-    private SaveInKitchenDao mSaveInKitchenDao;
+    private final SaveInKitchenDao mSaveInKitchenDao;
 
     public InsertBuyHistoryAsyncTask(SaveInKitchenDao mSaveInKitchenDao) {
         this.mSaveInKitchenDao = mSaveInKitchenDao;

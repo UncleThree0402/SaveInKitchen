@@ -12,9 +12,9 @@ import java.util.List;
 
 public class BuyHistoryViewModel extends AndroidViewModel {
 
-    private SaveInKitchenRepository mSaveInKitchenRepository;
+    private final SaveInKitchenRepository mSaveInKitchenRepository;
 
-    private LiveData<List<BuyHistory>> mBuyHistory;
+    private final LiveData<List<BuyHistory>> mBuyHistory;
 
     public BuyHistoryViewModel(@NonNull Application application) {
         super(application);

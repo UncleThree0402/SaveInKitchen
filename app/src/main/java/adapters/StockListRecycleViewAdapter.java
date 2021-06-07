@@ -28,9 +28,9 @@ public class StockListRecycleViewAdapter extends RecyclerView.Adapter<StockListR
     private static final String TAG = "StockListRecycleViewAda";
 
     private List<FoodType> mFoodType = new ArrayList<>();
-    private ViewModelStoreOwner mViewModelStoreOwner;
-    private LifecycleOwner mLifecycleOwner;
-    private Context mContext;
+    private final ViewModelStoreOwner mViewModelStoreOwner;
+    private final LifecycleOwner mLifecycleOwner;
+    private final Context mContext;
 
     public StockListRecycleViewAdapter(List<FoodType> mFoodType, ViewModelStoreOwner mViewModelStoreOwner, LifecycleOwner mLifecycleOwner, Context mContext) {
         this.mFoodType = mFoodType;
@@ -103,14 +103,14 @@ public class StockListRecycleViewAdapter extends RecyclerView.Adapter<StockListR
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private RelativeLayout mStockRelativeLayout;
-        private RelativeLayout mFoodRelativeLayout;
-        private TextView mTypeTextView;
-        private TextView mStockTextView;
-        private RecyclerView mFoodRecycleView;
+        private final RelativeLayout mStockRelativeLayout;
+        private final RelativeLayout mFoodRelativeLayout;
+        private final TextView mTypeTextView;
+        private final TextView mStockTextView;
+        private final RecyclerView mFoodRecycleView;
 
         private SpecificFoodListRecycleViewAdapter mSpecificFoodListRecycleViewAdapter;
-        private ArrayList<Food> mFood = new ArrayList<>();
+        private final ArrayList<Food> mFood = new ArrayList<>();
         private FoodViewModel mFoodViewModel;
         private FoodTypeViewModel mFoodTypeViewModel;
         private boolean isOpen = false;

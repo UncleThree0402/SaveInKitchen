@@ -39,7 +39,7 @@ public class HistoryPageFragment extends Fragment {
 
     //Var
     private BuyHistoryRecycleViewAdapter mBuyHistoryRecycleViewAdapter;
-    private ArrayList<BuyHistory> mBuyHistory = new ArrayList<>();
+    private final ArrayList<BuyHistory> mBuyHistory = new ArrayList<>();
     private BuyHistoryViewModel mBuyHistoryViewModel;
 
     @Nullable
@@ -126,7 +126,7 @@ public class HistoryPageFragment extends Fragment {
         mBuyHistoryRecyclerView.setAdapter(mBuyHistoryRecycleViewAdapter);
     }
 
-    private ItemTouchHelper.SimpleCallback buyHistorySimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+    private final ItemTouchHelper.SimpleCallback buyHistorySimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;

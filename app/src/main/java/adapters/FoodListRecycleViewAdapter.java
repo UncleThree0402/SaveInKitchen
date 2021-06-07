@@ -43,9 +43,9 @@ public class FoodListRecycleViewAdapter extends RecyclerView.Adapter<FoodListRec
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView mNameTextView;
-        private TextView mStatusTextView;
-        private TextView mQuantityTextView;
+        private final TextView mNameTextView;
+        private final TextView mStatusTextView;
+        private final TextView mQuantityTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
