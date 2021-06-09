@@ -2,12 +2,14 @@ package com.unclethree.saveinkitchen;
 
 import adapters.PageFragmentAdapter;
 import android.annotation.SuppressLint;
+import android.view.GestureDetector;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -20,15 +22,18 @@ import fragments.RecipePageFragment;
 
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener , View.OnTouchListener, GestureDetector.OnGestureListener {
 
 
     //UI
     private ViewPager mViewPager;
     private NavigationRailView mNavigationRailView;
+    private DrawerLayout mDrawerLayout;
+
 
     //Var
     private PageFragmentAdapter pageFragmentAdapter;
+    private GestureDetector mGestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,11 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
         mViewPager = findViewById(R.id.home_page_view_pager);
         mNavigationRailView = findViewById(R.id.bottom_navigation);
+        mDrawerLayout = findViewById(R.id.main_drawer_layout);
         mNavigationRailView.setOnItemSelectedListener(this);
+
+        mViewPager.setOnTouchListener(this);
+        mGestureDetector = new GestureDetector(this,this);
 
 
         pageFragmentAdapter = new PageFragmentAdapter(getSupportFragmentManager());
@@ -70,6 +79,42 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 mViewPager.setCurrentItem(3);
                 break;
         }
+        mDrawerLayout.closeDrawers();
         return true;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        return false;
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return mGestureDetector.onTouchEvent(event);
     }
 }

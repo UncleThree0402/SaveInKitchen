@@ -1,13 +1,18 @@
 package adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.unclethree.saveinkitchen.MainActivity;
 import com.unclethree.saveinkitchen.R;
+import com.unclethree.saveinkitchen.RecipeActivity;
 import formatters.NumberFormatter;
 import models.Recipe;
 
@@ -18,8 +23,11 @@ public class RecipeListRecycleAdapter extends RecyclerView.Adapter<RecipeListRec
 
     private List<Recipe> mRecipe = new ArrayList<>();
 
-    public RecipeListRecycleAdapter(List<Recipe> mRecipe) {
+    private final Activity mActivity;
+
+    public RecipeListRecycleAdapter(List<Recipe> mRecipe, Activity mActivity) {
         this.mRecipe = mRecipe;
+        this.mActivity = mActivity;
     }
 
     @NonNull
@@ -33,6 +41,16 @@ public class RecipeListRecycleAdapter extends RecyclerView.Adapter<RecipeListRec
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.mRecipeName.setText(mRecipe.get(position).getName());
         holder.mRecipeCost.setText(NumberFormatter.moneyFormatter(mRecipe.get(position).getCost()));
+
+        holder.mRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mActivity,RecipeActivity.class);
+                intent.putExtra("Recipe Name",mRecipe.get(position).getName());
+                intent.putExtra("Mode",false);
+                mActivity.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -42,14 +60,19 @@ public class RecipeListRecycleAdapter extends RecyclerView.Adapter<RecipeListRec
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+        private final RelativeLayout mRelativeLayout;
         private final TextView mRecipeName;
         private final TextView mRecipeCost;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            mRelativeLayout = itemView.findViewById(R.id.recipe_list_item_container);
             mRecipeName = itemView.findViewById(R.id.buy_list_recycle_name);
             mRecipeCost = itemView.findViewById(R.id.buy_list_recycle_cost);
+
         }
+
+
     }
 
 }

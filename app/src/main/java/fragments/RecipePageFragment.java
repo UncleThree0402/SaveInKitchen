@@ -2,6 +2,7 @@ package fragments;
 
 import adapters.BuyHistoryRecycleViewAdapter;
 import adapters.RecipeListRecycleAdapter;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.Snackbar;
 import com.unclethree.saveinkitchen.R;
+import com.unclethree.saveinkitchen.RecipeActivity;
 import dialogs.AddRecipeDialog;
 import dialogs.AddStockDialog;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
@@ -120,7 +122,7 @@ public class RecipePageFragment extends Fragment implements View.OnClickListener
     private void initRecipeListRecycleView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         mRecipeRecyclerView.setLayoutManager(linearLayoutManager);
-        mRecipeRecyclerAdapter = new RecipeListRecycleAdapter(mRecipe);
+        mRecipeRecyclerAdapter = new RecipeListRecycleAdapter(mRecipe,getActivity());
         VerticalSpacingItemDecorator verticalSpacingItemDecorator = new VerticalSpacingItemDecorator(8);
         mRecipeRecyclerView.addItemDecoration(verticalSpacingItemDecorator);
         new ItemTouchHelper(recipeSimpleCallback).attachToRecyclerView(mRecipeRecyclerView);
@@ -147,6 +149,12 @@ public class RecipePageFragment extends Fragment implements View.OnClickListener
                                 }
                             }).show();
                     break;
+
+                case ItemTouchHelper.LEFT:
+                    Intent intent = new Intent(getActivity(), RecipeActivity.class);
+                    intent.putExtra("Recipe Name",mRecipe.get(viewHolder.getAbsoluteAdapterPosition()).getName());
+                    intent.putExtra("Mode",true);
+                    startActivity(intent);
             }
         }
 

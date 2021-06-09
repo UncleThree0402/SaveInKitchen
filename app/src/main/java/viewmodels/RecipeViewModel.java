@@ -2,8 +2,10 @@ package viewmodels;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
+import androidx.databinding.Bindable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.room.Ignore;
 import models.Recipe;
 import presistance.SaveInKitchenRepository;
 
@@ -35,6 +37,10 @@ public class RecipeViewModel extends AndroidViewModel {
 
     public LiveData<List<Recipe>> getRecipe(){
         return mRecipe;
+    }
+
+    public LiveData<Recipe> getSpecificRecipe(String name){
+        return mSaveInKitchenRepository.getSpecificRecipe(name);
     }
 
     public LiveData<List<Recipe>> getSearchRecipe(String name){

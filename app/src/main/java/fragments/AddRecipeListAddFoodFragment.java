@@ -1,6 +1,7 @@
 package fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +14,18 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputLayout;
 import com.unclethree.saveinkitchen.R;
 import models.BuyFood;
-import models.BuyHistory;
-import models.Food;
 import models.FoodType;
+import models.RecipeFood;
 import viewmodels.BuyFoodViewModel;
-import viewmodels.BuyHistoryViewModel;
-import viewmodels.FoodTypeViewModel;
-import viewmodels.FoodViewModel;
+import viewmodels.RecipeFoodViewModel;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
-public class AddBuyListAddFoodFragment extends Fragment implements View.OnClickListener{
+public class AddRecipeListAddFoodFragment extends Fragment implements View.OnClickListener{
+    private static final String TAG = "AddRecipeListAddFoodFra";
 
     //UI
     private TextInputLayout mFoodNameTextInputLayout;
@@ -37,33 +33,36 @@ public class AddBuyListAddFoodFragment extends Fragment implements View.OnClickL
     private AutoCompleteTextView mStatusTextEdit;
     private TextInputLayout mQuantityTextInputLayout;
     private TextInputLayout mUnitTextInputLayout;
+    private TextInputLayout mDescriptionTextInputLayout;
     private Button mConfirmButton;
 
     //Var
-    private FoodType mFoodType;
-    private BuyFood mBuyFood;
+    private String mName;
+    private int mFoodTypeId;
+    private int mRecipeId;
+    private RecipeFood mRecipeFood;
     private final static String[] STATUS = new String[]{"Fresh", "Frozen", "Dry Goods", "Condiment"};
-    private BuyFoodViewModel mBuyFoodViewModel;
+    private RecipeFoodViewModel mRecipeFoodViewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_buy_list_food_info_fragment, container, false);
+        View view = inflater.inflate(R.layout.add_recipe_food_info_fragment, container, false);
 
-        mFoodNameTextInputLayout = view.findViewById(R.id.add_buy_list_name_input_layout);
-        mStatusTextInputLayout = view.findViewById(R.id.add_buy_list_status_input_layout);
-        mStatusTextEdit = view.findViewById(R.id.add_buy_list_status_input);
-        mQuantityTextInputLayout = view.findViewById(R.id.add_buy_list_quantity_input_layout);
-        mUnitTextInputLayout = view.findViewById(R.id.add_buy_list_unit_input_layout);
-        mConfirmButton = view.findViewById(R.id.add_buy_list_confirm_button);
+        mFoodNameTextInputLayout = view.findViewById(R.id.add_recipe_food_name_input_layout);
+        mStatusTextInputLayout = view.findViewById(R.id.add_recipe_food_status_input_layout);
+        mStatusTextEdit = view.findViewById(R.id.add_recipe_food_status_input);
+        mQuantityTextInputLayout = view.findViewById(R.id.add_recipe_food_quantity_input_layout);
+        mUnitTextInputLayout = view.findViewById(R.id.add_recipe_food_unit_input_layout);
+        mDescriptionTextInputLayout = view.findViewById(R.id.add_recipe_food_description_input_layout);
+        mConfirmButton = view.findViewById(R.id.add_recipe_food_confirm_button);
 
         mConfirmButton.setOnClickListener(this);
 
-        mBuyFood = new BuyFood();
+        mRecipeFood = new RecipeFood();
         Bundle bundle = this.getArguments();
-        mFoodType = bundle.getParcelable("Food Type");
-        mBuyFood.setFood_type_id(mFoodType.getFood_type_id());
-
+        mFoodTypeId = bundle.getInt("Food Type Id");
+        mRecipeId = bundle.getInt("Recipe Id");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.list_item, STATUS);
         mStatusTextEdit.setAdapter(adapter);
 
@@ -74,14 +73,18 @@ public class AddBuyListAddFoodFragment extends Fragment implements View.OnClickL
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mBuyFoodViewModel = new ViewModelProvider(this).get(BuyFoodViewModel.class);
+        mRecipeFoodViewModel = new ViewModelProvider(this).get(RecipeFoodViewModel.class);
+
     }
 
     private void checkInput() {
-        if (!validFoodName() | !validStatus() | !validQuantity() | !validUnit()) {
+        if (!validFoodName() | !validStatus() | !validQuantity() | !validUnit() |!validDescription()) {
             return;
         } else {
-            mBuyFoodViewModel.insertBuyFood(mBuyFood);
+            mRecipeFood.setRecipe_id(mRecipeId);
+            mRecipeFood.setFood_type_id(mFoodTypeId);
+            Log.d(TAG, "checkInput: " + mRecipeFood.getRecipe_food_id() + " " +mRecipeFood.getRecipe_id());
+            mRecipeFoodViewModel.insertRecipeFood(mRecipeFood);
             ((DialogFragment) getParentFragment()).dismiss();
         }
     }
@@ -93,7 +96,7 @@ public class AddBuyListAddFoodFragment extends Fragment implements View.OnClickL
             return false;
         } else {
             mFoodNameTextInputLayout.setError(null);
-            mBuyFood.setName(mFoodNameTextInputLayout.getEditText().getText().toString());
+            mRecipeFood.setName(mFoodNameTextInputLayout.getEditText().getText().toString());
             return true;
         }
     }
@@ -105,7 +108,7 @@ public class AddBuyListAddFoodFragment extends Fragment implements View.OnClickL
             return false;
         } else {
             mStatusTextInputLayout.setError(null);
-            mBuyFood.setStatus(mStatusTextInputLayout.getEditText().getText().toString());
+            mRecipeFood.setStatus(mStatusTextInputLayout.getEditText().getText().toString());
             return true;
         }
     }
@@ -117,7 +120,7 @@ public class AddBuyListAddFoodFragment extends Fragment implements View.OnClickL
             return false;
         } else {
             mQuantityTextInputLayout.setError(null);
-            mBuyFood.setQuantity(Double.parseDouble(mQuantityTextInputLayout.getEditText().getText().toString()));
+            mRecipeFood.setQuantity(Double.parseDouble(mQuantityTextInputLayout.getEditText().getText().toString()));
             return true;
         }
     }
@@ -129,7 +132,18 @@ public class AddBuyListAddFoodFragment extends Fragment implements View.OnClickL
             return false;
         } else {
             mUnitTextInputLayout.setError(null);
-            mBuyFood.setUnit(mUnitTextInputLayout.getEditText().getText().toString());
+            mRecipeFood.setUnit(mUnitTextInputLayout.getEditText().getText().toString());
+            return true;
+        }
+    }
+
+    private boolean validDescription() {
+        String description = mDescriptionTextInputLayout.getEditText().getText().toString().trim();
+        if (description.isEmpty()) {
+            mRecipeFood.setDescription(null);
+            return false;
+        } else {
+            mRecipeFood.setDescription(mDescriptionTextInputLayout.getEditText().getText().toString());
             return true;
         }
     }
@@ -137,11 +151,10 @@ public class AddBuyListAddFoodFragment extends Fragment implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.add_buy_list_confirm_button:
+            case R.id.add_recipe_food_confirm_button:
                 checkInput();
                 break;
         }
     }
-
 
 }

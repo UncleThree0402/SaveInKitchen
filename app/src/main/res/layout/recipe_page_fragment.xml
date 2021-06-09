@@ -74,16 +74,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/recipe_list_title_bar"
-                android:paddingHorizontal="32dp"
-                android:paddingVertical="8dp"
                 android:visibility="gone"/>
 
         <TextView
                 android:id="@+id/recipe_list_recycle_view_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingHorizontal="32dp"
-                android:paddingVertical="8dp"
                 android:text="Empty List"
                 android:layout_below="@+id/recipe_list_title_bar"
                 android:gravity="center"

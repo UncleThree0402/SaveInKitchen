@@ -63,11 +63,20 @@ public interface SaveInKitchenDao {
     @Query("SELECT * FROM recipe")
     LiveData<List<Recipe>> getRecipe();
 
+    @Query("SELECT * FROM recipe WHERE recipe_name = :name ")
+    LiveData<Recipe> getSpecificRecipe(String name);
+
     @Query("SELECT * FROM recipe WHERE recipe_name LIKE :name ")
     LiveData<List<Recipe>> getSearchRecipe(String name);
 
     @Query("SELECT * FROM recipe_food")
     LiveData<List<RecipeFood>> getRecipeFood();
+
+    @Query("SELECT * FROM recipe_food WHERE recipe_id = :id")
+    LiveData<List<RecipeFood>> getSpecificRecipeFood(int id);
+
+    @Query("SELECT * FROM recipe_food WHERE recipe_food_name = :name")
+    LiveData<List<RecipeFood>> getSpecificNameRecipeFood(String name);
 
     @Query("SELECT * FROM recipe_note")
     LiveData<List<RecipeNote>> getRecipeNote();

@@ -1,9 +1,11 @@
 package models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import androidx.room.*;
 
 @Entity(tableName = "recipe_food",foreignKeys = {@ForeignKey(entity = Recipe.class,parentColumns = "recipe_id", childColumns = "recipe_id",onDelete = ForeignKey.CASCADE),@ForeignKey(entity = FoodType.class,parentColumns = "food_type_id", childColumns = "food_type_id",onDelete = ForeignKey.CASCADE)})
-public class RecipeFood {
+public class RecipeFood implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     private int recipe_food_id;
@@ -43,6 +45,29 @@ public class RecipeFood {
     @Ignore
     public RecipeFood() {
     }
+
+    protected RecipeFood(Parcel in) {
+        recipe_food_id = in.readInt();
+        recipe_id = in.readInt();
+        food_type_id = in.readInt();
+        name = in.readString();
+        status = in.readString();
+        quantity = in.readDouble();
+        unit = in.readString();
+        description = in.readString();
+    }
+
+    public static final Creator<RecipeFood> CREATOR = new Creator<RecipeFood>() {
+        @Override
+        public RecipeFood createFromParcel(Parcel in) {
+            return new RecipeFood(in);
+        }
+
+        @Override
+        public RecipeFood[] newArray(int size) {
+            return new RecipeFood[size];
+        }
+    };
 
     public int getRecipe_food_id() {
         return recipe_food_id;
@@ -106,5 +131,22 @@ public class RecipeFood {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(recipe_food_id);
+        dest.writeInt(recipe_id);
+        dest.writeInt(food_type_id);
+        dest.writeString(name);
+        dest.writeString(status);
+        dest.writeDouble(quantity);
+        dest.writeString(unit);
+        dest.writeString(description);
     }
 }

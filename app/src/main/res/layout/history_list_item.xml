@@ -4,8 +4,10 @@
                 android:layout_height="wrap_content">
 
     <RelativeLayout
+            android:id="@+id/history_list_rl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp">
         <RelativeLayout
                 android:id="@+id/history_list_recycle_view_parent_layout"
                 android:layout_width="wrap_content"
@@ -83,5 +85,12 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
+    <ImageView
+            android:id="@+id/history_list_line_one"
+            android:layout_below="@+id/history_list_rl"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/grey_line"/>
 
 </RelativeLayout>

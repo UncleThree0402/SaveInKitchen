@@ -1,12 +1,14 @@
 package models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "recipe")
-public class Recipe {
+public class Recipe implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     private int recipe_id;
@@ -36,8 +38,34 @@ public class Recipe {
     }
 
     @Ignore
+    public Recipe(String name) {
+        this.name = name;
+    }
+
+    @Ignore
     public Recipe() {
     }
+
+    protected Recipe(Parcel in) {
+        recipe_id = in.readInt();
+        name = in.readString();
+        note = in.readString();
+        methods = in.readString();
+        servings = in.readInt();
+        cost = in.readDouble();
+    }
+
+    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
+        @Override
+        public Recipe createFromParcel(Parcel in) {
+            return new Recipe(in);
+        }
+
+        @Override
+        public Recipe[] newArray(int size) {
+            return new Recipe[size];
+        }
+    };
 
     public int getRecipe_id() {
         return recipe_id;
@@ -85,5 +113,20 @@ public class Recipe {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(recipe_id);
+        dest.writeString(name);
+        dest.writeString(note);
+        dest.writeString(methods);
+        dest.writeInt(servings);
+        dest.writeDouble(cost);
     }
 }

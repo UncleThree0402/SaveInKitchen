@@ -37,4 +37,12 @@ public class RecipeFoodViewModel extends AndroidViewModel {
     public LiveData<List<RecipeFood>> getRecipeFood(){
         return mRecipeFood;
     }
+
+    public LiveData<List<RecipeFood>> getSpecificRecipeFood(int id){
+        return  mSaveInKitchenRepository.getSpecificRecipeFood(id);
+    }
+
+    public LiveData<List<RecipeFood>> getSpecificNameRecipeFood(String name){
+        return  mSaveInKitchenRepository.getSpecificNameRecipeFood(name);
+    }
 }

@@ -107,12 +107,24 @@ public class SaveInKitchenRepository {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getRecipe();
     }
 
+    public LiveData<Recipe> getSpecificRecipe(String name){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificRecipe(name);
+    }
+
     public LiveData<List<Recipe>> getSearchRecipe(String name) {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getSearchRecipe(name);
     }
 
     public LiveData<List<RecipeFood>> getRecipeFood() {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getRecipeFood();
+    }
+
+    public LiveData<List<RecipeFood>> getSpecificRecipeFood(int id){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificRecipeFood(id);
+    }
+
+    public LiveData<List<RecipeFood>> getSpecificNameRecipeFood(String name){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificNameRecipeFood(name);
     }
 
     public LiveData<List<RecipeNote>> getRecipeNote() {
