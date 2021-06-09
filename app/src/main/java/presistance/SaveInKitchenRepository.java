@@ -20,9 +20,6 @@ import async.recipe.UpdateRecipeAsyncTask;
 import async.recipefood.DeleteRecipeFoodAsyncTask;
 import async.recipefood.InsertRecipeFoodAsyncTask;
 import async.recipefood.UpdateRecipeFoodAsyncTask;
-import async.recipenote.DeleteRecipeNoteAsyncTask;
-import async.recipenote.InsertRecipeNoteAsyncTask;
-import async.recipenote.UpdateRecipeNoteAsyncTask;
 import models.*;
 
 import java.util.List;
@@ -55,9 +52,6 @@ public class SaveInKitchenRepository {
         new InsertRecipeFoodAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(recipeFood);
     }
 
-    public void insertRecipeNote(RecipeNote recipeNote) {
-        new InsertRecipeNoteAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(recipeNote);
-    }
 
     public void insertBuyHistory(BuyHistory buyHistory) {
         new InsertBuyHistoryAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(buyHistory);
@@ -127,9 +121,6 @@ public class SaveInKitchenRepository {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificNameRecipeFood(name);
     }
 
-    public LiveData<List<RecipeNote>> getRecipeNote() {
-        return mSaveInKitchenDatabase.getSaveForFoodDao().getRecipeNote();
-    }
 
     public LiveData<List<BuyHistory>> getBuyHistory() {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getBuyHistory();
@@ -167,9 +158,6 @@ public class SaveInKitchenRepository {
         new UpdateRecipeFoodAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(recipeFood);
     }
 
-    public void updateRecipeNote(RecipeNote recipeNote) {
-        new UpdateRecipeNoteAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(recipeNote);
-    }
 
     public void updateBuyHistory(BuyHistory buyHistory) {
         new UpdateBuyHistoryAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(buyHistory);
@@ -193,10 +181,6 @@ public class SaveInKitchenRepository {
 
     public void deleteRecipeFood(RecipeFood recipeFood) {
         new DeleteRecipeFoodAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(recipeFood);
-    }
-
-    public void deleteRecipeNote(RecipeNote recipeNote) {
-        new DeleteRecipeNoteAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(recipeNote);
     }
 
     public void deleteBuyHistory(BuyHistory buyHistory) {

@@ -58,7 +58,8 @@
             android:text="tough outer layers removed and the rest halved and thinly sliced (about 1/2 cup)"
             android:textSize="16sp"
             android:fontFamily="@font/quicksand"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:paddingHorizontal="16dp"/>
 
 
 </RelativeLayout>

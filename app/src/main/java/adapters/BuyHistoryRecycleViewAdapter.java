@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 import com.unclethree.saveinkitchen.R;
+import formatters.DateFormatter;
 import formatters.NumberFormatter;
 import models.BuyHistory;
 import viewmodels.BuyHistoryViewModel;
@@ -28,8 +29,6 @@ public class BuyHistoryRecycleViewAdapter extends RecyclerView.Adapter<BuyHistor
     private static final String TAG = "BuyHistoryRecycleViewAd";
 
     private List<BuyHistory> mBuyHistory = new ArrayList<>();
-    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
 
     public BuyHistoryRecycleViewAdapter(List<BuyHistory> mBuyHistory) {
         this.mBuyHistory = mBuyHistory;
@@ -46,12 +45,12 @@ public class BuyHistoryRecycleViewAdapter extends RecyclerView.Adapter<BuyHistor
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.mNameTextView.setText(mBuyHistory.get(position).getName());
         holder.mStatusTextView.setText(mBuyHistory.get(position).getStatus());
-        holder.mBuyDateTextView.setText(simpleDateFormat.format(mBuyHistory.get(position).getBuyDate()));
+        holder.mBuyDateTextView.setText(DateFormatter.dayMonthYearFormatter(mBuyHistory.get(position).getBuyDate()));
         String quantity = "Quantity : " + NumberFormatter.quantityFormatter(mBuyHistory.get(position).getQuantity()) + " " + mBuyHistory.get(position).getUnit();
         holder.mQuantityTextView.setText(quantity);
         String cost = "Cost : " + NumberFormatter.moneyFormatter(mBuyHistory.get(position).getCost());
         holder.mCostTextView.setText(cost);
-        holder.mExpireDateTextView.setText(simpleDateFormat.format(mBuyHistory.get(position).getExpireDate()));
+        holder.mExpireDateTextView.setText(DateFormatter.dayMonthYearFormatter(mBuyHistory.get(position).getExpireDate()));
 
     }
 

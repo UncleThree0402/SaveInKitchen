@@ -29,6 +29,7 @@ import com.unclethree.saveinkitchen.R;
 import dialogs.AddBuyListDialog;
 import dialogs.AddStockDialog;
 import dialogs.DeleteFoodTypeWarningDialog;
+import formatters.DateFormatter;
 import formatters.NumberFormatter;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 import models.BuyFood;
@@ -67,7 +68,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private final ArrayList<BuyFood> mBuyFood = new ArrayList<>();
     private final ArrayList<FoodType> mFoodType = new ArrayList<>();
     private final ArrayList<BuyHistory> mBuyHistory = new ArrayList<>();
-    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM");
 
     @Nullable
     @Override
@@ -275,7 +275,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             @Override
             public String getFormattedValue(float value) {
                 Date date = new Date((long) (value * 1000));
-                return simpleDateFormat.format(date);
+                return DateFormatter.dayMonthFormatter(date);
             }
         });
 
@@ -294,13 +294,13 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 if (mBuyHistory != null) {
                     mBuyHistory.addAll(buyHistories);
                 }
-                setDate();
+                set30DaysCost();
             }
         });
 
     }
 
-    private void setDate() {
+    private void set30DaysCost() {
         ArrayList<Entry> entries = new ArrayList<>();
         long currentDayEnd = dayTime();
         for (int i = 1; i < 31; i++) {
@@ -315,7 +315,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             }
             entries.add(new Entry(time, value));
         }
-        LineDataSet lineDataSet = new LineDataSet(entries, "7 Days Cost");
+        LineDataSet lineDataSet = new LineDataSet(entries, "30 Days Cost");
         lineDataSet.setMode(LineDataSet.Mode.LINEAR);
         lineDataSet.setColor(R.color.black);
         lineDataSet.setCubicIntensity(0.2f);
@@ -338,7 +338,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             float value = 0f;
             entries.add(new Entry(time, value));
         }
-        LineDataSet lineDataSet = new LineDataSet(entries, "7 Days Cost");
+        LineDataSet lineDataSet = new LineDataSet(entries, "30 Days Cost");
         lineDataSet.setMode(LineDataSet.Mode.LINEAR);
         lineDataSet.setColor(R.color.black);
         lineDataSet.setDrawCircles(false);

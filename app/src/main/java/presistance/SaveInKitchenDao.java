@@ -25,9 +25,6 @@ public interface SaveInKitchenDao {
     long[] insertRecipeFood(RecipeFood... recipeFoods);
 
     @Insert
-    long[] insertRecipeNote(RecipeNote... recipeNotes);
-
-    @Insert
     long[] insertBuyHistory(BuyHistory... buyHistories);
 
     @Query("SELECT * FROM buy_list")
@@ -78,9 +75,6 @@ public interface SaveInKitchenDao {
     @Query("SELECT * FROM recipe_food WHERE recipe_food_name = :name")
     LiveData<List<RecipeFood>> getSpecificNameRecipeFood(String name);
 
-    @Query("SELECT * FROM recipe_note")
-    LiveData<List<RecipeNote>> getRecipeNote();
-
     @Query("SELECT * FROM buy_history")
     LiveData<List<BuyHistory>> getBuyHistory();
 
@@ -109,9 +103,6 @@ public interface SaveInKitchenDao {
     int updateRecipeFood(RecipeFood... recipeFoods);
 
     @Update
-    int updateRecipeNote(RecipeNote... recipeNotes);
-
-    @Update
     int updateBuyHistory(BuyHistory... buyHistories);
 
     @Delete
@@ -128,9 +119,6 @@ public interface SaveInKitchenDao {
 
     @Delete
     int deleteRecipeFood(RecipeFood... recipeFoods);
-
-    @Delete
-    int deleteRecipeNote(RecipeNote... recipeNotes);
 
     @Delete
     int deleteBuyHistory(BuyHistory... buyHistories);

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.Snackbar;
 import com.unclethree.saveinkitchen.R;
+import dialogs.AddStockDialog;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 import models.BuyHistory;
 import models.Food;
@@ -32,13 +34,14 @@ import viewmodels.FoodViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodPageFragment extends Fragment {
+public class FoodPageFragment extends Fragment implements View.OnClickListener {
 
     //UI
     private RelativeLayout mRelativeLayout;
     private RecyclerView mFoodRecyclerView;
     private TextView mFoodRecyclerViewTextView;
     private androidx.appcompat.widget.SearchView mSearchView;
+    private ImageView mAddFoodListIcon;
 
     //Var
     private FoodListRecycleViewAdapter mFoodListRecycleViewAdapter;
@@ -54,6 +57,9 @@ public class FoodPageFragment extends Fragment {
         mFoodRecyclerView = view.findViewById(R.id.food_list_recycle_view);
         mFoodRecyclerViewTextView = view.findViewById(R.id.food_list_recycle_view_text);
         mSearchView = view.findViewById(R.id.food_search_view);
+        mAddFoodListIcon = view.findViewById(R.id.food_list_icon);
+
+        mAddFoodListIcon.setOnClickListener(this);
 
         initStockListRecycleView();
 
@@ -166,4 +172,13 @@ public class FoodPageFragment extends Fragment {
     };
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.food_list_icon:
+                AddStockDialog addStockDialog = new AddStockDialog();
+                addStockDialog.show(getChildFragmentManager(), "Add stock dialog");
+                break;
+        }
+    }
 }
