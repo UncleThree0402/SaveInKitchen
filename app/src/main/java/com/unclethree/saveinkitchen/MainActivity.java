@@ -1,28 +1,19 @@
 package com.unclethree.saveinkitchen;
 
 import adapters.PageFragmentAdapter;
-import android.annotation.SuppressLint;
-import android.view.GestureDetector;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigationrail.NavigationRailView;
-import fragments.FoodPageFragment;
-import fragments.HistoryPageFragment;
-import fragments.HomePageFragment;
-import fragments.RecipePageFragment;
+import fragments.*;
 
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener , View.OnTouchListener, GestureDetector.OnGestureListener {
+public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener  {
 
 
     //UI
@@ -33,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
     //Var
     private PageFragmentAdapter pageFragmentAdapter;
-    private GestureDetector mGestureDetector;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         mDrawerLayout = findViewById(R.id.main_drawer_layout);
         mNavigationRailView.setOnItemSelectedListener(this);
 
-        mViewPager.setOnTouchListener(this);
-        mGestureDetector = new GestureDetector(this,this);
 
 
         pageFragmentAdapter = new PageFragmentAdapter(getSupportFragmentManager());
@@ -56,7 +45,8 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     }
 
     private void setViewPage(ViewPager viewPager) {
-        pageFragmentAdapter.addFragment(new HomePageFragment(), "HomePage");
+        pageFragmentAdapter.addFragment(new DiaryHistoryFragment(), "EatFoodPage");
+//        pageFragmentAdapter.addFragment(new HomePageFragment(), "HomePage");
         pageFragmentAdapter.addFragment(new RecipePageFragment(), "Recipe Page");
         pageFragmentAdapter.addFragment(new FoodPageFragment(), "FoodPage");
         pageFragmentAdapter.addFragment(new HistoryPageFragment(), "HistoryPage");
@@ -83,38 +73,4 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         return true;
     }
 
-    @Override
-    public boolean onDown(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        return false;
-    }
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        return mGestureDetector.onTouchEvent(event);
-    }
 }

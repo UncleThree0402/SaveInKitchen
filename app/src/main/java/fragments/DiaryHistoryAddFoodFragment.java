@@ -1,6 +1,6 @@
 package fragments;
 
-import adapters.FoodListRecycleViewAdapter;
+import adapters.EatHistoryFoodListRecycleViewAdapter;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.Snackbar;
 import com.unclethree.saveinkitchen.R;
+import dialogs.DiaryAddFoodDialog;
 import dialogs.StockDialog;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 import models.Food;
@@ -29,8 +30,8 @@ import viewmodels.FoodViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodPageFragment extends Fragment implements View.OnClickListener {
-
+public class DiaryHistoryAddFoodFragment extends Fragment implements View.OnClickListener, EatHistoryFoodListRecycleViewAdapter.OnFoodClickListener {
+    private static final String TAG = "EatFoodAddFoodStockFrag";
     //UI
     private RelativeLayout mRelativeLayout;
     private RecyclerView mFoodRecyclerView;
@@ -39,55 +40,63 @@ public class FoodPageFragment extends Fragment implements View.OnClickListener {
     private ImageView mAddFoodListIcon;
 
     //Var
-    private FoodListRecycleViewAdapter mFoodListRecycleViewAdapter;
+    private EatHistoryFoodListRecycleViewAdapter mEatHistoryFoodListRecycleViewAdapter;
     private final ArrayList<Food> mFood = new ArrayList<>();
     private FoodViewModel mFoodViewModel;
+
+    private String mType;
+    private long mDateTime;
+
+    public DiaryHistoryAddFoodFragment(String mType, long mDateTime) {
+        this.mType = mType;
+        this.mDateTime = mDateTime;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.ingredients_page_fragment,container,false);
+        View view = inflater.inflate(R.layout.diary_add_food_stock_fragment,container,false);
 
-        mRelativeLayout = view.findViewById(R.id.food_page_rl);
-        mFoodRecyclerView = view.findViewById(R.id.food_list_recycle_view);
-        mFoodRecyclerViewTextView = view.findViewById(R.id.food_list_recycle_view_text);
-        mSearchView = view.findViewById(R.id.food_search_view);
-        mAddFoodListIcon = view.findViewById(R.id.food_list_icon);
+        mRelativeLayout = view.findViewById(R.id.add_stock_rl);
+        mFoodRecyclerView = view.findViewById(R.id.add_food_stock_recycle_view);
+        mFoodRecyclerViewTextView = view.findViewById(R.id.add_food_stock_recycle_view_text);
+        mSearchView = view.findViewById(R.id.add_food_stock_search_view);
+        mAddFoodListIcon = view.findViewById(R.id.add_food_stock_icon);
 
         mAddFoodListIcon.setOnClickListener(this);
 
         initStockListRecycleView();
 
-       mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-           @Override
-           public boolean onQueryTextSubmit(String query) {
-               return false;
-           }
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
-           @Override
-           public boolean onQueryTextChange(String newText) {
-               mFoodViewModel.getSearchFood(newText).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
-                   @Override
-                   public void onChanged(List<Food> foods) {
-                       if (mFood.size() > 0) {
-                           mFood.clear();
-                       }
-                       if (mFood != null) {
-                           mFood.addAll(foods);
-                       }
-                       if (foods.size() == 0) {
-                           mFoodRecyclerView.setVisibility(View.GONE);
-                           mFoodRecyclerViewTextView.setVisibility(View.VISIBLE);
-                       } else {
-                           mFoodRecyclerView.setVisibility(View.VISIBLE);
-                           mFoodRecyclerViewTextView.setVisibility(View.GONE);
-                       }
-                       mFoodListRecycleViewAdapter.notifyDataSetChanged();
-                   }
-               });
-               return false;
-           }
-       });
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mFoodViewModel.getSearchFood(newText).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
+                    @Override
+                    public void onChanged(List<Food> foods) {
+                        if (mFood.size() > 0) {
+                            mFood.clear();
+                        }
+                        if (mFood != null) {
+                            mFood.addAll(foods);
+                        }
+                        if (foods.size() == 0) {
+                            mFoodRecyclerView.setVisibility(View.GONE);
+                            mFoodRecyclerViewTextView.setVisibility(View.VISIBLE);
+                        } else {
+                            mFoodRecyclerView.setVisibility(View.VISIBLE);
+                            mFoodRecyclerViewTextView.setVisibility(View.GONE);
+                        }
+                        mEatHistoryFoodListRecycleViewAdapter.notifyDataSetChanged();
+                    }
+                });
+                return false;
+            }
+        });
 
         mFoodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
 
@@ -107,27 +116,22 @@ public class FoodPageFragment extends Fragment implements View.OnClickListener {
                     mFoodRecyclerView.setVisibility(View.VISIBLE);
                     mFoodRecyclerViewTextView.setVisibility(View.GONE);
                 }
-                mFoodListRecycleViewAdapter.notifyDataSetChanged();
+                mEatHistoryFoodListRecycleViewAdapter.notifyDataSetChanged();
             }
         });
 
         return view;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
 
     private void initStockListRecycleView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         mFoodRecyclerView.setLayoutManager(linearLayoutManager);
-        mFoodListRecycleViewAdapter = new FoodListRecycleViewAdapter(mFood);
+        mEatHistoryFoodListRecycleViewAdapter = new EatHistoryFoodListRecycleViewAdapter(mFood,this);
         VerticalSpacingItemDecorator verticalSpacingItemDecorator = new VerticalSpacingItemDecorator(8);
         mFoodRecyclerView.addItemDecoration(verticalSpacingItemDecorator);
         new ItemTouchHelper(foodSimpleCallback).attachToRecyclerView(mFoodRecyclerView);
-        mFoodRecyclerView.setAdapter(mFoodListRecycleViewAdapter);
+        mFoodRecyclerView.setAdapter(mEatHistoryFoodListRecycleViewAdapter);
     }
 
     private final ItemTouchHelper.SimpleCallback foodSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
@@ -170,10 +174,16 @@ public class FoodPageFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.food_list_icon:
+            case R.id.add_food_stock_icon:
                 StockDialog stockDialog = new StockDialog();
                 stockDialog.show(getChildFragmentManager(), "Add stock dialog");
                 break;
         }
+    }
+
+    @Override
+    public void OnFoodClick(int position) {
+        DiaryAddFoodDialog diaryAddFoodDialog = new DiaryAddFoodDialog(mFood.get(position),mType,mDateTime);
+        diaryAddFoodDialog.show(getChildFragmentManager(), "Add stock dialog");
     }
 }

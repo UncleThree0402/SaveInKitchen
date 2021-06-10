@@ -1,7 +1,6 @@
 package fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,12 +16,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.textfield.TextInputLayout;
 import com.unclethree.saveinkitchen.R;
-import dialogs.AddFoodTypeDialog;
+import dialogs.FoodTypeDialog;
 import models.FoodType;
 import models.Recipe;
-import models.RecipeFood;
 import viewmodels.FoodTypeViewModel;
-import viewmodels.RecipeFoodViewModel;
 import viewmodels.RecipeViewModel;
 
 import java.util.ArrayList;
@@ -53,7 +49,7 @@ public class AddRecipeFoodFragment extends Fragment implements View.OnClickListe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_recipe_food_fragment,container,false);
+        View view = inflater.inflate(R.layout.recipe_add_ingerdient_fragment,container,false);
         mAutoTextLayout = view.findViewById(R.id.add_recipe_food_type_auto_input_layout);
         mAutoCompleteTextView = view.findViewById(R.id.add_recipe_food_auto_input);
         mConfirmButton = view.findViewById(R.id.add_recipe_food_confirm_button);
@@ -139,8 +135,8 @@ public class AddRecipeFoodFragment extends Fragment implements View.OnClickListe
                 break;
 
             case R.id.add_recipe_food_add_new_type_button:
-                AddFoodTypeDialog addFoodTypeDialog = new AddFoodTypeDialog();
-                addFoodTypeDialog.show(getChildFragmentManager(), "Add food type dialog");
+                FoodTypeDialog foodTypeDialog = new FoodTypeDialog();
+                foodTypeDialog.show(getChildFragmentManager(), "Add food type dialog");
                 break;
         }
     }

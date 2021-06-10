@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
-import dialogs.AddRecipeFoodDialog;
+import dialogs.RecipeIngredientDialog;
 import formatters.NumberFormatter;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 import models.Recipe;
@@ -291,8 +291,8 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void addRecipeFood(){
-        AddRecipeFoodDialog addRecipeFoodDialog = new AddRecipeFoodDialog(mName);
-        addRecipeFoodDialog.show(getSupportFragmentManager(), "Add recipe food dialog");
+        RecipeIngredientDialog recipeIngredientDialog = new RecipeIngredientDialog(mName);
+        recipeIngredientDialog.show(getSupportFragmentManager(), "Add recipe food dialog");
     }
 
     private void endActivity() {

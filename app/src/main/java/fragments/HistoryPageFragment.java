@@ -3,7 +3,6 @@ package fragments;
 import adapters.BuyHistoryRecycleViewAdapter;
 import android.graphics.Canvas;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +44,7 @@ public class HistoryPageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.histort_page_fragment,container,false);
+        View view = inflater.inflate(R.layout.history_page_fragment,container,false);
 
         mRelativeLayout = view.findViewById(R.id.history_page_rl);
         mBuyHistoryRecyclerView = view.findViewById(R.id.history_list_recycle_view);

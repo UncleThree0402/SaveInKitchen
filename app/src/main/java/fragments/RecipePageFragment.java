@@ -1,6 +1,5 @@
 package fragments;
 
-import adapters.BuyHistoryRecycleViewAdapter;
 import adapters.RecipeListRecycleAdapter;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -23,10 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.Snackbar;
 import com.unclethree.saveinkitchen.R;
 import com.unclethree.saveinkitchen.RecipeActivity;
-import dialogs.AddRecipeDialog;
-import dialogs.AddStockDialog;
+import dialogs.RecipeDialog;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
-import models.BuyHistory;
 import models.Recipe;
 import util.VerticalSpacingItemDecorator;
 import viewmodels.RecipeViewModel;
@@ -175,8 +172,8 @@ public class RecipePageFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_recipe_list_icon:
-                AddRecipeDialog addRecipeDialog = new AddRecipeDialog();
-                addRecipeDialog.show(getChildFragmentManager(), "Add recipe dialog");
+                RecipeDialog recipeDialog = new RecipeDialog();
+                recipeDialog.show(getChildFragmentManager(), "Add recipe dialog");
                 break;
         }
     }

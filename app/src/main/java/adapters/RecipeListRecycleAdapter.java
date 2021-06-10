@@ -1,7 +1,6 @@
 package adapters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.unclethree.saveinkitchen.MainActivity;
 import com.unclethree.saveinkitchen.R;
 import com.unclethree.saveinkitchen.RecipeActivity;
 import formatters.NumberFormatter;
@@ -33,7 +31,7 @@ public class RecipeListRecycleAdapter extends RecyclerView.Adapter<RecipeListRec
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_list_item, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_recycle_view_item, parent,false);
         return new ViewHolder(view);
     }
 

@@ -8,6 +8,9 @@ import async.buyfood.UpdateBuyFoodAsyncTask;
 import async.buyhistory.DeleteBuyHistoryAsyncTask;
 import async.buyhistory.InsertBuyHistoryAsyncTask;
 import async.buyhistory.UpdateBuyHistoryAsyncTask;
+import async.diaryhistory.DeleteDiaryHistoryAsyncTask;
+import async.diaryhistory.InsertDiaryHistoryAsyncTask;
+import async.diaryhistory.UpdateDiaryHistoryAsyncTask;
 import async.food.DeleteFoodAsyncTask;
 import async.food.InsertFoodAsyncTask;
 import async.food.UpdateFoodAsyncTask;
@@ -55,6 +58,10 @@ public class SaveInKitchenRepository {
 
     public void insertBuyHistory(BuyHistory buyHistory) {
         new InsertBuyHistoryAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(buyHistory);
+    }
+
+    public void insertDiaryHistory(DiaryHistory diaryHistory){
+        new InsertDiaryHistoryAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(diaryHistory);
     }
 
     public LiveData<List<BuyFood>> getBuyFood() {
@@ -138,6 +145,18 @@ public class SaveInKitchenRepository {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getSearchBuyHistory(name);
     }
 
+    public LiveData<List<DiaryHistory>> getDiaryHistory(){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getDiaryHistory();
+    }
+
+    public LiveData<List<DiaryHistory>> getDiaryHistoryByDate(String type, long dateIn, long dateOut){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getDiaryHistoryByDate(type,dateIn,dateOut);
+    }
+
+    public LiveData<Double> getTotalCostDiaryHistory(long dateIn,long dateOut){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getTotalCostDiaryHistory(dateIn,dateOut);
+    }
+
     public void updateBuyFood(BuyFood buyFood) {
         new UpdateBuyFoodAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(buyFood);
     }
@@ -161,6 +180,10 @@ public class SaveInKitchenRepository {
 
     public void updateBuyHistory(BuyHistory buyHistory) {
         new UpdateBuyHistoryAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(buyHistory);
+    }
+
+    public void updateDiaryHistory(DiaryHistory diaryHistory){
+        new UpdateDiaryHistoryAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(diaryHistory);
     }
 
     public void deleteBuyFood(BuyFood buyFood) {
@@ -187,5 +210,8 @@ public class SaveInKitchenRepository {
         new DeleteBuyHistoryAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(buyHistory);
     }
 
+    public void deleteDiaryHistory(DiaryHistory diaryHistory){
+        new DeleteDiaryHistoryAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(diaryHistory);
+    }
 
 }

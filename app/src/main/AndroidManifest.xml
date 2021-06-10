@@ -9,6 +9,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.SaveInKitchen">
+        <activity android:name=".AddFoodActivity">
+        </activity>
         <activity android:name=".RecipeActivity">
         </activity>
         <activity android:name=".MainActivity">

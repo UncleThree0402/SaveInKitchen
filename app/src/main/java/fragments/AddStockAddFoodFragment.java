@@ -1,14 +1,12 @@
 package fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
@@ -28,10 +26,7 @@ import viewmodels.FoodViewModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 public class AddStockAddFoodFragment extends Fragment implements View.OnClickListener, MaterialPickerOnPositiveButtonClickListener {
     private static final String TAG = "AddStockAddFoodFragment";
@@ -61,7 +56,7 @@ public class AddStockAddFoodFragment extends Fragment implements View.OnClickLis
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_stock_add_food_info_fragment, container, false);
+        View view = inflater.inflate(R.layout.stock_add_food_information_fragment, container, false);
 
         mFoodNameTextInputLayout = view.findViewById(R.id.add_stock_food_type_input_layout);
         mStatusTextInputLayout = view.findViewById(R.id.add_stock_food_status_input_layout);

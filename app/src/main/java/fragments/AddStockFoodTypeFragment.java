@@ -17,8 +17,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.textfield.TextInputLayout;
 import com.unclethree.saveinkitchen.R;
-import dialogs.AddFoodTypeDialog;
-import dialogs.AddStockDialog;
+import dialogs.FoodTypeDialog;
 import models.FoodType;
 import viewmodels.FoodTypeViewModel;
 
@@ -45,7 +44,7 @@ public class AddStockFoodTypeFragment extends Fragment implements View.OnClickLi
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_stock_food_type_fragment, container, false);
+        View view = inflater.inflate(R.layout.stock_add_food_type_fragment, container, false);
         mAutoTextLayout = view.findViewById(R.id.choose_food_type_auto_input_layout);
         mAutoCompleteTextView = view.findViewById(R.id.choose_food_type_auto_input);
         mConfirmButton = view.findViewById(R.id.choose_food_confirm_button);
@@ -118,8 +117,8 @@ public class AddStockFoodTypeFragment extends Fragment implements View.OnClickLi
                 checkFoodTypeName();
                 break;
             case R.id.choose_food_add_new_type_button:
-                AddFoodTypeDialog addFoodTypeDialog = new AddFoodTypeDialog();
-                addFoodTypeDialog.show(getChildFragmentManager(), "Add food type dialog");
+                FoodTypeDialog foodTypeDialog = new FoodTypeDialog();
+                foodTypeDialog.show(getChildFragmentManager(), "Add food type dialog");
                 break;
         }
     }

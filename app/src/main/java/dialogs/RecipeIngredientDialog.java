@@ -10,22 +10,30 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.unclethree.saveinkitchen.R;
-import fragments.AddStockFoodTypeFragment;
+import fragments.AddRecipeFoodFragment;
 
-public class AddStockDialog extends DialogFragment {
-
+public class RecipeIngredientDialog extends DialogFragment {
     //Var
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+    private final String mName;
+
+    public RecipeIngredientDialog(String name) {
+        this.mName = name;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_stock_dialog,container,false);
-
+        View view = inflater.inflate(R.layout.recipe_add_ingerdient_dialog,container,false);
         fragmentManager = getChildFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.add_stock_frame_layout, new AddStockFoodTypeFragment());
+
+        Bundle bundle = new Bundle();
+        bundle.putString("Name", mName);
+        AddRecipeFoodFragment addRecipeFoodFragment = new AddRecipeFoodFragment();
+        addRecipeFoodFragment.setArguments(bundle);
+        fragmentTransaction.replace(R.id.add_recipe_food_frame_layout, addRecipeFoodFragment);
         fragmentTransaction.commit();
 
         return view;

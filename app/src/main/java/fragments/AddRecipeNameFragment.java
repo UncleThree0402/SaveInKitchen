@@ -15,12 +15,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.textfield.TextInputLayout;
 import com.unclethree.saveinkitchen.R;
 import com.unclethree.saveinkitchen.RecipeActivity;
-import models.FoodType;
 import models.Recipe;
-import viewmodels.FoodTypeViewModel;
 import viewmodels.RecipeViewModel;
-
-import java.util.List;
 
 public class AddRecipeNameFragment extends Fragment implements View.OnClickListener{
 
@@ -36,7 +32,7 @@ public class AddRecipeNameFragment extends Fragment implements View.OnClickListe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_recipe_name_fragment,container,false);
+        View view = inflater.inflate(R.layout.recipe_add_name_fragment,container,false);
 
         mNameInputLayout = view.findViewById(R.id.add_recipe_name_input_layout);
         mConfirmButton = view.findViewById(R.id.add_recipe_name_confirm_button);

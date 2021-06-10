@@ -1,27 +1,17 @@
 package adapters;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 import com.unclethree.saveinkitchen.R;
 import formatters.DateFormatter;
 import formatters.NumberFormatter;
 import models.BuyHistory;
-import viewmodels.BuyHistoryViewModel;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +27,7 @@ public class BuyHistoryRecycleViewAdapter extends RecyclerView.Adapter<BuyHistor
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.history_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.history_recycle_view_item, parent, false);
         return new ViewHolder(view);
     }
 

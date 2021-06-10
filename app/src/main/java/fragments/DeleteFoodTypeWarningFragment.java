@@ -29,7 +29,7 @@ public class DeleteFoodTypeWarningFragment extends Fragment implements View.OnCl
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.delete_food_type_waring_fragment, container, false);
+        View view = inflater.inflate(R.layout.food_type_delete_waring_fragment, container, false);
 
         mCancelButton = view.findViewById(R.id.delete_food_type_cancel_button);
         mConfirmButton = view.findViewById(R.id.delete_food_type_confirm_button);

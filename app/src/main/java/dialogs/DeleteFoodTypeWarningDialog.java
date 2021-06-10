@@ -10,9 +10,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.unclethree.saveinkitchen.R;
-import fragments.AddBuyListFoodTypeFragment;
 import fragments.DeleteFoodTypeWarningFragment;
-import models.FoodType;
 
 public class DeleteFoodTypeWarningDialog extends DialogFragment {
     //Var
@@ -27,7 +25,7 @@ public class DeleteFoodTypeWarningDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.delete_food_type_warning_dialog,container,false);
+        View view = inflater.inflate(R.layout.food_type_delete_warning_dialog,container,false);
 
         fragmentManager = getChildFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();

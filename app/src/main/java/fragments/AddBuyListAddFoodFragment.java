@@ -11,23 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputLayout;
 import com.unclethree.saveinkitchen.R;
 import models.BuyFood;
-import models.BuyHistory;
-import models.Food;
 import models.FoodType;
 import viewmodels.BuyFoodViewModel;
-import viewmodels.BuyHistoryViewModel;
-import viewmodels.FoodTypeViewModel;
-import viewmodels.FoodViewModel;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class AddBuyListAddFoodFragment extends Fragment implements View.OnClickListener{
 
@@ -48,7 +37,7 @@ public class AddBuyListAddFoodFragment extends Fragment implements View.OnClickL
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_buy_list_food_info_fragment, container, false);
+        View view = inflater.inflate(R.layout.buy_list_add_ingredient_fragment, container, false);
 
         mFoodNameTextInputLayout = view.findViewById(R.id.add_buy_list_name_input_layout);
         mStatusTextInputLayout = view.findViewById(R.id.add_buy_list_status_input_layout);

@@ -12,17 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.textfield.TextInputLayout;
 import com.unclethree.saveinkitchen.R;
-import models.BuyFood;
-import models.FoodType;
 import models.RecipeFood;
-import viewmodels.BuyFoodViewModel;
 import viewmodels.RecipeFoodViewModel;
-
-import java.util.List;
 
 public class AddRecipeListAddFoodFragment extends Fragment implements View.OnClickListener{
     private static final String TAG = "AddRecipeListAddFoodFra";
@@ -47,7 +41,7 @@ public class AddRecipeListAddFoodFragment extends Fragment implements View.OnCli
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_recipe_food_info_fragment, container, false);
+        View view = inflater.inflate(R.layout.recipe_add_ingerdient_information_fragment, container, false);
 
         mFoodNameTextInputLayout = view.findViewById(R.id.add_recipe_food_name_input_layout);
         mStatusTextInputLayout = view.findViewById(R.id.add_recipe_food_status_input_layout);

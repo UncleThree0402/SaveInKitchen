@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,8 +25,8 @@ import com.github.mikephil.charting.data.*;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.android.material.snackbar.Snackbar;
 import com.unclethree.saveinkitchen.R;
-import dialogs.AddBuyListDialog;
-import dialogs.AddStockDialog;
+import dialogs.BuyListDialog;
+import dialogs.StockDialog;
 import dialogs.DeleteFoodTypeWarningDialog;
 import formatters.DateFormatter;
 import formatters.NumberFormatter;
@@ -374,7 +373,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         long hourLong = Long.parseLong(hourString);
 
         nextOneDaySecond += ((currentSecond / 1000) - (minuteLong * 60) - (hourLong * 3600) - secondLong);
-        return nextOneDaySecond;
+        return nextOneDaySecond ;
     }
 
 
@@ -382,12 +381,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_stock_icon:
-                AddStockDialog addStockDialog = new AddStockDialog();
-                addStockDialog.show(getChildFragmentManager(), "Add stock dialog");
+                StockDialog stockDialog = new StockDialog();
+                stockDialog.show(getChildFragmentManager(), "Add stock dialog");
                 break;
             case R.id.add_buy_list_icon:
-                AddBuyListDialog addBuyListDialog = new AddBuyListDialog();
-                addBuyListDialog.show(getChildFragmentManager(), "Add buy list dialog");
+                BuyListDialog buyListDialog = new BuyListDialog();
+                buyListDialog.show(getChildFragmentManager(), "Add buy list dialog");
                 break;
         }
     }

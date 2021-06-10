@@ -10,10 +10,9 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.unclethree.saveinkitchen.R;
-import fragments.AddFoodTypeFragment;
 import fragments.AddRecipeNameFragment;
 
-public class AddRecipeDialog extends DialogFragment {
+public class RecipeDialog extends DialogFragment {
 
     //Var
     private FragmentManager fragmentManager;
@@ -22,7 +21,7 @@ public class AddRecipeDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_recipe_dialog,container,false);
+        View view = inflater.inflate(R.layout.recipe_dialog,container,false);
         fragmentManager = getChildFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.add_recipe_frame_layout, new AddRecipeNameFragment());

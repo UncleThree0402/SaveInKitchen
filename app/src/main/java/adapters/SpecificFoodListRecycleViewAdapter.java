@@ -1,6 +1,5 @@
 package adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,7 @@ public class SpecificFoodListRecycleViewAdapter extends RecyclerView.Adapter<Spe
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_list_recycle_view_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stock_food_recycle_view_item, parent, false);
         return new ViewHolder(view);
     }
 

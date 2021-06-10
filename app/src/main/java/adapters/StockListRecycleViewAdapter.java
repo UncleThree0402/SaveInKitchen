@@ -2,7 +2,6 @@ package adapters;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +41,7 @@ public class StockListRecycleViewAdapter extends RecyclerView.Adapter<StockListR
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stock_list_recycle_view_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stock_recycle_view_item, parent, false);
         return new ViewHolder(view);
     }
 

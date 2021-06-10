@@ -24,7 +24,7 @@ public class RecipeFoodRecycleViewAdapter extends RecyclerView.Adapter<RecipeFoo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_list_food_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_ingerdients_recycle_view_item, parent, false);
         return new ViewHolder(view);
     }
 

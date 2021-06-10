@@ -13,19 +13,21 @@ import models.Food;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodListRecycleViewAdapter extends RecyclerView.Adapter<FoodListRecycleViewAdapter.ViewHolder> {
+public class EatHistoryFoodListRecycleViewAdapter extends RecyclerView.Adapter<EatHistoryFoodListRecycleViewAdapter.ViewHolder> {
 
     private List<Food> mFood = new ArrayList<>();
+    private OnFoodClickListener onFoodClickListener;
 
-    public FoodListRecycleViewAdapter(List<Food> mFood) {
+    public EatHistoryFoodListRecycleViewAdapter(List<Food> mFood, OnFoodClickListener onFoodClickListener) {
         this.mFood = mFood;
+        this.onFoodClickListener = onFoodClickListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ingredients_recycle_view_item, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, onFoodClickListener);
     }
 
     @Override
@@ -41,17 +43,31 @@ public class FoodListRecycleViewAdapter extends RecyclerView.Adapter<FoodListRec
         return mFood.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final TextView mNameTextView;
         private final TextView mStatusTextView;
         private final TextView mQuantityTextView;
+        private OnFoodClickListener onFoodClickListener;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnFoodClickListener onFoodClickListener) {
             super(itemView);
             mNameTextView = itemView.findViewById(R.id.food_page_recycle_view_name);
             mStatusTextView = itemView.findViewById(R.id.food_page_recycle_view_status);
             mQuantityTextView = itemView.findViewById(R.id.food_page_recycle_view_quantity);
+            this.onFoodClickListener = onFoodClickListener;
+
+            itemView.setOnClickListener(this);
         }
+
+
+        @Override
+        public void onClick(View v) {
+            onFoodClickListener.OnFoodClick(getAbsoluteAdapterPosition());
+        }
+    }
+
+    public interface OnFoodClickListener{
+        void OnFoodClick(int position);
     }
 }
