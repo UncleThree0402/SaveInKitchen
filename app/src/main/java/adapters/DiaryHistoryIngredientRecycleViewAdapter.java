@@ -13,12 +13,12 @@ import models.Food;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EatHistoryFoodListRecycleViewAdapter extends RecyclerView.Adapter<EatHistoryFoodListRecycleViewAdapter.ViewHolder> {
+public class DiaryHistoryIngredientRecycleViewAdapter extends RecyclerView.Adapter<DiaryHistoryIngredientRecycleViewAdapter.ViewHolder> {
 
     private List<Food> mFood = new ArrayList<>();
     private OnFoodClickListener onFoodClickListener;
 
-    public EatHistoryFoodListRecycleViewAdapter(List<Food> mFood, OnFoodClickListener onFoodClickListener) {
+    public DiaryHistoryIngredientRecycleViewAdapter(List<Food> mFood, OnFoodClickListener onFoodClickListener) {
         this.mFood = mFood;
         this.onFoodClickListener = onFoodClickListener;
     }

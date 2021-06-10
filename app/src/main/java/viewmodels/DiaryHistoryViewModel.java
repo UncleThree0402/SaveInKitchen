@@ -37,11 +37,11 @@ public class DiaryHistoryViewModel extends AndroidViewModel {
         return mDiaryHistory;
     }
 
-    public LiveData<List<DiaryHistory>> getSpecificTypeEatFoodHistory(String type, long dateIn, long dateOut){
+    public LiveData<List<DiaryHistory>> getDiaryHistoryByDate(String type, long dateIn, long dateOut){
         return mSaveInKitchenRepository.getDiaryHistoryByDate(type,dateIn,dateOut);
     }
 
-    public LiveData<Double> getTotalCostEatFoodHistory(long dateIn,long dateOut){
+    public LiveData<Double> getTotalCostDiaryHistory(long dateIn, long dateOut){
         return mSaveInKitchenRepository.getTotalCostDiaryHistory(dateIn,dateOut);
     }
 

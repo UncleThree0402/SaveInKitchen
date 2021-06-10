@@ -10,7 +10,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.unclethree.saveinkitchen.R;
-import fragments.AddRecipeFoodFragment;
+import fragments.recipe.AddRecipeFoodFragment;
 
 public class RecipeIngredientDialog extends DialogFragment {
     //Var

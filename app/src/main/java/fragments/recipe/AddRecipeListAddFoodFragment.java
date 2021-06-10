@@ -1,4 +1,4 @@
-package fragments;
+package fragments.recipe;
 
 import android.os.Bundle;
 import android.util.Log;

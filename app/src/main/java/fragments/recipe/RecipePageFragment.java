@@ -1,6 +1,6 @@
-package fragments;
+package fragments.recipe;
 
-import adapters.RecipeListRecycleAdapter;
+import adapters.RecipeRecycleAdapter;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.unclethree.saveinkitchen.R;
 import com.unclethree.saveinkitchen.RecipeActivity;
@@ -38,11 +39,11 @@ public class RecipePageFragment extends Fragment implements View.OnClickListener
     private RecyclerView mRecipeRecyclerView;
     private TextView mRecipeRecycleViewText;
     private SearchView mSearchView;
-    private ImageView mAddRecipeButton;
+    private ExtendedFloatingActionButton mAddRecipeButton;
 
     //Var
     private final ArrayList<Recipe> mRecipe = new ArrayList<>();
-    private RecipeListRecycleAdapter mRecipeRecyclerAdapter;
+    private RecipeRecycleAdapter mRecipeRecyclerAdapter;
     private RecipeViewModel mRecipeViewModel;
 
 
@@ -119,7 +120,7 @@ public class RecipePageFragment extends Fragment implements View.OnClickListener
     private void initRecipeListRecycleView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         mRecipeRecyclerView.setLayoutManager(linearLayoutManager);
-        mRecipeRecyclerAdapter = new RecipeListRecycleAdapter(mRecipe,getActivity());
+        mRecipeRecyclerAdapter = new RecipeRecycleAdapter(mRecipe,getActivity());
         VerticalSpacingItemDecorator verticalSpacingItemDecorator = new VerticalSpacingItemDecorator(8);
         mRecipeRecyclerView.addItemDecoration(verticalSpacingItemDecorator);
         new ItemTouchHelper(recipeSimpleCallback).attachToRecyclerView(mRecipeRecyclerView);

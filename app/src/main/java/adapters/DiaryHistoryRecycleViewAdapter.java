@@ -13,11 +13,11 @@ import models.DiaryHistory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EatFoodHistoryListRecycleViewAdapter extends RecyclerView.Adapter<EatFoodHistoryListRecycleViewAdapter.ViewHolder> {
+public class DiaryHistoryRecycleViewAdapter extends RecyclerView.Adapter<DiaryHistoryRecycleViewAdapter.ViewHolder> {
 
     private List<DiaryHistory> mDiaryHistoryList = new ArrayList<>();
 
-    public EatFoodHistoryListRecycleViewAdapter(List<DiaryHistory> mDiaryHistoryList) {
+    public DiaryHistoryRecycleViewAdapter(List<DiaryHistory> mDiaryHistoryList) {
         this.mDiaryHistoryList = mDiaryHistoryList;
     }
 

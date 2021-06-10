@@ -22,7 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DiaryHistoryFragment extends Fragment implements View.OnClickListener, MaterialPickerOnPositiveButtonClickListener {
-    private static final String TAG = "EatFoodFragment";
 
     //Ui
     private TextView mDateTextView;
@@ -49,8 +48,6 @@ public class DiaryHistoryFragment extends Fragment implements View.OnClickListen
         mMaterialDatePicker.addOnPositiveButtonClickListener(this);
 
         setFrameOut(dayTime(System.currentTimeMillis()));
-
-        Log.d(TAG, "onCreateView: " + dayTime(System.currentTimeMillis()));
 
         return view;
     }

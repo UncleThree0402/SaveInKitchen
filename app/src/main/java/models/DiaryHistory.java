@@ -29,7 +29,28 @@ public class DiaryHistory {
     @ColumnInfo(name = "diary_history_date")
     private long date;
 
-    public DiaryHistory(int diary_history_id, String name, String time, double quantity, String unit, double cost, long date) {
+    @ColumnInfo(name = "food_id")
+    private int food_id;
+
+    @ColumnInfo(name = "food_type_id")
+    private int food_type_id;
+
+    @ColumnInfo(name = "food_status")
+    private String status;
+
+    @ColumnInfo(name = "food_before_quantity")
+    private double beforeQuantity;
+
+    @ColumnInfo(name = "food_cost_per_unit")
+    private double costPerUnit;
+
+    @ColumnInfo(name = "food_buy_date")
+    private long buyDate;
+
+    @ColumnInfo(name = "food_expire_date")
+    private long expireDate;
+
+    public DiaryHistory(int diary_history_id, String name, String time, double quantity, String unit, double cost, long date, int food_id, int food_type_id, String status, double beforeQuantity, double costPerUnit, long buyDate, long expireDate) {
         this.diary_history_id = diary_history_id;
         this.name = name;
         this.time = time;
@@ -37,6 +58,13 @@ public class DiaryHistory {
         this.unit = unit;
         this.cost = cost;
         this.date = date;
+        this.food_id = food_id;
+        this.food_type_id = food_type_id;
+        this.status = status;
+        this.beforeQuantity = beforeQuantity;
+        this.costPerUnit = costPerUnit;
+        this.buyDate = buyDate;
+        this.expireDate = expireDate;
     }
 
     @Ignore
@@ -97,5 +125,61 @@ public class DiaryHistory {
 
     public void setDate(long date) {
         this.date = date;
+    }
+
+    public int getFood_id() {
+        return food_id;
+    }
+
+    public void setFood_id(int food_id) {
+        this.food_id = food_id;
+    }
+
+    public int getFood_type_id() {
+        return food_type_id;
+    }
+
+    public void setFood_type_id(int food_type_id) {
+        this.food_type_id = food_type_id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getBeforeQuantity() {
+        return beforeQuantity;
+    }
+
+    public void setBeforeQuantity(double beforeQuantity) {
+        this.beforeQuantity = beforeQuantity;
+    }
+
+    public double getCostPerUnit() {
+        return costPerUnit;
+    }
+
+    public void setCostPerUnit(double costPerUnit) {
+        this.costPerUnit = costPerUnit;
+    }
+
+    public long getBuyDate() {
+        return buyDate;
+    }
+
+    public void setBuyDate(long buyDate) {
+        this.buyDate = buyDate;
+    }
+
+    public long getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(long expireDate) {
+        this.expireDate = expireDate;
     }
 }

@@ -1,7 +1,11 @@
 package com.unclethree.saveinkitchen;
 
 import adapters.PageFragmentAdapter;
+import android.app.Activity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,10 +14,13 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigationrail.NavigationRailView;
 import fragments.*;
+import fragments.buylist.BuyListPageFragment;
+import fragments.ingredient.IngredientPageFragment;
+import fragments.recipe.RecipePageFragment;
 
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener  {
+public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, View.OnTouchListener {
 
 
     //UI
@@ -38,17 +45,18 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         mDrawerLayout = findViewById(R.id.main_drawer_layout);
         mNavigationRailView.setOnItemSelectedListener(this);
 
-
+        mDrawerLayout.setOnTouchListener(this);
 
         pageFragmentAdapter = new PageFragmentAdapter(getSupportFragmentManager());
         setViewPage(mViewPager);
     }
 
     private void setViewPage(ViewPager viewPager) {
-        pageFragmentAdapter.addFragment(new DiaryHistoryFragment(), "EatFoodPage");
+        pageFragmentAdapter.addFragment(new DiaryHistoryFragment(), "DiaryPage");
 //        pageFragmentAdapter.addFragment(new HomePageFragment(), "HomePage");
+        pageFragmentAdapter.addFragment(new BuyListPageFragment(), "BuyListPage");
         pageFragmentAdapter.addFragment(new RecipePageFragment(), "Recipe Page");
-        pageFragmentAdapter.addFragment(new FoodPageFragment(), "FoodPage");
+        pageFragmentAdapter.addFragment(new IngredientPageFragment(), "FoodPage");
         pageFragmentAdapter.addFragment(new HistoryPageFragment(), "HistoryPage");
         viewPager.setAdapter(pageFragmentAdapter);
     }
@@ -56,21 +64,35 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
-            case R.id.nav_home:
+            case R.id.nav_diary:
                 mViewPager.setCurrentItem(0);
                 break;
-            case R.id.nav_recipe:
+            case R.id.nav_buy_list:
                 mViewPager.setCurrentItem(1);
                 break;
-            case R.id.nav_food:
+            case R.id.nav_recipe:
                 mViewPager.setCurrentItem(2);
                 break;
-            case R.id.nav_history:
+            case R.id.nav_food:
                 mViewPager.setCurrentItem(3);
+                break;
+            case R.id.nav_history:
+                mViewPager.setCurrentItem(4);
                 break;
         }
         mDrawerLayout.closeDrawers();
         return true;
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = this.getCurrentFocus();
+        if(view == null){
+            view = new View(this);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+        return false;
     }
 
 }

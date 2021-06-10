@@ -16,6 +16,7 @@ public class PageFragmentAdapter extends FragmentStatePagerAdapter {
 
     public PageFragmentAdapter(@NonNull FragmentManager fm) {
         super(fm);
+
     }
 
     public void addFragment(Fragment fragment, String title){

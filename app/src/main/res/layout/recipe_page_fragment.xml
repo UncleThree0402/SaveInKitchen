@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/recipe_page_rl">
 
     <RelativeLayout
@@ -61,12 +62,6 @@
                     android:layout_centerVertical="true"
             />
 
-            <ImageView
-                    android:id="@+id/add_recipe_list_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_add_30_grey"
-                    android:layout_alignParentEnd="true"/>
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -87,6 +82,22 @@
                 android:textColor="@color/black"/>
 
     </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/add_recipe_list_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/black"
+            app:icon="@drawable/ic_icon_ionic_md_add"
+            app:iconTint="@color/white"
+            android:textColor="@color/white"
+            android:text="Add Item"
+            android:fontFamily="@font/quicksand"
+            android:textAlignment="center"
+            android:textSize="16dp"/>
 
 
 

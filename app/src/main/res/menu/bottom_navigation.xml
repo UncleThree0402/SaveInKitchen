@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/nav_home"
-          android:icon="@drawable/ic_noun_home_3962224"
-          android:title="Home"/>
+    <item android:id="@+id/nav_diary"
+          android:icon="@drawable/ic_noun_diary_3240304"
+          android:title="Diary"/>
 
-    <item android:id="@+id/nav_meal"
+    <item android:id="@+id/nav_buy_list"
+          android:icon="@drawable/ic_noun_cart_3653711"
+          android:title="Buy List"/>
+
+    <item android:id="@+id/nav_cook"
           android:icon="@drawable/ic_noun_meal_1556112"
-          android:title="Meal"/>
+          android:title="Cook"/>
 
     <item android:id="@+id/nav_recipe"
           android:icon="@drawable/ic_noun_recipe_2093478"

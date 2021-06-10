@@ -1,9 +1,11 @@
 package models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import androidx.room.*;
 
 @Entity(tableName = "buy_list",foreignKeys = {@ForeignKey(entity = FoodType.class,parentColumns = "food_type_id", childColumns = "food_type_id",onDelete = ForeignKey.CASCADE)})
-public class BuyFood {
+public class BuyFood implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     private int buy_list_id;
@@ -40,6 +42,31 @@ public class BuyFood {
     @Ignore
     public BuyFood() {
     }
+
+    protected BuyFood(Parcel in) {
+        buy_list_id = in.readInt();
+        food_type_id = in.readInt();
+        name = in.readString();
+        status = in.readString();
+        if (in.readByte() == 0) {
+            quantity = null;
+        } else {
+            quantity = in.readDouble();
+        }
+        unit = in.readString();
+    }
+
+    public static final Creator<BuyFood> CREATOR = new Creator<BuyFood>() {
+        @Override
+        public BuyFood createFromParcel(Parcel in) {
+            return new BuyFood(in);
+        }
+
+        @Override
+        public BuyFood[] newArray(int size) {
+            return new BuyFood[size];
+        }
+    };
 
     public int getBuy_list_id() {
         return buy_list_id;
@@ -87,5 +114,25 @@ public class BuyFood {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(buy_list_id);
+        dest.writeInt(food_type_id);
+        dest.writeString(name);
+        dest.writeString(status);
+        if (quantity == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(quantity);
+        }
+        dest.writeString(unit);
     }
 }

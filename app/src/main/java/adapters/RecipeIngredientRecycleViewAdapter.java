@@ -13,11 +13,11 @@ import models.RecipeFood;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeFoodRecycleViewAdapter extends RecyclerView.Adapter<RecipeFoodRecycleViewAdapter.ViewHolder>{
+public class RecipeIngredientRecycleViewAdapter extends RecyclerView.Adapter<RecipeIngredientRecycleViewAdapter.ViewHolder>{
 
     private List<RecipeFood> mRecipeFood = new ArrayList<>();
 
-    public RecipeFoodRecycleViewAdapter(List<RecipeFood> mRecipeFood) {
+    public RecipeIngredientRecycleViewAdapter(List<RecipeFood> mRecipeFood) {
         this.mRecipeFood = mRecipeFood;
     }
 

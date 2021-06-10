@@ -3,7 +3,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/ingredient_page_rl">
+        android:id="@+id/buy_list_page_rl">
 
     <RelativeLayout
             android:id="@+id/title_bar"
@@ -16,14 +16,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Ingredients Page"
+                android:text="Buy List"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:fontFamily="@font/quicksand_bold"/>
     </RelativeLayout>
 
     <com.google.android.material.tabs.TabLayout
-            android:id="@+id/ingredient_tab_layout"
+            android:id="@+id/buy_list_tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/title_bar"
@@ -63,13 +63,13 @@
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
-            android:id="@+id/ingredient_view_page"
+            android:id="@+id/buy_list_view_page"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ingredient_tab_layout"/>
+            android:layout_below="@+id/buy_list_tab_layout"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/ingredient_add_button"
+            android:id="@+id/buy_list_add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

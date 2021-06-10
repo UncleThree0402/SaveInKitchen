@@ -50,4 +50,8 @@ public class FoodViewModel extends AndroidViewModel {
     public LiveData<Integer> getFoodTypeCount(int id){
         return mSaveInKitchenRepository.getFoodTypeCount(id);
     }
+
+    public LiveData<List<Food>> getSpecificTypeFood(String food_status , String name){
+        return mSaveInKitchenRepository.getSpecificTypeFood(food_status,"%" + name + "%");
+    }
 }

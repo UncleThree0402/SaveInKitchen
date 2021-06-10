@@ -1,6 +1,6 @@
 package fragments;
 
-import adapters.EatHistoryFoodListRecycleViewAdapter;
+import adapters.DiaryHistoryIngredientRecycleViewAdapter;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,7 +30,7 @@ import viewmodels.FoodViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiaryHistoryAddFoodFragment extends Fragment implements View.OnClickListener, EatHistoryFoodListRecycleViewAdapter.OnFoodClickListener {
+public class DiaryHistoryAddFoodFragment extends Fragment implements View.OnClickListener, DiaryHistoryIngredientRecycleViewAdapter.OnFoodClickListener {
     private static final String TAG = "EatFoodAddFoodStockFrag";
     //UI
     private RelativeLayout mRelativeLayout;
@@ -40,7 +40,7 @@ public class DiaryHistoryAddFoodFragment extends Fragment implements View.OnClic
     private ImageView mAddFoodListIcon;
 
     //Var
-    private EatHistoryFoodListRecycleViewAdapter mEatHistoryFoodListRecycleViewAdapter;
+    private DiaryHistoryIngredientRecycleViewAdapter mDiaryHistoryIngredientRecycleViewAdapter;
     private final ArrayList<Food> mFood = new ArrayList<>();
     private FoodViewModel mFoodViewModel;
 
@@ -91,7 +91,7 @@ public class DiaryHistoryAddFoodFragment extends Fragment implements View.OnClic
                             mFoodRecyclerView.setVisibility(View.VISIBLE);
                             mFoodRecyclerViewTextView.setVisibility(View.GONE);
                         }
-                        mEatHistoryFoodListRecycleViewAdapter.notifyDataSetChanged();
+                        mDiaryHistoryIngredientRecycleViewAdapter.notifyDataSetChanged();
                     }
                 });
                 return false;
@@ -116,7 +116,7 @@ public class DiaryHistoryAddFoodFragment extends Fragment implements View.OnClic
                     mFoodRecyclerView.setVisibility(View.VISIBLE);
                     mFoodRecyclerViewTextView.setVisibility(View.GONE);
                 }
-                mEatHistoryFoodListRecycleViewAdapter.notifyDataSetChanged();
+                mDiaryHistoryIngredientRecycleViewAdapter.notifyDataSetChanged();
             }
         });
 
@@ -127,11 +127,11 @@ public class DiaryHistoryAddFoodFragment extends Fragment implements View.OnClic
     private void initStockListRecycleView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         mFoodRecyclerView.setLayoutManager(linearLayoutManager);
-        mEatHistoryFoodListRecycleViewAdapter = new EatHistoryFoodListRecycleViewAdapter(mFood,this);
+        mDiaryHistoryIngredientRecycleViewAdapter = new DiaryHistoryIngredientRecycleViewAdapter(mFood,this);
         VerticalSpacingItemDecorator verticalSpacingItemDecorator = new VerticalSpacingItemDecorator(8);
         mFoodRecyclerView.addItemDecoration(verticalSpacingItemDecorator);
         new ItemTouchHelper(foodSimpleCallback).attachToRecyclerView(mFoodRecyclerView);
-        mFoodRecyclerView.setAdapter(mEatHistoryFoodListRecycleViewAdapter);
+        mFoodRecyclerView.setAdapter(mDiaryHistoryIngredientRecycleViewAdapter);
     }
 
     private final ItemTouchHelper.SimpleCallback foodSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {

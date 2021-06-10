@@ -40,4 +40,12 @@ public class BuyFoodViewModel extends AndroidViewModel {
     public LiveData<BuyFood> getSpecificBuyFood(int id){
         return mSaveInKitchenRepository.getSpecificBuyFood(id);
     }
+
+    public LiveData<List<BuyFood>> getSpecificTypeBuyFood(String buy_food_status, String name){
+        return  mSaveInKitchenRepository.getSpecificTypeBuyFood(buy_food_status, "%" + name + "%");
+    }
+
+    public LiveData<List<BuyFood>> getSpecificNameBuyFood(String name){
+        return mSaveInKitchenRepository.getSpecificNameBuyFood("%" + name + "%");
+    }
 }

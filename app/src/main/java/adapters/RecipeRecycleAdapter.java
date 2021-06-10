@@ -17,13 +17,13 @@ import models.Recipe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeListRecycleAdapter extends RecyclerView.Adapter<RecipeListRecycleAdapter.ViewHolder>{
+public class RecipeRecycleAdapter extends RecyclerView.Adapter<RecipeRecycleAdapter.ViewHolder>{
 
     private List<Recipe> mRecipe = new ArrayList<>();
 
     private final Activity mActivity;
 
-    public RecipeListRecycleAdapter(List<Recipe> mRecipe, Activity mActivity) {
+    public RecipeRecycleAdapter(List<Recipe> mRecipe, Activity mActivity) {
         this.mRecipe = mRecipe;
         this.mActivity = mActivity;
     }

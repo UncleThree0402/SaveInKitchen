@@ -1,7 +1,7 @@
 package fragments;
 
 import adapters.BuyListRecycleViewAdapter;
-import adapters.StockListRecycleViewAdapter;
+import adapters.StockRecycleViewAdapter;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -63,7 +63,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private BuyFoodViewModel mBuyFoodViewModel;
     private FoodTypeViewModel mFoodTypeViewModel;
     private BuyListRecycleViewAdapter mBuyListRecycleViewAdapter;
-    private StockListRecycleViewAdapter mStockListRecycleViewAdapter;
+    private StockRecycleViewAdapter mStockRecycleViewAdapter;
     private final ArrayList<BuyFood> mBuyFood = new ArrayList<>();
     private final ArrayList<FoodType> mFoodType = new ArrayList<>();
     private final ArrayList<BuyHistory> mBuyHistory = new ArrayList<>();
@@ -129,7 +129,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                     mStockListRecycleView.setVisibility(View.VISIBLE);
                     mStockListRecycleViewText.setVisibility(View.GONE);
                 }
-                mStockListRecycleViewAdapter.notifyDataSetChanged();
+                mStockRecycleViewAdapter.notifyDataSetChanged();
             }
         });
 
@@ -153,11 +153,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private void initStockListRecycleView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         mStockListRecycleView.setLayoutManager(linearLayoutManager);
-        mStockListRecycleViewAdapter = new StockListRecycleViewAdapter(mFoodType, this, this, getContext());
+        mStockRecycleViewAdapter = new StockRecycleViewAdapter(mFoodType, this, this, getContext());
         VerticalSpacingItemDecorator verticalSpacingItemDecorator = new VerticalSpacingItemDecorator(8);
         mStockListRecycleView.addItemDecoration(verticalSpacingItemDecorator);
         new ItemTouchHelper(stockListSimpleCallback).attachToRecyclerView(mStockListRecycleView);
-        mStockListRecycleView.setAdapter(mStockListRecycleViewAdapter);
+        mStockListRecycleView.setAdapter(mStockRecycleViewAdapter);
     }
 
     private final ItemTouchHelper.SimpleCallback buyListSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {

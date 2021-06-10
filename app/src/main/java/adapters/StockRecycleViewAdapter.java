@@ -23,7 +23,7 @@ import viewmodels.FoodViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StockListRecycleViewAdapter extends RecyclerView.Adapter<StockListRecycleViewAdapter.ViewHolder> {
+public class StockRecycleViewAdapter extends RecyclerView.Adapter<StockRecycleViewAdapter.ViewHolder> {
     private static final String TAG = "StockListRecycleViewAda";
 
     private List<FoodType> mFoodType = new ArrayList<>();
@@ -31,7 +31,7 @@ public class StockListRecycleViewAdapter extends RecyclerView.Adapter<StockListR
     private final LifecycleOwner mLifecycleOwner;
     private final Context mContext;
 
-    public StockListRecycleViewAdapter(List<FoodType> mFoodType, ViewModelStoreOwner mViewModelStoreOwner, LifecycleOwner mLifecycleOwner, Context mContext) {
+    public StockRecycleViewAdapter(List<FoodType> mFoodType, ViewModelStoreOwner mViewModelStoreOwner, LifecycleOwner mLifecycleOwner, Context mContext) {
         this.mFoodType = mFoodType;
         this.mViewModelStoreOwner = mViewModelStoreOwner;
         this.mLifecycleOwner = mLifecycleOwner;
@@ -86,7 +86,7 @@ public class StockListRecycleViewAdapter extends RecyclerView.Adapter<StockListR
                     holder.mStockTextView.setText(inStock);
                     holder.update = false;
                 }
-                holder.mSpecificFoodListRecycleViewAdapter.notifyDataSetChanged();
+                holder.mStockIngredientRecycleViewAdapter.notifyDataSetChanged();
             }
         });
         holder.initFoodList();
@@ -108,7 +108,7 @@ public class StockListRecycleViewAdapter extends RecyclerView.Adapter<StockListR
         private final TextView mStockTextView;
         private final RecyclerView mFoodRecycleView;
 
-        private SpecificFoodListRecycleViewAdapter mSpecificFoodListRecycleViewAdapter;
+        private StockIngredientRecycleViewAdapter mStockIngredientRecycleViewAdapter;
         private final ArrayList<Food> mFood = new ArrayList<>();
         private FoodViewModel mFoodViewModel;
         private FoodTypeViewModel mFoodTypeViewModel;
@@ -139,8 +139,8 @@ public class StockListRecycleViewAdapter extends RecyclerView.Adapter<StockListR
         private void initFoodList() {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
             mFoodRecycleView.setLayoutManager(linearLayoutManager);
-            mSpecificFoodListRecycleViewAdapter = new SpecificFoodListRecycleViewAdapter(mFood);
-            mFoodRecycleView.setAdapter(mSpecificFoodListRecycleViewAdapter);
+            mStockIngredientRecycleViewAdapter = new StockIngredientRecycleViewAdapter(mFood);
+            mFoodRecycleView.setAdapter(mStockIngredientRecycleViewAdapter);
         }
 
 

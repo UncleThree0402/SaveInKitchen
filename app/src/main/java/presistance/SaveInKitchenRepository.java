@@ -72,6 +72,14 @@ public class SaveInKitchenRepository {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificBuyFood(id);
     }
 
+    public LiveData<List<BuyFood>> getSpecificTypeBuyFood(String buy_food_status, String name){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificTypeBuyFood(buy_food_status, name);
+    }
+
+    public LiveData<List<BuyFood>> getSpecificNameBuyFood(String name){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificNameBuyFood(name);
+    }
+
     public LiveData<List<Food>> getFood() {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getFood();
     }
@@ -86,6 +94,10 @@ public class SaveInKitchenRepository {
 
     public LiveData<Integer> getFoodTypeCount(int id) {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getFoodTypeCount(id);
+    }
+
+    public LiveData<List<Food>> getSpecificTypeFood(String food_status , String name){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificTypeFood(food_status,name);
     }
 
     public LiveData<List<FoodType>> getFoodType() {

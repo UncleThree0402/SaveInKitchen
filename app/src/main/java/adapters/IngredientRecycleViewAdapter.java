@@ -13,18 +13,18 @@ import models.Food;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecificFoodListRecycleViewAdapter extends RecyclerView.Adapter<SpecificFoodListRecycleViewAdapter.ViewHolder> {
+public class IngredientRecycleViewAdapter extends RecyclerView.Adapter<IngredientRecycleViewAdapter.ViewHolder> {
 
     private List<Food> mFood = new ArrayList<>();
 
-    public SpecificFoodListRecycleViewAdapter(List<Food> mFood) {
+    public IngredientRecycleViewAdapter(List<Food> mFood) {
         this.mFood = mFood;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stock_food_recycle_view_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ingredients_recycle_view_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -49,9 +49,9 @@ public class SpecificFoodListRecycleViewAdapter extends RecyclerView.Adapter<Spe
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mNameTextView = itemView.findViewById(R.id.food_list_recycle_view_name);
-            mStatusTextView = itemView.findViewById(R.id.food_list_recycle_view_status);
-            mQuantityTextView = itemView.findViewById(R.id.food_list_recycle_view_quantity);
+            mNameTextView = itemView.findViewById(R.id.food_page_recycle_view_name);
+            mStatusTextView = itemView.findViewById(R.id.food_page_recycle_view_status);
+            mQuantityTextView = itemView.findViewById(R.id.food_page_recycle_view_quantity);
         }
     }
 }

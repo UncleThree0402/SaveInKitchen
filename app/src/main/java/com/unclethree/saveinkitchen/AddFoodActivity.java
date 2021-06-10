@@ -14,7 +14,6 @@ public class AddFoodActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
 
-
     //Var
     private PageFragmentAdapter pageFragmentAdapter;
     private String mType;

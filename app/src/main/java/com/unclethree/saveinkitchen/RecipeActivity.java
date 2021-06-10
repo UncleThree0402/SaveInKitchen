@@ -1,6 +1,6 @@
 package com.unclethree.saveinkitchen;
 
-import adapters.RecipeFoodRecycleViewAdapter;
+import adapters.RecipeIngredientRecycleViewAdapter;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.util.Log;
@@ -56,7 +56,7 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
     private RecipeFoodViewModel mRecipeFoodViewModel;
     private boolean isEditMode;
     private final ArrayList<RecipeFood> mRecipeFood = new ArrayList<>();
-    private RecipeFoodRecycleViewAdapter mRecipeFoodRecycleViewAdapter;
+    private RecipeIngredientRecycleViewAdapter mRecipeIngredientRecycleViewAdapter;
     private final LifecycleOwner mLifecycleOwner = this;
 
 
@@ -111,7 +111,7 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
                         }
                         if (mRecipeFood != null) {
                             mRecipeFood.addAll(recipeFoods);
-                            mRecipeFoodRecycleViewAdapter.notifyDataSetChanged();
+                            mRecipeIngredientRecycleViewAdapter.notifyDataSetChanged();
                         }
                     }
                 });
@@ -123,11 +123,11 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
     private void initRecipeFoodRecycleView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mIngredientsRecycleView.setLayoutManager(linearLayoutManager);
-        mRecipeFoodRecycleViewAdapter = new RecipeFoodRecycleViewAdapter(mRecipeFood);
+        mRecipeIngredientRecycleViewAdapter = new RecipeIngredientRecycleViewAdapter(mRecipeFood);
         VerticalSpacingItemDecorator verticalSpacingItemDecorator = new VerticalSpacingItemDecorator(8);
         mIngredientsRecycleView.addItemDecoration(verticalSpacingItemDecorator);
         new ItemTouchHelper(recipeFoodSimpleCallback).attachToRecyclerView(mIngredientsRecycleView);
-        mIngredientsRecycleView.setAdapter(mRecipeFoodRecycleViewAdapter);
+        mIngredientsRecycleView.setAdapter(mRecipeIngredientRecycleViewAdapter);
     }
 
     private final ItemTouchHelper.SimpleCallback recipeFoodSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {

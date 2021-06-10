@@ -36,6 +36,12 @@ public interface SaveInKitchenDao {
     @Query("SELECT * FROM buy_list WHERE buy_list_id = :buy_list_id")
     LiveData<BuyFood> getSpecificBuyFood(int buy_list_id);
 
+    @Query("SELECT * FROM buy_list WHERE buy_food_status = :buy_food_status AND buy_food_name LIKE :name")
+    LiveData<List<BuyFood>> getSpecificTypeBuyFood(String buy_food_status , String name);
+
+    @Query("SELECT * FROM buy_list WHERE  buy_food_name LIKE :name")
+    LiveData<List<BuyFood>> getSpecificNameBuyFood(String name);
+
     @Query("SELECT * FROM food")
     LiveData<List<Food>> getFood();
 
@@ -47,6 +53,9 @@ public interface SaveInKitchenDao {
 
     @Query("SELECT * FROM food WHERE food_name LIKE :name ")
     LiveData<List<Food>> getSearchFood(String name);
+
+    @Query("SELECT * FROM food WHERE food_status = :food_status AND food_name LIKE :name")
+    LiveData<List<Food>> getSpecificTypeFood(String food_status , String name);
 
     @Query("SELECT * FROM food_type")
     LiveData<List<FoodType>> getFoodType();

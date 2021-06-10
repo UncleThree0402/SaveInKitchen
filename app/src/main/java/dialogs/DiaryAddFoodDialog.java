@@ -77,6 +77,16 @@ public class DiaryAddFoodDialog extends DialogFragment {
         }else if(Double.parseDouble(quantity) > mFood.getQuantity()){
             mQuantityInputLayout.setError("Quantity can't greater than you have");
         }else{
+            DiaryHistory diaryHistory = new DiaryHistory();
+
+            diaryHistory.setFood_id(mFood.getFood_id());
+            diaryHistory.setFood_type_id(mFood.getFood_type_id());
+            diaryHistory.setStatus(mFood.getStatus());
+            diaryHistory.setBeforeQuantity(mFood.getQuantity());
+            diaryHistory.setCostPerUnit(mFood.getCostPerUnit());
+            diaryHistory.setBuyDate(mFood.getBuyDate());
+            diaryHistory.setExpireDate(mFood.getExpireDate());
+
             if(Double.parseDouble(quantity) != mFood.getQuantity()) {
                 mFood.setQuantity(mFood.getQuantity() - Double.parseDouble(quantity));
                 mFoodViewModel.updateFood(mFood);
@@ -84,13 +94,14 @@ public class DiaryAddFoodDialog extends DialogFragment {
                 mFoodViewModel.deleteFood(mFood);
             }
 
-            DiaryHistory diaryHistory = new DiaryHistory();
             diaryHistory.setName(mFood.getName());
             diaryHistory.setQuantity(Double.parseDouble(quantity));
             diaryHistory.setUnit(mFood.getUnit());
             diaryHistory.setTime(mType);
             diaryHistory.setDate(mDatetime);
             diaryHistory.setCost(Double.parseDouble(quantity) * mFood.getCostPerUnit());
+
+
 
             mDiaryHistoryViewModel.insertEatFoodHistory(diaryHistory);
             getActivity().finish();
