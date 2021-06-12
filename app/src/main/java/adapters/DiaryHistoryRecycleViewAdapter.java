@@ -43,9 +43,9 @@ public class DiaryHistoryRecycleViewAdapter extends RecyclerView.Adapter<DiaryHi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView mFoodNameTextView;
-        private TextView mQuantityTextView;
-        private TextView mCostTextView;
+        private final TextView mFoodNameTextView;
+        private final TextView mQuantityTextView;
+        private final TextView mCostTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

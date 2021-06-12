@@ -16,7 +16,7 @@ import java.util.List;
 public class DiaryHistoryIngredientRecycleViewAdapter extends RecyclerView.Adapter<DiaryHistoryIngredientRecycleViewAdapter.ViewHolder> {
 
     private List<Food> mFood = new ArrayList<>();
-    private OnFoodClickListener onFoodClickListener;
+    private final OnFoodClickListener onFoodClickListener;
 
     public DiaryHistoryIngredientRecycleViewAdapter(List<Food> mFood, OnFoodClickListener onFoodClickListener) {
         this.mFood = mFood;
@@ -48,7 +48,7 @@ public class DiaryHistoryIngredientRecycleViewAdapter extends RecyclerView.Adapt
         private final TextView mNameTextView;
         private final TextView mStatusTextView;
         private final TextView mQuantityTextView;
-        private OnFoodClickListener onFoodClickListener;
+        private final OnFoodClickListener onFoodClickListener;
 
         public ViewHolder(@NonNull View itemView, OnFoodClickListener onFoodClickListener) {
             super(itemView);

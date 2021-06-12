@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
-import fragments.*;
+import fragments.diary.DiaryHistoryAddFoodFragment;
 
 public class AddFoodActivity extends AppCompatActivity {
 

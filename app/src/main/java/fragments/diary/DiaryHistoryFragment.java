@@ -1,7 +1,6 @@
-package fragments;
+package fragments.diary;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.unclethree.saveinkitchen.R;
 import formatters.DateFormatter;
+import fragments.diary.DiaryHistoryContentFragment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -30,6 +30,12 @@ public interface SaveInKitchenDao {
     @Insert
     long[] insertDiaryHistory(DiaryHistory... diaryHistories);
 
+    @Insert
+    long[] insertDishes(Dishes... dishes);
+
+    @Insert
+    long[] insertCookDish(CookDish... cookDishes);
+
     @Query("SELECT * FROM buy_list")
     LiveData<List<BuyFood>> getBuyFood();
 
@@ -108,6 +114,18 @@ public interface SaveInKitchenDao {
     @Query("SELECT SUM(diary_history_cost) FROM diary_history WHERE diary_history_date >= :dateIn AND diary_history_date < :dateOut")
     LiveData<Double> getTotalCostDiaryHistory(long dateIn,long dateOut);
 
+    @Query("SELECT * FROM dishes")
+    LiveData<List<Dishes>> getDishes();
+
+    @Query("SELECT * FROM dishes WHERE dishes_name LIKE :name")
+    LiveData<List<Dishes>> getSearchDishes(String name);
+
+    @Query("SELECT * FROM cook_dish")
+    LiveData<List<CookDish>> getCookDishes();
+
+    @Query("SELECT * FROM cook_dish WHERE  cook_dish_name LIKE :name")
+    LiveData<List<CookDish>> getSearchCookDishes(String name);
+
     @Update
     int updateBuyFood(BuyFood... buyFoods);
 
@@ -129,6 +147,12 @@ public interface SaveInKitchenDao {
     @Update
     int updateDiaryHistory(DiaryHistory... diaryHistories);
 
+    @Update
+    int updateDishes(Dishes... dishes);
+
+    @Update
+    int updateCookDish(CookDish... cookDishes);
+
     @Delete
     int deleteBuyFood(BuyFood... buyFoods);
 
@@ -149,5 +173,11 @@ public interface SaveInKitchenDao {
 
     @Delete
     int deleteDiaryHistory(DiaryHistory... diaryHistories);
+
+    @Delete
+    int deleteDishes(Dishes... dishes);
+
+    @Delete
+    int deleteCookDish(CookDish... cookDishes);
 
 }

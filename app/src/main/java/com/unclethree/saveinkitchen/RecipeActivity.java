@@ -103,18 +103,20 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
         mRecipeViewModel.getSpecificRecipe(mName).observe(this, new Observer<Recipe>() {
             @Override
             public void onChanged(Recipe recipe) {
-                mRecipeFoodViewModel.getSpecificRecipeFood(recipe.getRecipe_id()).observe(mLifecycleOwner, new Observer<List<RecipeFood>>() {
-                    @Override
-                    public void onChanged(List<RecipeFood> recipeFoods) {
-                        if (mRecipeFood.size() > 0) {
-                            mRecipeFood.clear();
+                if(recipe != null) {
+                    mRecipeFoodViewModel.getSpecificRecipeFood(recipe.getRecipe_id()).observe(mLifecycleOwner, new Observer<List<RecipeFood>>() {
+                        @Override
+                        public void onChanged(List<RecipeFood> recipeFoods) {
+                            if (mRecipeFood.size() > 0) {
+                                mRecipeFood.clear();
+                            }
+                            if (mRecipeFood != null) {
+                                mRecipeFood.addAll(recipeFoods);
+                                mRecipeIngredientRecycleViewAdapter.notifyDataSetChanged();
+                            }
                         }
-                        if (mRecipeFood != null) {
-                            mRecipeFood.addAll(recipeFoods);
-                            mRecipeIngredientRecycleViewAdapter.notifyDataSetChanged();
-                        }
-                    }
-                });
+                    });
+                }
             }
         });
 

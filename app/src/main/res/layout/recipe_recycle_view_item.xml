@@ -9,7 +9,8 @@
     <TextView
             android:id="@+id/buy_list_recycle_name"
             android:layout_alignParentTop="true"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
+            android:maxWidth="200dp"
             android:layout_height="wrap_content"
             android:text="Fired Chicken Wings"
             android:fontFamily="@font/quicksand"

@@ -1,4 +1,4 @@
-package fragments;
+package fragments.buylist;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,7 +18,7 @@ import models.BuyFood;
 import models.FoodType;
 import viewmodels.BuyFoodViewModel;
 
-public class AddBuyListAddFoodFragment extends Fragment implements View.OnClickListener{
+public class BuyListAddFoodFragment extends Fragment implements View.OnClickListener{
 
     //UI
     private TextInputLayout mFoodNameTextInputLayout;

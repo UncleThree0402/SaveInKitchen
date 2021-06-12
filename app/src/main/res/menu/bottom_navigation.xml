@@ -12,10 +12,6 @@
           android:icon="@drawable/ic_noun_meal_1556112"
           android:title="Cook"/>
 
-    <item android:id="@+id/nav_recipe"
-          android:icon="@drawable/ic_noun_recipe_2093478"
-          android:title="Recipe"/>
-
     <item android:id="@+id/nav_food"
           android:icon="@drawable/ic_noun_warehouse_1877737"
           android:title="Ingredients"/>

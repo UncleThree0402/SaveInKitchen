@@ -18,7 +18,7 @@ import models.Food;
 import viewmodels.DiaryHistoryViewModel;
 import viewmodels.FoodViewModel;
 
-public class DiaryAddFoodDialog extends DialogFragment {
+public class PrepareAddRecipeDialog extends DialogFragment {
 
     //Ui
     private TextView mNameTextView;
@@ -37,7 +37,7 @@ public class DiaryAddFoodDialog extends DialogFragment {
     private final String mType;
     private final long mDatetime;
 
-    public DiaryAddFoodDialog(Food mFood, String mType, long mDatetime) {
+    public PrepareAddRecipeDialog(Food mFood, String mType, long mDatetime) {
         this.mFood = mFood;
         this.mType = mType;
         this.mDatetime = mDatetime;
@@ -46,7 +46,7 @@ public class DiaryAddFoodDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.diary_add_food_dialog, container, false);
+        View view = inflater.inflate(R.layout.prepare_add_reipce_dialog, container, false);
         mFoodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
         mDiaryHistoryViewModel = new ViewModelProvider(this).get(DiaryHistoryViewModel.class);
 

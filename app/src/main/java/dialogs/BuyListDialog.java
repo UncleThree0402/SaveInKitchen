@@ -10,7 +10,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.unclethree.saveinkitchen.R;
-import fragments.AddBuyListFoodTypeFragment;
+import fragments.buylist.BuyListFoodTypeFragment;
 
 public class BuyListDialog extends DialogFragment {
 
@@ -25,7 +25,7 @@ public class BuyListDialog extends DialogFragment {
 
         fragmentManager = getChildFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.add_buy_list_frame_layout, new AddBuyListFoodTypeFragment());
+        fragmentTransaction.replace(R.id.add_buy_list_frame_layout, new BuyListFoodTypeFragment());
         fragmentTransaction.commit();
 
         return view;

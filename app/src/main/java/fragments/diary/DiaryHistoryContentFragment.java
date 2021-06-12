@@ -1,4 +1,4 @@
-package fragments;
+package fragments.diary;
 
 import adapters.DiaryHistoryRecycleViewAdapter;
 import android.content.Intent;
@@ -61,10 +61,10 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
     private DiaryHistoryRecycleViewAdapter mDinnerRecycleViewAdapter;
     private DiaryHistoryRecycleViewAdapter mSnacksRecycleViewAdapter;
 
-    private ArrayList<DiaryHistory> mBreakfastHistory = new ArrayList<>();
-    private ArrayList<DiaryHistory> mLunchHistory = new ArrayList<>();
-    private ArrayList<DiaryHistory> mDinnerHistory = new ArrayList<>();
-    private ArrayList<DiaryHistory> mSnacksHistory = new ArrayList<>();
+    private final ArrayList<DiaryHistory> mBreakfastHistory = new ArrayList<>();
+    private final ArrayList<DiaryHistory> mLunchHistory = new ArrayList<>();
+    private final ArrayList<DiaryHistory> mDinnerHistory = new ArrayList<>();
+    private final ArrayList<DiaryHistory> mSnacksHistory = new ArrayList<>();
 
     private DiaryHistoryViewModel mDiaryHistoryViewModel;
     private FoodViewModel mFoodViewModel;

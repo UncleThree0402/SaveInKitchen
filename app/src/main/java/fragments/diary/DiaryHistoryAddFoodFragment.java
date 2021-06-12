@@ -1,4 +1,4 @@
-package fragments;
+package fragments.diary;
 
 import adapters.DiaryHistoryIngredientRecycleViewAdapter;
 import android.graphics.Canvas;
@@ -44,8 +44,8 @@ public class DiaryHistoryAddFoodFragment extends Fragment implements View.OnClic
     private final ArrayList<Food> mFood = new ArrayList<>();
     private FoodViewModel mFoodViewModel;
 
-    private String mType;
-    private long mDateTime;
+    private final String mType;
+    private final long mDateTime;
 
     public DiaryHistoryAddFoodFragment(String mType, long mDateTime) {
         this.mType = mType;

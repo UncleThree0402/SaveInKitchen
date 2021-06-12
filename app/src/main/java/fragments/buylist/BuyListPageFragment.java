@@ -1,15 +1,10 @@
 package fragments.buylist;
 
 import adapters.PageFragmentAdapter;
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -18,7 +13,6 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.tabs.TabLayout;
 import com.unclethree.saveinkitchen.R;
 import dialogs.BuyListDialog;
-import fragments.DiaryHistoryAddFoodFragment;
 
 public class BuyListPageFragment extends Fragment {
 

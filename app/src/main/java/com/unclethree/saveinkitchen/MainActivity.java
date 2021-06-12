@@ -15,8 +15,10 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigationrail.NavigationRailView;
 import fragments.*;
 import fragments.buylist.BuyListPageFragment;
+import fragments.cooking.CookingPageFragment;
+import fragments.diary.DiaryHistoryFragment;
 import fragments.ingredient.IngredientPageFragment;
-import fragments.recipe.RecipePageFragment;
+import fragments.cooking.recipe.RecipePageFragment;
 
 import java.util.Locale;
 
@@ -45,16 +47,27 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         mDrawerLayout = findViewById(R.id.main_drawer_layout);
         mNavigationRailView.setOnItemSelectedListener(this);
 
+        if(savedInstanceState != null){
+            mViewPager.setCurrentItem(savedInstanceState.getInt("Page"));
+        }
+
         mDrawerLayout.setOnTouchListener(this);
 
         pageFragmentAdapter = new PageFragmentAdapter(getSupportFragmentManager());
         setViewPage(mViewPager);
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("Page",mViewPager.getCurrentItem());
+    }
+
     private void setViewPage(ViewPager viewPager) {
         pageFragmentAdapter.addFragment(new DiaryHistoryFragment(), "DiaryPage");
 //        pageFragmentAdapter.addFragment(new HomePageFragment(), "HomePage");
         pageFragmentAdapter.addFragment(new BuyListPageFragment(), "BuyListPage");
+        pageFragmentAdapter.addFragment(new CookingPageFragment(), "Cooking Page");
         pageFragmentAdapter.addFragment(new RecipePageFragment(), "Recipe Page");
         pageFragmentAdapter.addFragment(new IngredientPageFragment(), "FoodPage");
         pageFragmentAdapter.addFragment(new HistoryPageFragment(), "HistoryPage");
@@ -70,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
             case R.id.nav_buy_list:
                 mViewPager.setCurrentItem(1);
                 break;
-            case R.id.nav_recipe:
+            case R.id.nav_cook:
                 mViewPager.setCurrentItem(2);
                 break;
             case R.id.nav_food:

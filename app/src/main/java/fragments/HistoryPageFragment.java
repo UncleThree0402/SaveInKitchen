@@ -38,7 +38,7 @@ public class HistoryPageFragment extends Fragment {
 
     //Var
     private BuyHistoryRecycleViewAdapter mBuyHistoryRecycleViewAdapter;
-    private final ArrayList<BuyHistory> mBuyHistory = new ArrayList<>();
+    private ArrayList<BuyHistory> mBuyHistory = new ArrayList<>();
     private BuyHistoryViewModel mBuyHistoryViewModel;
 
     @Nullable

@@ -1,4 +1,4 @@
-package fragments.recipe;
+package fragments.cooking.recipe;
 
 import android.content.Intent;
 import android.os.Bundle;
