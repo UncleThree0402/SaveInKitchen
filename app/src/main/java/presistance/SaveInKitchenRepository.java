@@ -11,6 +11,9 @@ import async.buyhistory.UpdateBuyHistoryAsyncTask;
 import async.cookdish.DeleteCookDishHistoryAsyncTask;
 import async.cookdish.InsertCookDishAsyncTask;
 import async.cookdish.UpdateCookDishAsyncTask;
+import async.cookdishingredient.DeleteCookDishIngredientAsyncTask;
+import async.cookdishingredient.InsertCookDishIngredientAsyncTask;
+import async.cookdishingredient.UpdateCookDishIngredientAsyncTask;
 import async.diaryhistory.DeleteDiaryHistoryAsyncTask;
 import async.diaryhistory.InsertDiaryHistoryAsyncTask;
 import async.diaryhistory.UpdateDiaryHistoryAsyncTask;
@@ -78,6 +81,10 @@ public class SaveInKitchenRepository {
         new InsertCookDishAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(cookDish);
     }
 
+    public void insertCookDishIngredient(CookDishIngredient cookDishIngredient){
+        new InsertCookDishIngredientAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(cookDishIngredient);
+    }
+
     public LiveData<List<BuyFood>> getBuyFood() {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getBuyFood();
     }
@@ -142,6 +149,10 @@ public class SaveInKitchenRepository {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getSearchRecipe(name);
     }
 
+    public LiveData<Recipe> getIdRecipe(int id){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getIdRecipe(id);
+    }
+
     public LiveData<List<RecipeFood>> getRecipeFood() {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getRecipeFood();
     }
@@ -199,6 +210,38 @@ public class SaveInKitchenRepository {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getSearchCookDishes(name);
     }
 
+    public LiveData<CookDish> getCookDishesById(int cook_dish_id){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getCookDishesById(cook_dish_id);
+    }
+
+    public LiveData<List<CookDishIngredient>> getCookDishIngredient(){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getCookDishIngredient();
+    }
+
+    public LiveData<List<CookDishIngredient>> getSpecificCookDishIngredient(int recipe_food_id, int cook_dish_id){
+        return  mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificCookDishIngredient(recipe_food_id, cook_dish_id);
+    }
+
+    public LiveData<Double> getSumOfSpecificCookDishIngredient(int food_id){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSumOfSpecificCookDishIngredient(food_id);
+    }
+
+    public LiveData<CookDishIngredient> getSpecificCookDishIngredient(int food_id){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificCookDishIngredient(food_id);
+    }
+
+    public LiveData<List<CookDishIngredient>> getSpecificCookDishIngByDish(int cook_dish_id){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificCookDishIngByDish(cook_dish_id);
+    }
+
+    public LiveData<Double> getCostOfDish(int cook_dish_id){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getCostOfDish(cook_dish_id);
+    }
+
+    public LiveData<List<CookDishIngredientView>> getCookDishIngredientView(int cook_dish_id, int recipe_food_id, int food_id){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getCookDishIngredientView(cook_dish_id,recipe_food_id,food_id);
+    }
+
     public void updateBuyFood(BuyFood buyFood) {
         new UpdateBuyFoodAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(buyFood);
     }
@@ -235,6 +278,10 @@ public class SaveInKitchenRepository {
         new UpdateCookDishAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(cookDish);
     }
 
+    public void updateCookDishIngredient(CookDishIngredient cookDishIngredient){
+        new UpdateCookDishIngredientAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(cookDishIngredient);
+    }
+
     public void deleteBuyFood(BuyFood buyFood) {
         new DeleteBuyFoodAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(buyFood);
     }
@@ -269,6 +316,10 @@ public class SaveInKitchenRepository {
 
     public void deleteCookDish(CookDish cookDish){
         new DeleteCookDishHistoryAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(cookDish);
+    }
+
+    public void deleteCookDishIngredient(CookDishIngredient cookDishIngredient){
+        new DeleteCookDishIngredientAsyncTask(mSaveInKitchenDatabase.getSaveForFoodDao()).execute(cookDishIngredient);
     }
 
 }

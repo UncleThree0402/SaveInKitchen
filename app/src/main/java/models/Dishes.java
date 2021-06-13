@@ -14,21 +14,25 @@ public class Dishes {
     @ColumnInfo(name = "dishes_name")
     private String name;
 
-    @ColumnInfo(name = "dishes_percentage")
-    private double percentage;
+    @ColumnInfo(name = "dishes_servings")
+    private double servings;
 
     @ColumnInfo(name = "dishes_cost")
     private double cost;
+
+    @ColumnInfo(name = "dishes_cost_per_serving")
+    private double costPerServing;
 
     @ColumnInfo(name = "dishes_date",defaultValue = "CURRENT_TIMESTAMP")
     private long date;
 
 
-    public Dishes(int dishes_id, String name, double percentage, double cost, long date) {
+    public Dishes(int dishes_id, String name, double servings, double cost, double costPerServing, long date) {
         this.dishes_id = dishes_id;
         this.name = name;
-        this.percentage = percentage;
+        this.servings = servings;
         this.cost = cost;
+        this.costPerServing = costPerServing;
         this.date = date;
     }
 
@@ -52,12 +56,12 @@ public class Dishes {
         this.name = name;
     }
 
-    public double getPercentage() {
-        return percentage;
+    public double getServings() {
+        return servings;
     }
 
-    public void setPercentage(double percentage) {
-        this.percentage = percentage;
+    public void setServings(double servings) {
+        this.servings = servings;
     }
 
     public double getCost() {
@@ -66,6 +70,14 @@ public class Dishes {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    public double getCostPerServing() {
+        return costPerServing;
+    }
+
+    public void setCostPerServing(double costPerServing) {
+        this.costPerServing = costPerServing;
     }
 
     public long getDate() {

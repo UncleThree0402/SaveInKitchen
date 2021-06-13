@@ -36,6 +36,9 @@ public interface SaveInKitchenDao {
     @Insert
     long[] insertCookDish(CookDish... cookDishes);
 
+    @Insert
+    long[] insertCookDishIngredient(CookDishIngredient... cookDishIngredients);
+
     @Query("SELECT * FROM buy_list")
     LiveData<List<BuyFood>> getBuyFood();
 
@@ -43,7 +46,7 @@ public interface SaveInKitchenDao {
     LiveData<BuyFood> getSpecificBuyFood(int buy_list_id);
 
     @Query("SELECT * FROM buy_list WHERE buy_food_status = :buy_food_status AND buy_food_name LIKE :name")
-    LiveData<List<BuyFood>> getSpecificTypeBuyFood(String buy_food_status , String name);
+    LiveData<List<BuyFood>> getSpecificTypeBuyFood(String buy_food_status, String name);
 
     @Query("SELECT * FROM buy_list WHERE  buy_food_name LIKE :name")
     LiveData<List<BuyFood>> getSpecificNameBuyFood(String name);
@@ -61,7 +64,7 @@ public interface SaveInKitchenDao {
     LiveData<List<Food>> getSearchFood(String name);
 
     @Query("SELECT * FROM food WHERE food_status = :food_status AND food_name LIKE :name")
-    LiveData<List<Food>> getSpecificTypeFood(String food_status , String name);
+    LiveData<List<Food>> getSpecificTypeFood(String food_status, String name);
 
     @Query("SELECT * FROM food_type")
     LiveData<List<FoodType>> getFoodType();
@@ -83,6 +86,9 @@ public interface SaveInKitchenDao {
 
     @Query("SELECT * FROM recipe WHERE recipe_name LIKE :name ")
     LiveData<List<Recipe>> getSearchRecipe(String name);
+
+    @Query("SELECT * FROM recipe WHERE recipe_id = :id")
+    LiveData<Recipe> getIdRecipe(int id);
 
     @Query("SELECT * FROM recipe_food")
     LiveData<List<RecipeFood>> getRecipeFood();
@@ -112,7 +118,7 @@ public interface SaveInKitchenDao {
     LiveData<List<DiaryHistory>> getDiaryHistoryByDate(String type, long dateIn, long dateOut);
 
     @Query("SELECT SUM(diary_history_cost) FROM diary_history WHERE diary_history_date >= :dateIn AND diary_history_date < :dateOut")
-    LiveData<Double> getTotalCostDiaryHistory(long dateIn,long dateOut);
+    LiveData<Double> getTotalCostDiaryHistory(long dateIn, long dateOut);
 
     @Query("SELECT * FROM dishes")
     LiveData<List<Dishes>> getDishes();
@@ -125,6 +131,31 @@ public interface SaveInKitchenDao {
 
     @Query("SELECT * FROM cook_dish WHERE  cook_dish_name LIKE :name")
     LiveData<List<CookDish>> getSearchCookDishes(String name);
+
+    @Query("SELECT * FROM cook_dish WHERE  cook_dish_id = :cook_dish_id")
+    LiveData<CookDish> getCookDishesById(int cook_dish_id);
+
+    @Query("SELECT * FROM cook_dish_ingredient")
+    LiveData<List<CookDishIngredient>> getCookDishIngredient();
+
+    @Query("SELECT * FROM cook_dish_ingredient WHERE recipe_food_id = :recipe_food_id AND cook_dish_id = :cook_dish_id")
+    LiveData<List<CookDishIngredient>> getSpecificCookDishIngredient(int recipe_food_id, int cook_dish_id);
+
+    @Query("SELECT SUM(cook_dish_ingredient_quantity) FROM cook_dish_ingredient WHERE food_id = :food_id")
+    LiveData<Double> getSumOfSpecificCookDishIngredient(int food_id);
+
+    @Query("SELECT * FROM cook_dish_ingredient WHERE food_id = :food_id")
+    LiveData<CookDishIngredient> getSpecificCookDishIngredient(int food_id);
+
+    @Query("SELECT SUM(cook_dish_ingredient_cost) FROM cook_dish_ingredient WHERE cook_dish_id = :cook_dish_id")
+    LiveData<Double> getCostOfDish(int cook_dish_id);
+
+    @Query("SELECT * FROM cook_dish_ingredient WHERE cook_dish_id = :cook_dish_id")
+    LiveData<List<CookDishIngredient>> getSpecificCookDishIngByDish(int cook_dish_id);
+
+    @Query("SELECT cook_dish_ingredient.cook_dish_ingredient_id ,food.food_name, food.food_status, cook_dish_ingredient.cook_dish_ingredient_quantity, food.food_unit FROM cook_dish_ingredient INNER JOIN food ON food.food_id = cook_dish_ingredient.food_id " +
+            "WHERE cook_dish_ingredient.cook_dish_id = :cook_dish_id AND cook_dish_ingredient.recipe_food_id = :recipe_food_id AND cook_dish_ingredient.food_id = :food_id")
+    LiveData<List<CookDishIngredientView>> getCookDishIngredientView(int cook_dish_id, int recipe_food_id, int food_id);
 
     @Update
     int updateBuyFood(BuyFood... buyFoods);
@@ -153,6 +184,9 @@ public interface SaveInKitchenDao {
     @Update
     int updateCookDish(CookDish... cookDishes);
 
+    @Update
+    int updateCookDishIngredient(CookDishIngredient... cookDishIngredients);
+
     @Delete
     int deleteBuyFood(BuyFood... buyFoods);
 
@@ -179,5 +213,8 @@ public interface SaveInKitchenDao {
 
     @Delete
     int deleteCookDish(CookDish... cookDishes);
+
+    @Delete
+    int deleteCookDishIngredient(CookDishIngredient... cookDishIngredients);
 
 }

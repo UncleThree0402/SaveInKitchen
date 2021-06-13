@@ -17,14 +17,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Servings"
+                android:text="Quantity"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:fontFamily="@font/quicksand_bold"/>
     </RelativeLayout>
 
     <RelativeLayout
-            android:id="@+id/prepare_add_recipe_dialog_container"
+            android:id="@+id/add_dishes_info_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/title_bar"
@@ -36,27 +36,37 @@
                 android:layout_alignParentStart="true">
 
             <TextView
-                    android:id="@+id/prepare_add_recipe_dialog_name"
+                    android:id="@+id/add_dishes_name"
                     android:layout_alignParentTop="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Frittata with Potatoes, Red Peppers, and Spinach"
+                    android:text="Korean Apple"
                     android:fontFamily="@font/quicksand"
-                    android:textSize="24sp"
+                    android:textSize="16sp"
                     android:textColor="@color/black"/>
 
 
         </RelativeLayout>
 
+        <TextView
+                android:id="@+id/add_dishes_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 Servings"
+                android:textSize="16sp"
+                android:fontFamily="@font/quicksand"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"/>
 
     </RelativeLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/prepare_add_recipe_dialog_input_layout"
-            android:layout_below="@+id/prepare_add_recipe_dialog_container"
+            android:id="@+id/add_dishes_quantity_input_layout"
+            android:layout_below="@+id/add_dishes_info_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Servings"
+            android:hint="Quantity"
             app:suffixText="Heads"
             app:errorEnabled="true"
             app:boxStrokeColor="@color/black"
@@ -66,17 +76,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="numberDecimal"
-                android:id="@+id/prepare_add_recipe_dialog_input"
+                android:id="@+id/add_dishes_quantity_input"
                 android:fontFamily="@font/quicksand_medium"
                 />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-            android:id="@+id/prepare_add_recipe_dialog_confirm_button"
+            android:id="@+id/add_dishes_confirm_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/prepare_add_recipe_dialog_input_layout"
+            android:layout_below="@id/add_dishes_quantity_input_layout"
             android:layout_marginTop="8dp"
             android:text="Confirm"
             android:fontFamily="@font/quicksand"

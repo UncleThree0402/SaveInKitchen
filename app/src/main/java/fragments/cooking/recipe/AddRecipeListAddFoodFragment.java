@@ -18,7 +18,7 @@ import com.unclethree.saveinkitchen.R;
 import models.RecipeFood;
 import viewmodels.RecipeFoodViewModel;
 
-public class AddRecipeListAddFoodFragment extends Fragment implements View.OnClickListener{
+public class AddRecipeListAddFoodFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "AddRecipeListAddFoodFra";
 
     //UI
@@ -72,12 +72,12 @@ public class AddRecipeListAddFoodFragment extends Fragment implements View.OnCli
     }
 
     private void checkInput() {
-        if (!validFoodName() | !validStatus() | !validQuantity() | !validUnit() |!validDescription()) {
+        if (!validFoodName() | !validStatus() | !validQuantity() | !validUnit() | !validDescription()) {
             return;
         } else {
             mRecipeFood.setRecipe_id(mRecipeId);
             mRecipeFood.setFood_type_id(mFoodTypeId);
-            Log.d(TAG, "checkInput: " + mRecipeFood.getRecipe_food_id() + " " +mRecipeFood.getRecipe_id());
+            Log.d(TAG, "checkInput: " + mRecipeFood.getRecipe_food_id() + " " + mRecipeFood.getRecipe_id());
             mRecipeFoodViewModel.insertRecipeFood(mRecipeFood);
             ((DialogFragment) getParentFragment()).dismiss();
         }
@@ -133,13 +133,9 @@ public class AddRecipeListAddFoodFragment extends Fragment implements View.OnCli
 
     private boolean validDescription() {
         String description = mDescriptionTextInputLayout.getEditText().getText().toString().trim();
-        if (description.isEmpty()) {
-            mRecipeFood.setDescription(null);
-            return false;
-        } else {
-            mRecipeFood.setDescription(mDescriptionTextInputLayout.getEditText().getText().toString());
-            return true;
-        }
+        mRecipeFood.setDescription(mDescriptionTextInputLayout.getEditText().getText().toString());
+        return true;
+
     }
 
     @Override

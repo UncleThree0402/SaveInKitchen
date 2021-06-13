@@ -5,11 +5,13 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity(tableName = "cook_dish_ingredient")
 public class CookDishIngredient {
 
     @PrimaryKey(autoGenerate = true)
-    private int cook_dish_ingredient;
+    private int cook_dish_ingredient_id;
 
     @ColumnInfo(name = "cook_dish_id")
     private int cook_dish_id;
@@ -21,26 +23,30 @@ public class CookDishIngredient {
     private int food_id;
 
     @ColumnInfo(name = "cook_dish_ingredient_quantity")
-    private double quantity;
+    private Double quantity;
 
-    public CookDishIngredient(int cook_dish_ingredient, int cook_dish_id, int recipe_food_id, int food_id, double quantity) {
-        this.cook_dish_ingredient = cook_dish_ingredient;
+    @ColumnInfo(name = "cook_dish_ingredient_cost")
+    private Double cost;
+
+    public CookDishIngredient(int cook_dish_ingredient_id, int cook_dish_id, int recipe_food_id, int food_id, Double quantity, Double cost) {
+        this.cook_dish_ingredient_id = cook_dish_ingredient_id;
         this.cook_dish_id = cook_dish_id;
         this.recipe_food_id = recipe_food_id;
         this.food_id = food_id;
         this.quantity = quantity;
+        this.cost = cost;
     }
 
     @Ignore
     public CookDishIngredient() {
     }
 
-    public int getCook_dish_ingredient() {
-        return cook_dish_ingredient;
+    public int getCook_dish_ingredient_id() {
+        return cook_dish_ingredient_id;
     }
 
-    public void setCook_dish_ingredient(int cook_dish_ingredient) {
-        this.cook_dish_ingredient = cook_dish_ingredient;
+    public void setCook_dish_ingredient_id(int cook_dish_ingredient_id) {
+        this.cook_dish_ingredient_id = cook_dish_ingredient_id;
     }
 
     public int getCook_dish_id() {
@@ -67,11 +73,19 @@ public class CookDishIngredient {
         this.food_id = food_id;
     }
 
-    public double getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
+    }
+
+    public Double getCost() {
+        return cost;
+    }
+
+    public void setCost(Double cost) {
+        this.cost = cost;
     }
 }

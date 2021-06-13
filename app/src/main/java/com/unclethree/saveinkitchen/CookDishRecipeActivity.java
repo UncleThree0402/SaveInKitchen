@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import dialogs.PrepareAddRecipeDialog;
 import dialogs.RecipeDialog;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 import models.Recipe;
@@ -177,6 +178,7 @@ public class CookDishRecipeActivity extends AppCompatActivity implements View.On
 
     @Override
     public void OnPrepareRecipeClick(int position) {
-
+        PrepareAddRecipeDialog prepareAddRecipeDialog = new PrepareAddRecipeDialog(mRecipe.get(position));
+        prepareAddRecipeDialog.show(getSupportFragmentManager(),"Prepare Add Recipe");
     }
 }

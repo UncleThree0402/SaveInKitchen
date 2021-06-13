@@ -56,7 +56,7 @@ public class RecipePageFragment extends Fragment implements View.OnClickListener
         }
 
         View view = inflater.inflate(R.layout.recipe_page_fragment,container,false);
-        mRelativeLayout = view.findViewById(R.id.cook_page_rl);
+        mRelativeLayout = view.findViewById(R.id.recipe_page_rl);
         mRecipeRecyclerView = view.findViewById(R.id.recipe_list_recycle_view);
         mRecipeRecycleViewText = view.findViewById(R.id.recipe_list_recycle_view_text);
         mSearchView = view.findViewById(R.id.recipe_search_view);

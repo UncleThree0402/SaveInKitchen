@@ -9,7 +9,7 @@
           android:title="Buy List"/>
 
     <item android:id="@+id/nav_cook"
-          android:icon="@drawable/ic_noun_meal_1556112"
+          android:icon="@drawable/ic_noun_cook_1888555"
           android:title="Cook"/>
 
     <item android:id="@+id/nav_food"

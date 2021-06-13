@@ -22,13 +22,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.unclethree.saveinkitchen.CookDishRecipeActivity;
+import com.unclethree.saveinkitchen.PrepareRecipeActivity;
 import com.unclethree.saveinkitchen.R;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 import models.CookDish;
 import models.Dishes;
+import models.Recipe;
 import util.VerticalSpacingItemDecorator;
 import viewmodels.CookDishViewModel;
 import viewmodels.DishesViewModel;
+import viewmodels.RecipeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +50,7 @@ public class PrepareFragment extends Fragment implements CookDishRecycleViewAdap
     private CookDishRecycleViewAdapter mCookDishRecycleViewAdapter;
     private ArrayList<CookDish> mCookDish = new ArrayList<>();
     private CookDishViewModel mCookDishViewModel;
+    private RecipeViewModel mRecipeViewModel;
 
     @Nullable
     @Override
@@ -54,6 +58,7 @@ public class PrepareFragment extends Fragment implements CookDishRecycleViewAdap
         View view = inflater.inflate(R.layout.prepare_fragment,container,false);
 
         mCookDishViewModel = new ViewModelProvider(this).get(CookDishViewModel.class);
+        mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
         mRelativeLayout = view.findViewById(R.id.cook_page_rl);
         mCookDishRecyclerView = view.findViewById(R.id.prepare_recycle_view);
@@ -174,7 +179,22 @@ public class PrepareFragment extends Fragment implements CookDishRecycleViewAdap
 
     @Override
     public void OnCookDishClick(int position) {
-
+        final boolean[] update = {true};
+        mRecipeViewModel.getIdRecipe(mCookDish.get(position).getRecipe_id()).observe(getViewLifecycleOwner(), new Observer<Recipe>() {
+            @Override
+            public void onChanged(Recipe recipe) {
+                if(update[0]) {
+                    if (recipe != null) {
+                        Intent intent = new Intent(getContext(), PrepareRecipeActivity.class);
+                        intent.putExtra("Recipe", recipe);
+                        intent.putExtra("Quantity", mCookDish.get(position).getServing());
+                        intent.putExtra("dishId",mCookDish.get(position).getCook_dish_id());
+                        startActivity(intent);
+                        update[0] = false;
+                    }
+                }
+            }
+        });
     }
 }
 

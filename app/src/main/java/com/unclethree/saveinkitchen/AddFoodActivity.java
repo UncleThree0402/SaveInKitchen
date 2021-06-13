@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
+import fragments.diary.DiaryHistoryAddDishesFragment;
 import fragments.diary.DiaryHistoryAddFoodFragment;
 
 public class AddFoodActivity extends AppCompatActivity {
@@ -39,6 +40,7 @@ public class AddFoodActivity extends AppCompatActivity {
 
     private void setViewPage(ViewPager viewPager) {
         pageFragmentAdapter.addFragment(new DiaryHistoryAddFoodFragment(mType,mDateTime), "Stock");
+        pageFragmentAdapter.addFragment(new DiaryHistoryAddDishesFragment(mType,mDateTime), "Dishes");
         viewPager.setAdapter(pageFragmentAdapter);
     }
 }

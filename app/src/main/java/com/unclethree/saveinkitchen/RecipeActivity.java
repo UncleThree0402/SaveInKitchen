@@ -173,7 +173,6 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
 
         mCheck.setVisibility(View.VISIBLE);
         mEdit.setVisibility(View.GONE);
-        Log.d(TAG, "editMode: called");
     }
 
     private void viewMode() {
@@ -300,5 +299,10 @@ public class RecipeActivity extends AppCompatActivity implements View.OnClickLis
     private void endActivity() {
         update();
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        endActivity();
     }
 }

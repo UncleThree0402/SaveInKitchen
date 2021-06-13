@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.unclethree.saveinkitchen.R;
 import formatters.NumberFormatter;
-import models.DiaryHistory;
 import models.Dishes;
 
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class DishesRecycleViewAdapter extends RecyclerView.Adapter<DishesRecycle
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.mFoodNameTextView.setText(mDishes.get(position).getName());
-        holder.mQuantityTextView.setText(Double.toString(mDishes.get(position).getPercentage()));
+        holder.mQuantityTextView.setText(Double.toString(mDishes.get(position).getServings()));
         holder.mCostTextView.setText(NumberFormatter.moneyFormatter(mDishes.get(position).getCost()));
     }
 

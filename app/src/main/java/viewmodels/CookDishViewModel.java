@@ -43,5 +43,9 @@ public class CookDishViewModel extends AndroidViewModel {
         return mSaveInKitchenRepository.getSearchCookDish("%" + name + "%");
     }
 
+    public LiveData<CookDish> getCookDishesById(int cook_dish_id){
+        return mSaveInKitchenRepository.getCookDishesById(cook_dish_id);
+    }
+
     
 }

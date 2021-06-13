@@ -34,7 +34,7 @@ public class CookDishRecycleViewAdapter extends RecyclerView.Adapter<CookDishRec
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.mFoodNameTextView.setText(mCookDish.get(position).getName());
-        holder.mQuantityTextView.setText(mCookDish.get(position).getServing() + " Servings");
+        holder.mQuantityTextView.setText(NumberFormatter.quantityFormatter(mCookDish.get(position).getServing()) + " Servings");
     }
 
     @Override
@@ -53,6 +53,7 @@ public class CookDishRecycleViewAdapter extends RecyclerView.Adapter<CookDishRec
             mFoodNameTextView = itemView.findViewById(R.id.cook_dish_recycle_view_name);
             mQuantityTextView = itemView.findViewById(R.id.cook_dish_recycle_view_quantity);
             this.onCookDishClickListener = onCookDishClickListener;
+            itemView.setOnClickListener(this);
         }
 
         @Override

@@ -65,10 +65,8 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
     private void setViewPage(ViewPager viewPager) {
         pageFragmentAdapter.addFragment(new DiaryHistoryFragment(), "DiaryPage");
-//        pageFragmentAdapter.addFragment(new HomePageFragment(), "HomePage");
         pageFragmentAdapter.addFragment(new BuyListPageFragment(), "BuyListPage");
         pageFragmentAdapter.addFragment(new CookingPageFragment(), "Cooking Page");
-        pageFragmentAdapter.addFragment(new RecipePageFragment(), "Recipe Page");
         pageFragmentAdapter.addFragment(new IngredientPageFragment(), "FoodPage");
         pageFragmentAdapter.addFragment(new HistoryPageFragment(), "HistoryPage");
         viewPager.setAdapter(pageFragmentAdapter);
