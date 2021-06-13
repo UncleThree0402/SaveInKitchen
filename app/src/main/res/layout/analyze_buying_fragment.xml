@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/analyze_page_sv">
+        <RelativeLayout
+                android:id="@+id/analyze_page_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/analyze_expense_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Expenditure In Last 30 Days"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/quicksand"
+                    android:layout_marginTop="8dp"
+                    android:layout_alignParentTop="true"/>
+
+            <TextView
+                    android:id="@+id/analyze_expense_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NT$ 3,000.00"
+                    android:fontFamily="@font/quicksand"
+                    android:textSize="32sp"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/black"
+                    android:layout_below="@id/analyze_expense_title"
+                    android:layout_marginTop="8dp"/>
+
+            <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/analyze_line_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="8dp"
+                    android:layout_below="@id/analyze_expense_value"/>
+
+            <ImageView
+                    android:id="@+id/analyze_line_one"
+                    android:layout_below="@+id/analyze_line_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@drawable/grey_line"/>
+
+            <TextView
+                    android:id="@+id/ave_exp_day_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/analyze_line_one"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="Average Expenditure "
+                    android:textSize="16sp"
+                    android:fontFamily="@font/quicksand"/>
+
+            <TextView
+                    android:id="@+id/ave_exp_day_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ave_exp_day_title"
+                    android:paddingHorizontal="16dp"
+                    android:paddingBottom="8dp"
+                    android:text="NT$ 300"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/quicksand"
+                    android:textColor="@color/black"/>
+
+            <TextView
+                    android:id="@+id/most_expensive_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ave_exp_day_value"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="Most Expensive Thing "
+                    android:textSize="16sp"
+                    android:fontFamily="@font/quicksand"/>
+
+            <TextView
+                    android:id="@+id/most_expensive_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/most_expensive_title"
+                    android:paddingHorizontal="16dp"
+                    android:paddingBottom="8dp"
+                    android:text="Chicken Thighs ( NT$ 300 )"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/quicksand"
+                    android:textColor="@color/black"/>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

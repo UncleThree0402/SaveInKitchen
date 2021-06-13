@@ -4,6 +4,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import models.BuyHistory;
 import models.DiaryHistory;
 import presistance.SaveInKitchenRepository;
 
@@ -43,6 +44,22 @@ public class DiaryHistoryViewModel extends AndroidViewModel {
 
     public LiveData<Double> getTotalCostDiaryHistory(long dateIn, long dateOut){
         return mSaveInKitchenRepository.getTotalCostDiaryHistory(dateIn,dateOut);
+    }
+
+    public LiveData<List<DiaryHistory>> getDiaryHistory30Days(long dateIn){
+        return mSaveInKitchenRepository.getDiaryHistory30Days(dateIn);
+    }
+
+    public LiveData<Double> getDiaryHistory30DaysCost(long date){
+        return mSaveInKitchenRepository.getDiaryHistory30DaysCost(date);
+    }
+
+    public LiveData<Double> getDiaryHistory30DaysAverage(long date){
+        return mSaveInKitchenRepository.getDiaryHistory30DaysAverage(date);
+    }
+
+    public LiveData<DiaryHistory> getDiaryHistoryMostExpensive(long date){
+        return mSaveInKitchenRepository.getDiaryHistoryMostExpensive(date);
     }
 
 }

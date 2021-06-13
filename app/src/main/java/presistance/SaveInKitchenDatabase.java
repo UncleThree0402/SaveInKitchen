@@ -6,7 +6,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import models.*;
 
-@Database(entities = {FoodType.class, Food.class, Recipe.class, RecipeFood.class, BuyFood.class,BuyHistory.class, DiaryHistory.class,Dishes.class,CookDish.class,CookDishIngredient.class},version = 18)
+@Database(entities = {FoodType.class, Food.class, Recipe.class, RecipeFood.class, BuyFood.class,BuyHistory.class, DiaryHistory.class,Dishes.class,CookDish.class,CookDishIngredient.class},version = 19)
 public abstract class SaveInKitchenDatabase extends RoomDatabase {
 
     public static final String DATA_BASENAME = "SaveInKitchen_db";

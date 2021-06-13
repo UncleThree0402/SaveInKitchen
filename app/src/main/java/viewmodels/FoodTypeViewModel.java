@@ -52,4 +52,8 @@ public class FoodTypeViewModel extends AndroidViewModel {
         return mSaveInKitchenRepository.getSpecificFoodType(name);
     }
 
+    public LiveData<List<FoodType>> getSearchFoodType(String name){
+        return mSaveInKitchenRepository.getSearchFoodType("%" + name + "%");
+    }
+
 }

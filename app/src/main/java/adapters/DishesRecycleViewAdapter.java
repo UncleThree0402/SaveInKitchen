@@ -33,7 +33,8 @@ public class DishesRecycleViewAdapter extends RecyclerView.Adapter<DishesRecycle
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.mFoodNameTextView.setText(mDishes.get(position).getName());
-        holder.mQuantityTextView.setText(Double.toString(mDishes.get(position).getServings()));
+        String quantity = NumberFormatter.quantityFormatter((mDishes.get(position).getServings())) + " Servings";
+        holder.mQuantityTextView.setText(quantity);
         holder.mCostTextView.setText(NumberFormatter.moneyFormatter(mDishes.get(position).getCost()));
     }
 

@@ -27,13 +27,14 @@
             android:id="@+id/prepare_recipe_add_ingredient_dialog_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title_bar"
-            android:paddingVertical="8dp">
+            android:layout_below="@id/title_bar">
 
         <RelativeLayout
+                android:id="@+id/prepare_recipe_add_ingredient_dialog_name_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true">
+                android:paddingVertical="8dp"
+                android:layout_centerHorizontal="true">
 
             <TextView
                     android:id="@+id/prepare_recipe_add_ingredient_dialog_name"
@@ -59,8 +60,9 @@
 
         <RelativeLayout
                 android:id="@+id/prepare_recipe_add_ingredient_dialog_quantity_container"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
+                android:layout_below="@+id/prepare_recipe_add_ingredient_dialog_name_container"
+                android:layout_centerHorizontal="true"
+                android:paddingVertical="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 

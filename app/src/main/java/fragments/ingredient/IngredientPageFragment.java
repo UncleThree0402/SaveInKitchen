@@ -72,6 +72,7 @@ public class IngredientPageFragment extends Fragment{
 
     private void setViewPage(ViewPager viewPager) {
         pageFragmentAdapter.addFragment(new IngredientContentFragment(),"All");
+        pageFragmentAdapter.addFragment(new IngredientStockFragment(), "Stock");
         pageFragmentAdapter.addFragment(new IngredientContentFragment("Fresh"),"Fresh");
         pageFragmentAdapter.addFragment(new IngredientContentFragment("Frozen"),"Frozen");
         pageFragmentAdapter.addFragment(new IngredientContentFragment("Dry Goods"),"Dry Goods");

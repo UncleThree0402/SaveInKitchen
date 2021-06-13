@@ -1,13 +1,10 @@
 package models;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+import androidx.room.*;
 
 import java.util.Date;
 
-@Entity(tableName = "cook_dish_ingredient")
+@Entity(tableName = "cook_dish_ingredient",foreignKeys = {@ForeignKey(entity = CookDish.class,parentColumns = "cook_dish_id", childColumns = "cook_dish_id",onDelete = ForeignKey.CASCADE),@ForeignKey(entity = RecipeFood.class,parentColumns = "recipe_food_id", childColumns = "recipe_food_id",onDelete = ForeignKey.CASCADE)})
 public class CookDishIngredient {
 
     @PrimaryKey(autoGenerate = true)

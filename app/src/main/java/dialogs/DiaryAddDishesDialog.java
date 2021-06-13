@@ -82,6 +82,7 @@ public class DiaryAddDishesDialog extends DialogFragment {
             diaryHistory.setFood_id(mDishes.getDishes_id());
             diaryHistory.setBeforeQuantity(mDishes.getServings());
             diaryHistory.setCostPerUnit(mDishes.getCostPerServing());
+            diaryHistory.setUnit("Serving");
             diaryHistory.setBuyDate(mDishes.getDate());
 
             diaryHistory.setName(mDishes.getName());
@@ -90,7 +91,7 @@ public class DiaryAddDishesDialog extends DialogFragment {
             diaryHistory.setDate(mDatetime);
             diaryHistory.setCost(Double.parseDouble(quantity) * mDishes.getCostPerServing());
 
-            if (Double.parseDouble(quantity) != mDishes.getDishes_id()) {
+            if (Double.parseDouble(quantity) != mDishes.getServings()) {
                 mDishes.setServings(mDishes.getServings() - Double.parseDouble(quantity));
                 mDishesViewModel.updateDishes(mDishes);
             } else {

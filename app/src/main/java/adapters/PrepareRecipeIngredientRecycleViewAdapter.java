@@ -32,7 +32,7 @@ import viewmodels.CookDishIngredientViewViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrepareRecipeIngredientRecycleViewAdapter extends RecyclerView.Adapter<PrepareRecipeIngredientRecycleViewAdapter.ViewHolder>{
+public class PrepareRecipeIngredientRecycleViewAdapter extends RecyclerView.Adapter<PrepareRecipeIngredientRecycleViewAdapter.ViewHolder> {
     private static final String TAG = "PrepareRecipeIngredient";
 
     private List<RecipeFood> mRecipeFood = new ArrayList<>();
@@ -85,29 +85,23 @@ public class PrepareRecipeIngredientRecycleViewAdapter extends RecyclerView.Adap
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, AddPrepareRecipeIngredientActivity.class);
-                intent.putExtra("DishId",mDishId);
-                intent.putExtra("RecipeId",mRecipeFood.get(position).getRecipe_id());
+                intent.putExtra("DishId", mDishId);
+                intent.putExtra("RecipeFoodId", mRecipeFood.get(position).getRecipe_food_id());
                 mContext.startActivity(intent);
             }
         });
 
-        holder.mCookDishIngredientViewModel.getSpecificCookDishIngredient(mRecipeFood.get(position).getRecipe_id(),mDishId).observe(mLifecycleOwner, new Observer<List<CookDishIngredient>>() {
+        Log.d(TAG, "onBindViewHolder: " + mRecipeFood.get(position).getRecipe_food_id());
+        holder.mCookDishIngredientViewViewModel.getCookDishIngredientView(mDishId,mRecipeFood.get(position).getRecipe_food_id()).observe(mLifecycleOwner, new Observer<List<CookDishIngredientView>>() {
             @Override
-            public void onChanged(List<CookDishIngredient> cookDishIngredients) {
-                if(holder.mCookDishIngredientViews.size() > 0){
+            public void onChanged(List<CookDishIngredientView> cookDishIngredientViews) {
+                if (holder.mCookDishIngredientViews.size() > 0) {
                     holder.mCookDishIngredientViews.clear();
                 }
                 if(holder.mCookDishIngredientViews != null){
-                    for (int i = 0; i < cookDishIngredients.size(); i++) {
-                        holder.mCookDishIngredientViewViewModel.getCookDishIngredientView(cookDishIngredients.get(i).getCook_dish_id(),mRecipeFood.get(position).getRecipe_food_id(),cookDishIngredients.get(i).getFood_id()).observe(mLifecycleOwner, new Observer<List<CookDishIngredientView>>() {
-                            @Override
-                            public void onChanged(List<CookDishIngredientView> cookDishIngredientViews) {
-                                holder.mCookDishIngredientViews.addAll(cookDishIngredientViews);
-                                holder.mPrepareRecipeIngredientAddedRecycleViewAdapter.notifyDataSetChanged();
-                            }
-                        });
-                    }
+                    holder.mCookDishIngredientViews.addAll(cookDishIngredientViews);
                 }
+                holder.mPrepareRecipeIngredientAddedRecycleViewAdapter.notifyDataSetChanged();
             }
         });
 
@@ -121,7 +115,7 @@ public class PrepareRecipeIngredientRecycleViewAdapter extends RecyclerView.Adap
         return mRecipeFood.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView mFoodNameTextView;
         private final TextView mStatusTextView;
@@ -171,11 +165,15 @@ public class PrepareRecipeIngredientRecycleViewAdapter extends RecyclerView.Adap
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 switch (direction) {
                     case ItemTouchHelper.RIGHT:
+                        final boolean[] update = {true};
                         mCookDishIngredientViewModel.getSpecificCookDishIngredientById(mCookDishIngredientViews.get(viewHolder.getAbsoluteAdapterPosition()).getCook_dish_ingredient_id()).observe(mLifecycleOwner, new Observer<CookDishIngredient>() {
                             @Override
                             public void onChanged(CookDishIngredient cookDishIngredient) {
-                                if(cookDishIngredient!= null) {
-                                    mCookDishIngredientViewModel.deleteCookDishIngredient(cookDishIngredient);
+                                if (cookDishIngredient != null) {
+                                    if (update[0]) {
+                                        mCookDishIngredientViewModel.deleteCookDishIngredient(cookDishIngredient);
+                                        update[0] = false;
+                                    }
                                 }
                             }
                         });
@@ -197,7 +195,6 @@ public class PrepareRecipeIngredientRecycleViewAdapter extends RecyclerView.Adap
         };
 
     }
-
 
 
 }

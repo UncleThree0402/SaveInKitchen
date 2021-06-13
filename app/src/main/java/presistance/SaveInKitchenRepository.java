@@ -121,8 +121,16 @@ public class SaveInKitchenRepository {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificTypeFood(food_status,name);
     }
 
+    public LiveData<Food> getSpecificFoodById(int food_id){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificFoodById(food_id);
+    }
+
     public LiveData<List<FoodType>> getFoodType() {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getFoodType();
+    }
+
+    public LiveData<List<FoodType>> getSearchFoodType(String name){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSearchFoodType(name);
     }
 
     public LiveData<List<String>> getFoodTypeName() {
@@ -174,6 +182,14 @@ public class SaveInKitchenRepository {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getBuyHistory30DaysCost(date);
     }
 
+    public LiveData<Double> getBuyHistory30DaysAverage(long date){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getBuyHistory30DaysAverage(date);
+    }
+
+    public LiveData<BuyHistory> getBuyHistoryMostExpensive(long date){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getBuyHistoryMostExpensive(date);
+    }
+
     public LiveData<List<BuyHistory>> getBuyHistory30Days(long dateIn) {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getBuyHistory30Days(dateIn);
     }
@@ -190,8 +206,24 @@ public class SaveInKitchenRepository {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getDiaryHistoryByDate(type,dateIn,dateOut);
     }
 
+    public LiveData<List<DiaryHistory>> getDiaryHistory30Days(long dateIn){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getDiaryHistory30Days(dateIn);
+    }
+
     public LiveData<Double> getTotalCostDiaryHistory(long dateIn,long dateOut){
         return mSaveInKitchenDatabase.getSaveForFoodDao().getTotalCostDiaryHistory(dateIn,dateOut);
+    }
+
+    public LiveData<Double> getDiaryHistory30DaysCost(long date) {
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getCostDiaryHistory30DaysCost(date);
+    }
+
+    public LiveData<Double> getDiaryHistory30DaysAverage(long date){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getCostDiaryHistory30DaysAverage(date);
+    }
+
+    public LiveData<DiaryHistory> getDiaryHistoryMostExpensive(long date){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getCostDiaryHistoryMostExpensive(date);
     }
 
     public LiveData<List<Dishes>> getDishes(){
@@ -226,8 +258,8 @@ public class SaveInKitchenRepository {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getSumOfSpecificCookDishIngredient(food_id);
     }
 
-    public LiveData<CookDishIngredient> getSpecificCookDishIngredient(int food_id){
-        return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificCookDishIngredient(food_id);
+    public LiveData<CookDishIngredient> getSpecificCookDishIngredientById(int food_id){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getSpecificCookDishIngredientById(food_id);
     }
 
     public LiveData<List<CookDishIngredient>> getSpecificCookDishIngByDish(int cook_dish_id){
@@ -238,8 +270,8 @@ public class SaveInKitchenRepository {
         return mSaveInKitchenDatabase.getSaveForFoodDao().getCostOfDish(cook_dish_id);
     }
 
-    public LiveData<List<CookDishIngredientView>> getCookDishIngredientView(int cook_dish_id, int recipe_food_id, int food_id){
-        return mSaveInKitchenDatabase.getSaveForFoodDao().getCookDishIngredientView(cook_dish_id,recipe_food_id,food_id);
+    public LiveData<List<CookDishIngredientView>> getCookDishIngredientView(int cook_dish_id, int recipe_food_id){
+        return mSaveInKitchenDatabase.getSaveForFoodDao().getCookDishIngredientView(cook_dish_id,recipe_food_id);
     }
 
     public void updateBuyFood(BuyFood buyFood) {

@@ -54,7 +54,7 @@ public class AddPrepareRecipeIngredientActivity extends AppCompatActivity implem
 
         Intent intent = getIntent();
         mDishId = intent.getIntExtra("DishId",0 );
-        mRecipeId = intent.getIntExtra("RecipeId", 0);
+        mRecipeId = intent.getIntExtra("RecipeFoodId", 0);
 
         mIngredientRecyclerView = findViewById(R.id.add_prepare_recipe_ingredient_recycle_view);
         mIngredientRecyclerViewTextView = findViewById(R.id.add_prepare_recipe_ingredient_recycle_view_text);

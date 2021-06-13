@@ -16,6 +16,10 @@
           android:icon="@drawable/ic_noun_warehouse_1877737"
           android:title="Ingredients"/>
 
+    <item android:id="@+id/nav_analyze"
+          android:icon="@drawable/ic_noun_chart_739951"
+          android:title="Analyze"/>
+
     <item android:id="@+id/nav_history"
           android:icon="@drawable/ic_noun_history_3323396"
           android:title="History"/>

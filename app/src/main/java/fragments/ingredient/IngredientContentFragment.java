@@ -63,7 +63,7 @@ public class IngredientContentFragment extends Fragment {
 
         mFoodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
 
-        mRelativeLayout = getActivity().findViewById(R.id.buy_list_page_rl);
+        mRelativeLayout = view.findViewById(R.id.ingredient_content_rl);
         mIngredientRecyclerView = view.findViewById(R.id.ingredient_recycle_view);
         mIngredientRecyclerViewTextView = view.findViewById(R.id.ingredient_recycle_view_text);
         mSearchView = view.findViewById(R.id.ingredient_search_view);

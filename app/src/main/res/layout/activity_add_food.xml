@@ -51,4 +51,20 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/add_food_tab_layout"/>
 
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/add_food_quick_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/black"
+            app:icon="@drawable/ic_icon_ionic_md_add"
+            app:iconTint="@color/white"
+            android:textColor="@color/white"
+            android:text="QUICK ADD"
+            android:fontFamily="@font/quicksand"
+            android:textAlignment="center"
+            android:textSize="16sp"/>
+
 </RelativeLayout>

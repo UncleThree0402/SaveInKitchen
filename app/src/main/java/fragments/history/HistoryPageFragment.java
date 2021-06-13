@@ -1,4 +1,4 @@
-package fragments;
+package fragments.history;
 
 import adapters.BuyHistoryRecycleViewAdapter;
 import android.graphics.Canvas;

@@ -13,12 +13,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigationrail.NavigationRailView;
-import fragments.*;
+import fragments.analyze.AnalyzePageFragment;
 import fragments.buylist.BuyListPageFragment;
 import fragments.cooking.CookingPageFragment;
 import fragments.diary.DiaryHistoryFragment;
+import fragments.history.HistoryPageFragment;
 import fragments.ingredient.IngredientPageFragment;
-import fragments.cooking.recipe.RecipePageFragment;
 
 import java.util.Locale;
 
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         pageFragmentAdapter.addFragment(new BuyListPageFragment(), "BuyListPage");
         pageFragmentAdapter.addFragment(new CookingPageFragment(), "Cooking Page");
         pageFragmentAdapter.addFragment(new IngredientPageFragment(), "FoodPage");
+        pageFragmentAdapter.addFragment(new AnalyzePageFragment(), "AnalyzePage");
         pageFragmentAdapter.addFragment(new HistoryPageFragment(), "HistoryPage");
         viewPager.setAdapter(pageFragmentAdapter);
     }
@@ -87,8 +88,11 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
             case R.id.nav_food:
                 mViewPager.setCurrentItem(3);
                 break;
-            case R.id.nav_history:
+            case R.id.nav_analyze:
                 mViewPager.setCurrentItem(4);
+                break;
+            case R.id.nav_history:
+                mViewPager.setCurrentItem(5);
                 break;
         }
         mDrawerLayout.closeDrawers();

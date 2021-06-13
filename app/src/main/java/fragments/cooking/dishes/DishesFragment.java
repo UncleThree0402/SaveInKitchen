@@ -18,8 +18,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.unclethree.saveinkitchen.R;
+import dialogs.DishQuickAddDialog;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 import models.BuyFood;
 import models.BuyHistory;
@@ -39,6 +41,7 @@ public class DishesFragment extends Fragment implements DishesRecycleViewAdapter
     private RecyclerView mDishesRecyclerView;
     private TextView mDishesRecyclerViewTextView;
     private SearchView mSearchView;
+    private ExtendedFloatingActionButton mQuickAdd;
 
     //Var
     private DishesRecycleViewAdapter mDishRecycleViewAdapter;
@@ -52,10 +55,19 @@ public class DishesFragment extends Fragment implements DishesRecycleViewAdapter
 
         mDishesViewModel = new ViewModelProvider(this).get(DishesViewModel.class);
 
-        mRelativeLayout = view.findViewById(R.id.cook_page_rl);
+        mRelativeLayout = view.findViewById(R.id.dishes_fragment_container);
         mDishesRecyclerView = view.findViewById(R.id.dish_recycle_view);
         mDishesRecyclerViewTextView = view.findViewById(R.id.dish_recycle_view_text);
         mSearchView = view.findViewById(R.id.dish_search_view);
+        mQuickAdd = view.findViewById(R.id.dish_quick_add);
+
+        mQuickAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DishQuickAddDialog dishQuickAddDialog = new DishQuickAddDialog();
+                dishQuickAddDialog.show(getChildFragmentManager(),"dishQuickAdd");
+            }
+        });
 
         initDishRecycleView();
 

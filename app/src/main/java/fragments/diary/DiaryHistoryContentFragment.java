@@ -26,9 +26,11 @@ import formatters.DateFormatter;
 import formatters.NumberFormatter;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 import models.DiaryHistory;
+import models.Dishes;
 import models.Food;
 import util.VerticalSpacingItemDecorator;
 import viewmodels.DiaryHistoryViewModel;
+import viewmodels.DishesViewModel;
 import viewmodels.FoodViewModel;
 
 import java.text.SimpleDateFormat;
@@ -67,6 +69,7 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
     private final ArrayList<DiaryHistory> mSnacksHistory = new ArrayList<>();
 
     private DiaryHistoryViewModel mDiaryHistoryViewModel;
+    private DishesViewModel mDishesViewModel;
     private FoodViewModel mFoodViewModel;
     private long mDateTime;
     
@@ -78,6 +81,7 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
 
         mDiaryHistoryViewModel = new ViewModelProvider(this).get(DiaryHistoryViewModel.class);
         mFoodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
+        mDishesViewModel = new ViewModelProvider(this).get(DishesViewModel.class);
 
         mRelativeLayout = view.findViewById(R.id.eat_food_history_rl);
 
@@ -197,40 +201,78 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
                     DiaryHistory deleteDiaryHistory = mBreakfastHistory.get(viewHolder.getAbsoluteAdapterPosition());
                     mDiaryHistoryViewModel.deleteEatFoodHistory(deleteDiaryHistory);
                     update = true;
-                    mFoodViewModel.getSearchFood(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
-                        @Override
-                        public void onChanged(List<Food> foods) {
-                            Log.d(TAG, "onChanged: called");
-                            if(update) {
-                                if (foods.size() > 0) {
-                                    foods.get(0).setQuantity(deleteDiaryHistory.getBeforeQuantity());
-                                    mFoodViewModel.updateFood(foods.get(0));
-                                } else {
-                                    Food food = new Food();
-                                    food.setFood_id(deleteDiaryHistory.getFood_id());
-                                    food.setFood_type_id(deleteDiaryHistory.getFood_type_id());
-                                    food.setName(deleteDiaryHistory.getName());
-                                    food.setStatus(deleteDiaryHistory.getStatus());
-                                    food.setQuantity(deleteDiaryHistory.getQuantity());
-                                    food.setUnit(deleteDiaryHistory.getUnit());
-                                    food.setCost(deleteDiaryHistory.getBeforeQuantity() * deleteDiaryHistory.getCostPerUnit());
-                                    food.setCostPerUnit(deleteDiaryHistory.getCostPerUnit());
-                                    food.setBuyDate(deleteDiaryHistory.getBuyDate());
-                                    food.setExpireDate(deleteDiaryHistory.getExpireDate());
-                                    mFoodViewModel.insertFood(food);
+                    if(deleteDiaryHistory.getFood_type_id() == 0 && deleteDiaryHistory.getBuyDate() != 2){
+                        mDishesViewModel.getSearchDish(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Dishes>>() {
+                            @Override
+                            public void onChanged(List<Dishes> dishes) {
+                                if(update) {
+                                    if (dishes.size() > 0) {
+                                        dishes.get(0).setServings(deleteDiaryHistory.getBeforeQuantity());
+                                        dishes.get(0).setCost(dishes.get(0).getCost() + deleteDiaryHistory.getQuantity() * deleteDiaryHistory.getCostPerUnit());
+                                        mDishesViewModel.updateDishes(dishes.get(0));
+                                    } else {
+                                        Dishes newDishes = new Dishes();
+                                        newDishes.setDishes_id(deleteDiaryHistory.getFood_id());
+                                        newDishes.setName(deleteDiaryHistory.getName());
+                                        newDishes.setServings(deleteDiaryHistory.getQuantity());
+                                        newDishes.setCost(deleteDiaryHistory.getBeforeQuantity() * deleteDiaryHistory.getCostPerUnit());
+                                        newDishes.setCostPerServing(deleteDiaryHistory.getCostPerUnit());
+                                        newDishes.setDate(deleteDiaryHistory.getBuyDate());
+                                        mDishesViewModel.insertDishes(newDishes);
+                                    }
+                                    update = false;
                                 }
-                                update = false;
                             }
-                        }
-                    });
-                    Snackbar.make(mRelativeLayout, deleteDiaryHistory.getName() + " is Deleted.", Snackbar.LENGTH_LONG)
-                            .setAction("Undo", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    mDiaryHistoryViewModel.insertEatFoodHistory(deleteDiaryHistory);
+                        });
+                        Snackbar.make(mRelativeLayout, deleteDiaryHistory.getName() + " is Deleted.", Snackbar.LENGTH_LONG)
+                                .setAction("Undo", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        mDiaryHistoryViewModel.insertEatFoodHistory(deleteDiaryHistory);
+                                    }
+                                }).show();
+                        break;
+
+                    }else if((Long) deleteDiaryHistory.getBuyDate() == 2){
+                        return;
+                    }
+                    else{
+                        mFoodViewModel.getSearchFood(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
+                            @Override
+                            public void onChanged(List<Food> foods) {
+                                Log.d(TAG, "onChanged: called");
+                                if(update) {
+                                    if (foods.size() > 0) {
+                                        foods.get(0).setQuantity(deleteDiaryHistory.getBeforeQuantity());
+                                        mFoodViewModel.updateFood(foods.get(0));
+                                    } else {
+                                        Food food = new Food();
+                                        food.setFood_id(deleteDiaryHistory.getFood_id());
+                                        food.setFood_type_id(deleteDiaryHistory.getFood_type_id());
+                                        food.setName(deleteDiaryHistory.getName());
+                                        food.setStatus(deleteDiaryHistory.getStatus());
+                                        food.setQuantity(deleteDiaryHistory.getQuantity());
+                                        food.setUnit(deleteDiaryHistory.getUnit());
+                                        food.setCost(deleteDiaryHistory.getBeforeQuantity() * deleteDiaryHistory.getCostPerUnit());
+                                        food.setCostPerUnit(deleteDiaryHistory.getCostPerUnit());
+                                        food.setBuyDate(deleteDiaryHistory.getBuyDate());
+                                        food.setExpireDate(deleteDiaryHistory.getExpireDate());
+                                        mFoodViewModel.insertFood(food);
+                                    }
+                                    update = false;
                                 }
-                            }).show();
-                    break;
+                            }
+                        });
+
+                        Snackbar.make(mRelativeLayout, deleteDiaryHistory.getName() + " is Deleted.", Snackbar.LENGTH_LONG)
+                                .setAction("Undo", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        mDiaryHistoryViewModel.insertEatFoodHistory(deleteDiaryHistory);
+                                    }
+                                }).show();
+                        break;
+                    }
             }
         }
 
@@ -258,6 +300,9 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
     }
 
     private final ItemTouchHelper.SimpleCallback lunchSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+
+        private boolean update;
+
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
@@ -269,36 +314,77 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
                 case ItemTouchHelper.RIGHT:
                     DiaryHistory deleteDiaryHistory = mLunchHistory.get(viewHolder.getAbsoluteAdapterPosition());
                     mDiaryHistoryViewModel.deleteEatFoodHistory(deleteDiaryHistory);
-                    mFoodViewModel.getSearchFood(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
-                        @Override
-                        public void onChanged(List<Food> foods) {
-                            if(foods != null){
-                                foods.get(0).setQuantity(deleteDiaryHistory.getBeforeQuantity());
-                            }
-                            else{
-                                Food food = new Food();
-                                food.setFood_id(deleteDiaryHistory.getFood_id());
-                                food.setFood_type_id(deleteDiaryHistory.getFood_type_id());
-                                food.setName(deleteDiaryHistory.getName());
-                                food.setStatus(deleteDiaryHistory.getStatus());
-                                food.setQuantity(deleteDiaryHistory.getQuantity());
-                                food.setUnit(deleteDiaryHistory.getUnit());
-                                food.setCost(deleteDiaryHistory.getBeforeQuantity() * deleteDiaryHistory.getCostPerUnit());
-                                food.setCostPerUnit(deleteDiaryHistory.getCostPerUnit());
-                                food.setBuyDate(deleteDiaryHistory.getBuyDate());
-                                food.setExpireDate(deleteDiaryHistory.getExpireDate());
-                                mFoodViewModel.insertFood(food);
-                            }
-                        }
-                    });
-                    Snackbar.make(mRelativeLayout, deleteDiaryHistory.getName() + " is Deleted.", Snackbar.LENGTH_LONG)
-                            .setAction("Undo", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    mDiaryHistoryViewModel.insertEatFoodHistory(deleteDiaryHistory);
+                    update = true;
+                    if(deleteDiaryHistory.getFood_type_id() == 0 && deleteDiaryHistory.getBuyDate() != 2){
+                        mDishesViewModel.getSearchDish(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Dishes>>() {
+                            @Override
+                            public void onChanged(List<Dishes> dishes) {
+                                if(update) {
+                                    if (dishes.size() > 0) {
+                                        dishes.get(0).setServings(deleteDiaryHistory.getBeforeQuantity());
+                                        dishes.get(0).setCost(dishes.get(0).getCost() + deleteDiaryHistory.getQuantity() * deleteDiaryHistory.getCostPerUnit());
+                                        mDishesViewModel.updateDishes(dishes.get(0));
+                                    } else {
+                                        Dishes newDishes = new Dishes();
+                                        newDishes.setDishes_id(deleteDiaryHistory.getFood_id());
+                                        newDishes.setName(deleteDiaryHistory.getName());
+                                        newDishes.setServings(deleteDiaryHistory.getQuantity());
+                                        newDishes.setCost(deleteDiaryHistory.getBeforeQuantity() * deleteDiaryHistory.getCostPerUnit());
+                                        newDishes.setCostPerServing(deleteDiaryHistory.getCostPerUnit());
+                                        newDishes.setDate(deleteDiaryHistory.getBuyDate());
+                                        mDishesViewModel.insertDishes(newDishes);
+                                    }
+                                    update = false;
                                 }
-                            }).show();
-                    break;
+                            }
+                        });
+                        Snackbar.make(mRelativeLayout, deleteDiaryHistory.getName() + " is Deleted.", Snackbar.LENGTH_LONG)
+                                .setAction("Undo", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        mDiaryHistoryViewModel.insertEatFoodHistory(deleteDiaryHistory);
+                                    }
+                                }).show();
+                        break;
+                    }else if((Long) deleteDiaryHistory.getBuyDate() == 2){
+                        return;
+                    }else{
+                        mFoodViewModel.getSearchFood(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
+                            @Override
+                            public void onChanged(List<Food> foods) {
+                                Log.d(TAG, "onChanged: called");
+                                if(update) {
+                                    if (foods.size() > 0) {
+                                        foods.get(0).setQuantity(deleteDiaryHistory.getBeforeQuantity());
+                                        mFoodViewModel.updateFood(foods.get(0));
+                                    } else {
+                                        Food food = new Food();
+                                        food.setFood_id(deleteDiaryHistory.getFood_id());
+                                        food.setFood_type_id(deleteDiaryHistory.getFood_type_id());
+                                        food.setName(deleteDiaryHistory.getName());
+                                        food.setStatus(deleteDiaryHistory.getStatus());
+                                        food.setQuantity(deleteDiaryHistory.getQuantity());
+                                        food.setUnit(deleteDiaryHistory.getUnit());
+                                        food.setCost(deleteDiaryHistory.getBeforeQuantity() * deleteDiaryHistory.getCostPerUnit());
+                                        food.setCostPerUnit(deleteDiaryHistory.getCostPerUnit());
+                                        food.setBuyDate(deleteDiaryHistory.getBuyDate());
+                                        food.setExpireDate(deleteDiaryHistory.getExpireDate());
+                                        mFoodViewModel.insertFood(food);
+                                    }
+                                    update = false;
+                                }
+                            }
+                        });
+
+                        Snackbar.make(mRelativeLayout, deleteDiaryHistory.getName() + " is Deleted.", Snackbar.LENGTH_LONG)
+                                .setAction("Undo", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        mDiaryHistoryViewModel.insertEatFoodHistory(deleteDiaryHistory);
+                                    }
+                                }).show();
+                        break;
+                    }
             }
         }
 
@@ -326,6 +412,9 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
     }
 
     private final ItemTouchHelper.SimpleCallback dinnerSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+
+        private boolean update;
+
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
@@ -337,36 +426,76 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
                 case ItemTouchHelper.RIGHT:
                     DiaryHistory deleteDiaryHistory = mDinnerHistory.get(viewHolder.getAbsoluteAdapterPosition());
                     mDiaryHistoryViewModel.deleteEatFoodHistory(deleteDiaryHistory);
-                    mFoodViewModel.getSearchFood(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
-                        @Override
-                        public void onChanged(List<Food> foods) {
-                            if(foods != null){
-                                foods.get(0).setQuantity(deleteDiaryHistory.getBeforeQuantity());
-                            }
-                            else{
-                                Food food = new Food();
-                                food.setFood_id(deleteDiaryHistory.getFood_id());
-                                food.setFood_type_id(deleteDiaryHistory.getFood_type_id());
-                                food.setName(deleteDiaryHistory.getName());
-                                food.setStatus(deleteDiaryHistory.getStatus());
-                                food.setQuantity(deleteDiaryHistory.getQuantity());
-                                food.setUnit(deleteDiaryHistory.getUnit());
-                                food.setCost(deleteDiaryHistory.getBeforeQuantity() * deleteDiaryHistory.getCostPerUnit());
-                                food.setCostPerUnit(deleteDiaryHistory.getCostPerUnit());
-                                food.setBuyDate(deleteDiaryHistory.getBuyDate());
-                                food.setExpireDate(deleteDiaryHistory.getExpireDate());
-                                mFoodViewModel.insertFood(food);
-                            }
-                        }
-                    });
-                    Snackbar.make(mRelativeLayout, deleteDiaryHistory.getName() + " is Deleted.", Snackbar.LENGTH_LONG)
-                            .setAction("Undo", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    mDiaryHistoryViewModel.insertEatFoodHistory(deleteDiaryHistory);
+                    update = true;
+                    if(deleteDiaryHistory.getFood_type_id() == 0 && deleteDiaryHistory.getBuyDate() != 2){
+                        mDishesViewModel.getSearchDish(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Dishes>>() {
+                            @Override
+                            public void onChanged(List<Dishes> dishes) {
+                                if(update) {
+                                    if (dishes.size() > 0) {
+                                        dishes.get(0).setServings(deleteDiaryHistory.getBeforeQuantity());
+                                        dishes.get(0).setCost(dishes.get(0).getCost() + deleteDiaryHistory.getQuantity() * deleteDiaryHistory.getCostPerUnit());
+                                        mDishesViewModel.updateDishes(dishes.get(0));
+                                    } else {
+                                        Dishes newDishes = new Dishes();
+                                        newDishes.setDishes_id(deleteDiaryHistory.getFood_id());
+                                        newDishes.setName(deleteDiaryHistory.getName());
+                                        newDishes.setServings(deleteDiaryHistory.getQuantity());
+                                        newDishes.setCost(deleteDiaryHistory.getBeforeQuantity() * deleteDiaryHistory.getCostPerUnit());
+                                        newDishes.setCostPerServing(deleteDiaryHistory.getCostPerUnit());
+                                        newDishes.setDate(deleteDiaryHistory.getBuyDate());
+                                        mDishesViewModel.insertDishes(newDishes);
+                                    }
+                                    update = false;
                                 }
-                            }).show();
-                    break;
+                            }
+                        });
+                        Snackbar.make(mRelativeLayout, deleteDiaryHistory.getName() + " is Deleted.", Snackbar.LENGTH_LONG)
+                                .setAction("Undo", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        mDiaryHistoryViewModel.insertEatFoodHistory(deleteDiaryHistory);
+                                    }
+                                }).show();
+                        break;
+                    }else if((Long) deleteDiaryHistory.getBuyDate() == 2){
+                        return;
+                    }else{
+                        mFoodViewModel.getSearchFood(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
+                            @Override
+                            public void onChanged(List<Food> foods) {
+                                Log.d(TAG, "onChanged: called");
+                                if(update) {
+                                    if (foods.size() > 0) {
+                                        foods.get(0).setQuantity(deleteDiaryHistory.getBeforeQuantity());
+                                        mFoodViewModel.updateFood(foods.get(0));
+                                    } else {
+                                        Food food = new Food();
+                                        food.setFood_id(deleteDiaryHistory.getFood_id());
+                                        food.setFood_type_id(deleteDiaryHistory.getFood_type_id());
+                                        food.setName(deleteDiaryHistory.getName());
+                                        food.setStatus(deleteDiaryHistory.getStatus());
+                                        food.setQuantity(deleteDiaryHistory.getQuantity());
+                                        food.setUnit(deleteDiaryHistory.getUnit());
+                                        food.setCost(deleteDiaryHistory.getBeforeQuantity() * deleteDiaryHistory.getCostPerUnit());
+                                        food.setCostPerUnit(deleteDiaryHistory.getCostPerUnit());
+                                        food.setBuyDate(deleteDiaryHistory.getBuyDate());
+                                        food.setExpireDate(deleteDiaryHistory.getExpireDate());
+                                        mFoodViewModel.insertFood(food);
+                                    }
+                                    update = false;
+                                }
+                            }
+                        });
+                        Snackbar.make(mRelativeLayout, deleteDiaryHistory.getName() + " is Deleted.", Snackbar.LENGTH_LONG)
+                                .setAction("Undo", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        mDiaryHistoryViewModel.insertEatFoodHistory(deleteDiaryHistory);
+                                    }
+                                }).show();
+                        break;
+                    }
             }
         }
 
@@ -394,6 +523,9 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
     }
 
     private final ItemTouchHelper.SimpleCallback snacksSimpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+
+        private boolean update;
+
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
@@ -405,36 +537,77 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
                 case ItemTouchHelper.RIGHT:
                     DiaryHistory deleteDiaryHistory = mSnacksHistory.get(viewHolder.getAbsoluteAdapterPosition());
                     mDiaryHistoryViewModel.deleteEatFoodHistory(deleteDiaryHistory);
-                    mFoodViewModel.getSearchFood(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
-                        @Override
-                        public void onChanged(List<Food> foods) {
-                            if(foods != null){
-                                foods.get(0).setQuantity(deleteDiaryHistory.getBeforeQuantity());
-                            }
-                            else{
-                                Food food = new Food();
-                                food.setFood_id(deleteDiaryHistory.getFood_id());
-                                food.setFood_type_id(deleteDiaryHistory.getFood_type_id());
-                                food.setName(deleteDiaryHistory.getName());
-                                food.setStatus(deleteDiaryHistory.getStatus());
-                                food.setQuantity(deleteDiaryHistory.getQuantity());
-                                food.setUnit(deleteDiaryHistory.getUnit());
-                                food.setCost(deleteDiaryHistory.getBeforeQuantity() * deleteDiaryHistory.getCostPerUnit());
-                                food.setCostPerUnit(deleteDiaryHistory.getCostPerUnit());
-                                food.setBuyDate(deleteDiaryHistory.getBuyDate());
-                                food.setExpireDate(deleteDiaryHistory.getExpireDate());
-                                mFoodViewModel.insertFood(food);
-                            }
-                        }
-                    });
-                    Snackbar.make(mRelativeLayout, deleteDiaryHistory.getName() + " is Deleted.", Snackbar.LENGTH_LONG)
-                            .setAction("Undo", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    mDiaryHistoryViewModel.insertEatFoodHistory(deleteDiaryHistory);
+                    update = true;
+                    if(deleteDiaryHistory.getFood_type_id() == 0 && deleteDiaryHistory.getBuyDate() != 2){
+                        mDishesViewModel.getSearchDish(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Dishes>>() {
+                            @Override
+                            public void onChanged(List<Dishes> dishes) {
+                                if(update) {
+                                    if (dishes.size() > 0) {
+                                        dishes.get(0).setServings(deleteDiaryHistory.getBeforeQuantity());
+                                        dishes.get(0).setCost(dishes.get(0).getCost() + deleteDiaryHistory.getQuantity() * deleteDiaryHistory.getCostPerUnit());
+                                        mDishesViewModel.updateDishes(dishes.get(0));
+                                    } else {
+                                        Dishes newDishes = new Dishes();
+                                        newDishes.setDishes_id(deleteDiaryHistory.getFood_id());
+                                        newDishes.setName(deleteDiaryHistory.getName());
+                                        newDishes.setServings(deleteDiaryHistory.getQuantity());
+                                        newDishes.setCost(deleteDiaryHistory.getBeforeQuantity() * deleteDiaryHistory.getCostPerUnit());
+                                        newDishes.setCostPerServing(deleteDiaryHistory.getCostPerUnit());
+                                        newDishes.setDate(deleteDiaryHistory.getBuyDate());
+                                        mDishesViewModel.insertDishes(newDishes);
+                                    }
+                                    update = false;
                                 }
-                            }).show();
-                    break;
+                            }
+                        });
+                        Snackbar.make(mRelativeLayout, deleteDiaryHistory.getName() + " is Deleted.", Snackbar.LENGTH_LONG)
+                                .setAction("Undo", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        mDiaryHistoryViewModel.insertEatFoodHistory(deleteDiaryHistory);
+                                    }
+                                }).show();
+                        break;
+                    }else if((Long) deleteDiaryHistory.getBuyDate() == 2){
+                        return;
+                    }else{
+                        mFoodViewModel.getSearchFood(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
+                            @Override
+                            public void onChanged(List<Food> foods) {
+                                Log.d(TAG, "onChanged: called");
+                                if(update) {
+                                    if (foods.size() > 0) {
+                                        foods.get(0).setQuantity(deleteDiaryHistory.getBeforeQuantity());
+                                        mFoodViewModel.updateFood(foods.get(0));
+                                    } else {
+                                        Food food = new Food();
+                                        food.setFood_id(deleteDiaryHistory.getFood_id());
+                                        food.setFood_type_id(deleteDiaryHistory.getFood_type_id());
+                                        food.setName(deleteDiaryHistory.getName());
+                                        food.setStatus(deleteDiaryHistory.getStatus());
+                                        food.setQuantity(deleteDiaryHistory.getQuantity());
+                                        food.setUnit(deleteDiaryHistory.getUnit());
+                                        food.setCost(deleteDiaryHistory.getBeforeQuantity() * deleteDiaryHistory.getCostPerUnit());
+                                        food.setCostPerUnit(deleteDiaryHistory.getCostPerUnit());
+                                        food.setBuyDate(deleteDiaryHistory.getBuyDate());
+                                        food.setExpireDate(deleteDiaryHistory.getExpireDate());
+                                        mFoodViewModel.insertFood(food);
+                                    }
+                                    update = false;
+                                }
+                            }
+                        });
+                        Snackbar.make(mRelativeLayout, deleteDiaryHistory.getName() + " is Deleted.", Snackbar.LENGTH_LONG)
+                                .setAction("Undo", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        mDiaryHistoryViewModel.insertEatFoodHistory(deleteDiaryHistory);
+                                    }
+                                }).show();
+                        break;
+                    }
+
             }
         }
 

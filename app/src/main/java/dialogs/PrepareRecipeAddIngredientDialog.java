@@ -79,8 +79,8 @@ public class PrepareRecipeAddIngredientDialog extends DialogFragment {
         mCookDishIngredientViewModel.getSumOfSpecificCookDishIngredient(mFood.getFood_id()).observe(this, new Observer<Double>() {
             @Override
             public void onChanged(Double aDouble) {
+                String quantity = mQuantityInputLayout.getEditText().getText().toString();
                 if (aDouble!=null) {
-                    String quantity = mQuantityInputLayout.getEditText().getText().toString();
                     if (quantity.isEmpty()) {
                         mQuantityInputLayout.setError("Field can't be empty");
                     } else if (Double.parseDouble(quantity) > aDouble) {
@@ -89,7 +89,6 @@ public class PrepareRecipeAddIngredientDialog extends DialogFragment {
                         insertAndFinish(quantity);
                     }
                 }else{
-                    String quantity = mQuantityInputLayout.getEditText().getText().toString();
                     if (quantity.isEmpty()) {
                         mQuantityInputLayout.setError("Field can't be empty");
                     } else if (Double.parseDouble(quantity) > mFood.getQuantity()) {

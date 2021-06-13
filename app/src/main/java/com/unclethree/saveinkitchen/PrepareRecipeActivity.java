@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -50,6 +51,7 @@ public class PrepareRecipeActivity extends AppCompatActivity implements View.OnC
     private DishesViewModel mDishesViewModel;
     private CookDishViewModel mCookDishViewModel;
     private FoodViewModel mFoodViewModel;
+    private LifecycleOwner mLifecycleOwner = this;
     private PrepareRecipeIngredientRecycleViewAdapter mPrepareRecipeIngredientRecycleViewAdapter;
     private ArrayList<RecipeFood> mRecipeFood = new ArrayList<>();
 
@@ -130,20 +132,24 @@ public class PrepareRecipeActivity extends AppCompatActivity implements View.OnC
     }
 
     private void finishCook(){
+        final boolean[] update = {true};
         mCookDishIngredientViewModel.getCostOfDish(mDishId).observe(this, new Observer<Double>() {
             @Override
             public void onChanged(Double aDouble) {
-                Dishes dishes = new Dishes();
-                dishes.setName(mRecipe.getName());
-                dishes.setServings(mQuantity);
-                if(aDouble != null){
-                    dishes.setCost(aDouble);
-                    dishes.setCostPerServing(aDouble / mQuantity);
-                    mDishesViewModel.insertDishes(dishes);
-                }else {
-                    dishes.setCost(0d);
-                    dishes.setCostPerServing(0);
-                    mDishesViewModel.insertDishes(dishes);
+                if(update[0]) {
+                    Dishes dishes = new Dishes();
+                    dishes.setName(mRecipe.getName());
+                    dishes.setServings(mQuantity);
+                    if (aDouble != null) {
+                        dishes.setCost(aDouble);
+                        dishes.setCostPerServing(aDouble / mQuantity);
+                        mDishesViewModel.insertDishes(dishes);
+                    } else {
+                        dishes.setCost(0d);
+                        dishes.setCostPerServing(0);
+                        mDishesViewModel.insertDishes(dishes);
+                    }
+                    update[0] = false;
                 }
             }
         });
@@ -152,6 +158,22 @@ public class PrepareRecipeActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onChanged(List<CookDishIngredient> cookDishIngredients) {
                 for (int i = 0; i < cookDishIngredients.size(); i++) {
+                    int finalI = i;
+                    final boolean[] update = {true};
+                    mFoodViewModel.getSpecificFoodById(cookDishIngredients.get(i).getFood_id()).observe(mLifecycleOwner, new Observer<Food>() {
+                        @Override
+                        public void onChanged(Food food) {
+                            if(update[0]) {
+                                if(food.getQuantity() != cookDishIngredients.get(finalI).getQuantity()) {
+                                    food.setQuantity(food.getQuantity() - cookDishIngredients.get(finalI).getQuantity());
+                                    mFoodViewModel.updateFood(food);
+                                }else {
+                                    mFoodViewModel.deleteFood(food);
+                                }
+                                update[0] = false;
+                            }
+                        }
+                    });
                 }
             }
         });

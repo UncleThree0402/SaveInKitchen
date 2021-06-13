@@ -47,7 +47,7 @@ public class CookDishIngredientViewModel extends AndroidViewModel {
     }
 
     public LiveData<CookDishIngredient> getSpecificCookDishIngredientById(int food_id){
-        return mSaveInKitchenRepository.getSpecificCookDishIngredient(food_id);
+        return mSaveInKitchenRepository.getSpecificCookDishIngredientById(food_id);
     }
 
     public LiveData<Double> getCostOfDish(int cook_dish_id){

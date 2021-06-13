@@ -21,8 +21,8 @@ public class CookDishIngredientViewViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<List<CookDishIngredientView>> getCookDishIngredientView(int cook_dish_id, int recipe_food_id, int food_id){
-        return mSaveInKitchenRepository.getCookDishIngredientView(cook_dish_id, recipe_food_id,food_id);
+    public LiveData<List<CookDishIngredientView>> getCookDishIngredientView(int cook_dish_id, int recipe_food_id){
+        return mSaveInKitchenRepository.getCookDishIngredientView(cook_dish_id, recipe_food_id);
     }
 
 }

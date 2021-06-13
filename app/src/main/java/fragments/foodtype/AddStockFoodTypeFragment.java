@@ -1,4 +1,4 @@
-package fragments;
+package fragments.foodtype;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.textfield.TextInputLayout;
 import com.unclethree.saveinkitchen.R;
 import dialogs.FoodTypeDialog;
+import fragments.AddStockAddFoodFragment;
 import models.FoodType;
 import viewmodels.FoodTypeViewModel;
 

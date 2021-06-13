@@ -66,8 +66,14 @@ public interface SaveInKitchenDao {
     @Query("SELECT * FROM food WHERE food_status = :food_status AND food_name LIKE :name")
     LiveData<List<Food>> getSpecificTypeFood(String food_status, String name);
 
+    @Query("SELECT * FROM food WHERE food_id = :food_id")
+    LiveData<Food> getSpecificFoodById(int food_id);
+
     @Query("SELECT * FROM food_type")
     LiveData<List<FoodType>> getFoodType();
+
+    @Query("SELECT * FROM food_type WHERE food_type LIKE :name")
+    LiveData<List<FoodType>> getSearchFoodType(String name);
 
     @Query("SELECT food_type FROM food_type")
     LiveData<List<String>> getFoodTypeName();
@@ -105,6 +111,12 @@ public interface SaveInKitchenDao {
     @Query("SELECT SUM(buy_history_cost) FROM buy_history WHERE buy_history_buy_date >= :date")
     LiveData<Double> getBuyHistory30DaysCost(long date);
 
+    @Query("SELECT AVG(buy_history_cost) FROM buy_history WHERE buy_history_buy_date >= :date")
+    LiveData<Double> getBuyHistory30DaysAverage(long date);
+
+    @Query("SELECT * FROM buy_history WHERE buy_history_buy_date >= :date ORDER BY buy_history_cost DESC LIMIT 1")
+    LiveData<BuyHistory> getBuyHistoryMostExpensive(long date);
+
     @Query("SELECT * FROM buy_history WHERE buy_history_buy_date >= :dateIn ")
     LiveData<List<BuyHistory>> getBuyHistory30Days(long dateIn);
 
@@ -117,8 +129,20 @@ public interface SaveInKitchenDao {
     @Query("SELECT * FROM diary_history WHERE diary_history_type = :type AND diary_history_date >= :dateIn AND diary_history_date < :dateOut")
     LiveData<List<DiaryHistory>> getDiaryHistoryByDate(String type, long dateIn, long dateOut);
 
+    @Query("SELECT * FROM diary_history WHERE diary_history_date >= :dateIn ")
+    LiveData<List<DiaryHistory>> getDiaryHistory30Days(long dateIn);
+
     @Query("SELECT SUM(diary_history_cost) FROM diary_history WHERE diary_history_date >= :dateIn AND diary_history_date < :dateOut")
     LiveData<Double> getTotalCostDiaryHistory(long dateIn, long dateOut);
+
+    @Query("SELECT SUM(diary_history_cost) FROM diary_history WHERE diary_history_date >= :date")
+    LiveData<Double> getCostDiaryHistory30DaysCost(long date);
+
+    @Query("SELECT AVG(diary_history_cost) FROM diary_history WHERE diary_history_date >= :date")
+    LiveData<Double> getCostDiaryHistory30DaysAverage(long date);
+
+    @Query("SELECT * FROM diary_history WHERE diary_history_date >= :date ORDER BY diary_history_cost DESC LIMIT 1")
+    LiveData<DiaryHistory> getCostDiaryHistoryMostExpensive(long date);
 
     @Query("SELECT * FROM dishes")
     LiveData<List<Dishes>> getDishes();
@@ -144,8 +168,8 @@ public interface SaveInKitchenDao {
     @Query("SELECT SUM(cook_dish_ingredient_quantity) FROM cook_dish_ingredient WHERE food_id = :food_id")
     LiveData<Double> getSumOfSpecificCookDishIngredient(int food_id);
 
-    @Query("SELECT * FROM cook_dish_ingredient WHERE food_id = :food_id")
-    LiveData<CookDishIngredient> getSpecificCookDishIngredient(int food_id);
+    @Query("SELECT * FROM cook_dish_ingredient WHERE cook_dish_ingredient_id = :food_id")
+    LiveData<CookDishIngredient> getSpecificCookDishIngredientById(int food_id);
 
     @Query("SELECT SUM(cook_dish_ingredient_cost) FROM cook_dish_ingredient WHERE cook_dish_id = :cook_dish_id")
     LiveData<Double> getCostOfDish(int cook_dish_id);
@@ -154,8 +178,8 @@ public interface SaveInKitchenDao {
     LiveData<List<CookDishIngredient>> getSpecificCookDishIngByDish(int cook_dish_id);
 
     @Query("SELECT cook_dish_ingredient.cook_dish_ingredient_id ,food.food_name, food.food_status, cook_dish_ingredient.cook_dish_ingredient_quantity, food.food_unit FROM cook_dish_ingredient INNER JOIN food ON food.food_id = cook_dish_ingredient.food_id " +
-            "WHERE cook_dish_ingredient.cook_dish_id = :cook_dish_id AND cook_dish_ingredient.recipe_food_id = :recipe_food_id AND cook_dish_ingredient.food_id = :food_id")
-    LiveData<List<CookDishIngredientView>> getCookDishIngredientView(int cook_dish_id, int recipe_food_id, int food_id);
+            "WHERE cook_dish_ingredient.cook_dish_id = :cook_dish_id AND cook_dish_ingredient.recipe_food_id = :recipe_food_id ")
+    LiveData<List<CookDishIngredientView>> getCookDishIngredientView(int cook_dish_id, int recipe_food_id);
 
     @Update
     int updateBuyFood(BuyFood... buyFoods);
