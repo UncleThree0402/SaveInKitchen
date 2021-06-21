@@ -48,7 +48,7 @@ public class PrepareFragment extends Fragment implements CookDishRecycleViewAdap
 
     //Var
     private CookDishRecycleViewAdapter mCookDishRecycleViewAdapter;
-    private ArrayList<CookDish> mCookDish = new ArrayList<>();
+    private final ArrayList<CookDish> mCookDish = new ArrayList<>();
     private CookDishViewModel mCookDishViewModel;
     private RecipeViewModel mRecipeViewModel;
 
@@ -60,7 +60,7 @@ public class PrepareFragment extends Fragment implements CookDishRecycleViewAdap
         mCookDishViewModel = new ViewModelProvider(this).get(CookDishViewModel.class);
         mRecipeViewModel = new ViewModelProvider(this).get(RecipeViewModel.class);
 
-        mRelativeLayout = view.findViewById(R.id.cook_page_rl);
+        mRelativeLayout = view.findViewById(R.id.prepare_fragment_rl);
         mCookDishRecyclerView = view.findViewById(R.id.prepare_recycle_view);
         mCookDishRecyclerViewTextView = view.findViewById(R.id.prepare_recycle_view_text);
         mSearchView = view.findViewById(R.id.prepare_search_view);

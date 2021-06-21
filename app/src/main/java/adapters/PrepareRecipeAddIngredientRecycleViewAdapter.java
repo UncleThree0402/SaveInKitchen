@@ -18,7 +18,7 @@ public class PrepareRecipeAddIngredientRecycleViewAdapter extends RecyclerView.A
     private static final String TAG = "PrepareRecipeAddIngredi";
 
     private List<Food> mFood = new ArrayList<>();
-    private OnIngredientClickListener mOnIngredientClickListener;
+    private final OnIngredientClickListener mOnIngredientClickListener;
 
     public PrepareRecipeAddIngredientRecycleViewAdapter(List<Food> mFood, OnIngredientClickListener mOnIngredientClickListener) {
         this.mFood = mFood;
@@ -50,7 +50,7 @@ public class PrepareRecipeAddIngredientRecycleViewAdapter extends RecyclerView.A
         private final TextView mNameTextView;
         private final TextView mStatusTextView;
         private final TextView mQuantityTextView;
-        private OnIngredientClickListener mOnIngredientClickListener;
+        private final OnIngredientClickListener mOnIngredientClickListener;
 
         public ViewHolder(@NonNull View itemView, OnIngredientClickListener onIngredientClickListener) {
             super(itemView);

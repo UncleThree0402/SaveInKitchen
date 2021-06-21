@@ -39,9 +39,9 @@ public class AddPrepareRecipeIngredientActivity extends AppCompatActivity implem
 
     //Var
     private PrepareRecipeAddIngredientRecycleViewAdapter mPrepareRecipeAddIngredientRecycleViewAdapter;
-    private ArrayList<Food> mFood = new ArrayList<>();
+    private final ArrayList<Food> mFood = new ArrayList<>();
     private FoodViewModel mFoodViewModel;
-    private LifecycleOwner mLifecycleOwner = this;
+    private final LifecycleOwner mLifecycleOwner = this;
     private int mDishId;
     private int mRecipeId;
 

@@ -233,7 +233,7 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
                                 }).show();
                         break;
 
-                    }else if((Long) deleteDiaryHistory.getBuyDate() == 2){
+                    }else if(deleteDiaryHistory.getBuyDate() == 2){
                         return;
                     }
                     else{
@@ -346,7 +346,7 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
                                     }
                                 }).show();
                         break;
-                    }else if((Long) deleteDiaryHistory.getBuyDate() == 2){
+                    }else if(deleteDiaryHistory.getBuyDate() == 2){
                         return;
                     }else{
                         mFoodViewModel.getSearchFood(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
@@ -458,7 +458,7 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
                                     }
                                 }).show();
                         break;
-                    }else if((Long) deleteDiaryHistory.getBuyDate() == 2){
+                    }else if(deleteDiaryHistory.getBuyDate() == 2){
                         return;
                     }else{
                         mFoodViewModel.getSearchFood(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {
@@ -569,7 +569,7 @@ public class DiaryHistoryContentFragment extends Fragment implements View.OnClic
                                     }
                                 }).show();
                         break;
-                    }else if((Long) deleteDiaryHistory.getBuyDate() == 2){
+                    }else if(deleteDiaryHistory.getBuyDate() == 2){
                         return;
                     }else{
                         mFoodViewModel.getSearchFood(deleteDiaryHistory.getName()).observe(getViewLifecycleOwner(), new Observer<List<Food>>() {

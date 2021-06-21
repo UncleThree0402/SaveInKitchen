@@ -2,6 +2,7 @@ package adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,13 +69,6 @@ public class StockRecycleViewAdapter extends RecyclerView.Adapter<StockRecycleVi
                 }
 
                 if (holder.update) {
-                    if (foods.size() == 0) {
-                        mFoodType.get(position).setInStock(false);
-                        holder.mFoodTypeViewModel.updateFoodType(mFoodType.get(position));
-                    } else {
-                        mFoodType.get(position).setInStock(true);
-                        holder.mFoodTypeViewModel.updateFoodType(mFoodType.get(position));
-                    }
                     String inStock;
                     if (mFoodType.get(position).isInStock()) {
                         inStock = "In Stock";
@@ -85,6 +79,7 @@ public class StockRecycleViewAdapter extends RecyclerView.Adapter<StockRecycleVi
                     }
                     holder.mStockTextView.setText(inStock);
                     holder.update = false;
+                    Log.d(TAG, "onChanged: called");
                 }
                 holder.mStockIngredientRecycleViewAdapter.notifyDataSetChanged();
             }

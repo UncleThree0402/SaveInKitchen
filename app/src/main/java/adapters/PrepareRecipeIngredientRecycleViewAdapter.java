@@ -36,12 +36,12 @@ public class PrepareRecipeIngredientRecycleViewAdapter extends RecyclerView.Adap
     private static final String TAG = "PrepareRecipeIngredient";
 
     private List<RecipeFood> mRecipeFood = new ArrayList<>();
-    private ViewModelStoreOwner mViewModelStoreOwner;
-    private LifecycleOwner mLifecycleOwner;
-    private Context mContext;
-    private int mDishId;
-    private double mQuantity;
-    private double mServing;
+    private final ViewModelStoreOwner mViewModelStoreOwner;
+    private final LifecycleOwner mLifecycleOwner;
+    private final Context mContext;
+    private final int mDishId;
+    private final double mQuantity;
+    private final double mServing;
 
     public PrepareRecipeIngredientRecycleViewAdapter(List<RecipeFood> mRecipeFood, ViewModelStoreOwner mViewModelStoreOwner, LifecycleOwner mLifecycleOwner, Context mContext, int mDishId, double mQuantity, double mServing) {
         this.mRecipeFood = mRecipeFood;
@@ -121,15 +121,15 @@ public class PrepareRecipeIngredientRecycleViewAdapter extends RecyclerView.Adap
         private final TextView mStatusTextView;
         private final TextView mQuantityTextView;
         private final TextView mDescriptionTextView;
-        private RecyclerView mIngredientsAddRecycleView;
-        private Button mAddItemButton;
-        private Button mAddBuyListButton;
+        private final RecyclerView mIngredientsAddRecycleView;
+        private final Button mAddItemButton;
+        private final Button mAddBuyListButton;
 
-        private BuyFoodViewModel mBuyFoodViewModel;
-        private CookDishIngredientViewViewModel mCookDishIngredientViewViewModel;
+        private final BuyFoodViewModel mBuyFoodViewModel;
+        private final CookDishIngredientViewViewModel mCookDishIngredientViewViewModel;
         private PrepareRecipeIngredientAddedRecycleViewAdapter mPrepareRecipeIngredientAddedRecycleViewAdapter;
-        private CookDishIngredientViewModel mCookDishIngredientViewModel;
-        private ArrayList<CookDishIngredientView> mCookDishIngredientViews = new ArrayList<>();
+        private final CookDishIngredientViewModel mCookDishIngredientViewModel;
+        private final ArrayList<CookDishIngredientView> mCookDishIngredientViews = new ArrayList<>();
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

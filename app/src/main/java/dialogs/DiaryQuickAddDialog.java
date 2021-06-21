@@ -26,7 +26,7 @@ public class DiaryQuickAddDialog extends DialogFragment {
 
     //Var
     private DiaryHistoryViewModel mDiaryHistoryViewModel;
-    private DiaryHistory mDiaryHistory = new DiaryHistory();
+    private final DiaryHistory mDiaryHistory = new DiaryHistory();
     private final String mType;
     private final long mDatetime;
 

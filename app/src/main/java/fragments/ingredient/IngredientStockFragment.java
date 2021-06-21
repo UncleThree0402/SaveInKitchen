@@ -4,6 +4,7 @@ import adapters.IngredientRecycleViewAdapter;
 import adapters.StockRecycleViewAdapter;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientStockFragment extends Fragment {
+    private static final String TAG = "IngredientStockFragment";
 
     //UI
     private RecyclerView mIngredientRecyclerView;
@@ -111,13 +113,14 @@ public class IngredientStockFragment extends Fragment {
                 }
                 if (mFoodType != null) {
                     mFoodType.addAll(foodTypes);
-                }
-                if (mFoodType.size() == 0) {
-                    mIngredientRecyclerView.setVisibility(View.GONE);
-                    mIngredientRecyclerViewTextView.setVisibility(View.VISIBLE);
-                } else {
-                    mIngredientRecyclerView.setVisibility(View.VISIBLE);
-                    mIngredientRecyclerViewTextView.setVisibility(View.GONE);
+                    if (mFoodType.size() == 0) {
+                        mIngredientRecyclerView.setVisibility(View.GONE);
+                        mIngredientRecyclerViewTextView.setVisibility(View.VISIBLE);
+                    } else {
+                        mIngredientRecyclerView.setVisibility(View.VISIBLE);
+                        mIngredientRecyclerViewTextView.setVisibility(View.GONE);
+                    }
+                    Log.d(TAG, "onChanged: called");
                 }
                 mStockRecycleViewAdapter.notifyDataSetChanged();
             }

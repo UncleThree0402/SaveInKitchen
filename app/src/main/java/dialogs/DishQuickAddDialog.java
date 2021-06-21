@@ -27,7 +27,7 @@ public class DishQuickAddDialog extends DialogFragment {
 
     //Var
     private DishesViewModel mDishesViewModel;
-    private Dishes dishes = new Dishes();
+    private final Dishes dishes = new Dishes();
 
     @Nullable
     @Override

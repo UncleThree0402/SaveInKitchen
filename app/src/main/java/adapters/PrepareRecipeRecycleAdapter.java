@@ -20,7 +20,7 @@ import java.util.List;
 public class PrepareRecipeRecycleAdapter extends RecyclerView.Adapter<PrepareRecipeRecycleAdapter.ViewHolder>{
 
     private List<Recipe> mRecipe = new ArrayList<>();
-    private OnPrepareRecipeClickListener mOnPrepareRecipeClickListener;
+    private final OnPrepareRecipeClickListener mOnPrepareRecipeClickListener;
 
     public PrepareRecipeRecycleAdapter(List<Recipe> mRecipe, OnPrepareRecipeClickListener onPrepareRecipeClickListener) {
         this.mRecipe = mRecipe;
@@ -50,10 +50,10 @@ public class PrepareRecipeRecycleAdapter extends RecyclerView.Adapter<PrepareRec
 
         private final TextView mRecipeName;
         private final TextView mRecipeCost;
-        private OnPrepareRecipeClickListener mOnPrepareRecipeClickListener;
+        private final OnPrepareRecipeClickListener mOnPrepareRecipeClickListener;
 
         public ViewHolder(@NonNull View itemView, OnPrepareRecipeClickListener onPrepareRecipeClickListener) {
-            super(itemView);;
+            super(itemView);
             mRecipeName = itemView.findViewById(R.id.buy_list_recycle_name);
             mRecipeCost = itemView.findViewById(R.id.buy_list_recycle_cost);
             mOnPrepareRecipeClickListener = onPrepareRecipeClickListener;

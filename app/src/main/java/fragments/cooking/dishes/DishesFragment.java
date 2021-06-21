@@ -45,7 +45,7 @@ public class DishesFragment extends Fragment implements DishesRecycleViewAdapter
 
     //Var
     private DishesRecycleViewAdapter mDishRecycleViewAdapter;
-    private ArrayList<Dishes> mDishes = new ArrayList<>();
+    private final ArrayList<Dishes> mDishes = new ArrayList<>();
     private DishesViewModel mDishesViewModel;
 
     @Nullable

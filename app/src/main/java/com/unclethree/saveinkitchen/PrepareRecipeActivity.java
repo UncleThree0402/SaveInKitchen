@@ -51,9 +51,9 @@ public class PrepareRecipeActivity extends AppCompatActivity implements View.OnC
     private DishesViewModel mDishesViewModel;
     private CookDishViewModel mCookDishViewModel;
     private FoodViewModel mFoodViewModel;
-    private LifecycleOwner mLifecycleOwner = this;
+    private final LifecycleOwner mLifecycleOwner = this;
     private PrepareRecipeIngredientRecycleViewAdapter mPrepareRecipeIngredientRecycleViewAdapter;
-    private ArrayList<RecipeFood> mRecipeFood = new ArrayList<>();
+    private final ArrayList<RecipeFood> mRecipeFood = new ArrayList<>();
 
 
     @Override
@@ -83,7 +83,7 @@ public class PrepareRecipeActivity extends AppCompatActivity implements View.OnC
         mQuantity = intent.getDoubleExtra("Quantity", 0);
         mDishId = intent.getIntExtra("dishId",0);
         mNameTextView.setText(mRecipe.getName());
-        mServingsTextView.setText(NumberFormatter.quantityFormatter(mQuantity) + " Servings");
+        mServingsTextView.setText(NumberFormatter.quantityFormatter(mQuantity));
         mNoteTextView.setText(mRecipe.getNote());
         mMethodsTextView.setText(mRecipe.getMethods());
 

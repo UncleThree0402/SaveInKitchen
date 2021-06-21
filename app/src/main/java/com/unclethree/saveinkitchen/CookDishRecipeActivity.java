@@ -40,10 +40,10 @@ public class CookDishRecipeActivity extends AppCompatActivity implements View.On
     private ExtendedFloatingActionButton mAddRecipeButton;
 
     //Var
-    private ArrayList<Recipe> mRecipe = new ArrayList<>();
+    private final ArrayList<Recipe> mRecipe = new ArrayList<>();
     private PrepareRecipeRecycleAdapter mRecipeRecyclerAdapter;
     private RecipeViewModel mRecipeViewModel;
-    private LifecycleOwner mLifecycleOwner = this;
+    private final LifecycleOwner mLifecycleOwner = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

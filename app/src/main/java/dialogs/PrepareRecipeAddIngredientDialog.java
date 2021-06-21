@@ -37,9 +37,9 @@ public class PrepareRecipeAddIngredientDialog extends DialogFragment {
 
     //Var
     private CookDishIngredientViewModel mCookDishIngredientViewModel;
-    private Food mFood;
-    private int mDishId;
-    private int mRecipeId;
+    private final Food mFood;
+    private final int mDishId;
+    private final int mRecipeId;
 
     public PrepareRecipeAddIngredientDialog(Food mFood, int mDishId, int mRecipeId) {
         this.mFood = mFood;

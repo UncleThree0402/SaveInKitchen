@@ -14,7 +14,7 @@ public class CookDishIngredientViewModel extends AndroidViewModel {
 
     private final SaveInKitchenRepository mSaveInKitchenRepository;
 
-    private LiveData<List<CookDishIngredient>> mCookDishIngredient;
+    private final LiveData<List<CookDishIngredient>> mCookDishIngredient;
 
     public CookDishIngredientViewModel(@NonNull Application application) {
         super(application);
