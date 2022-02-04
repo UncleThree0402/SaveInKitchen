@@ -1,5 +1,5 @@
 # Save In Kitchen
-
+![icon](https://github.com/UncleThree0402/SaveInKitchen/blob/master/Image/icon.png)
 ## Description
 This is an android app with can record groceries or food which we brought, record the recipe which we tried, and calculate the number of ingredient we need with specific amount selected. <br>
 <br>**Design pattern** and **MVVM** structure is implemented in the programme.
